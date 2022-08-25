@@ -14,9 +14,9 @@ export const shouldViewTvShow = (tvShow: BaseTvShow) => {
   );
 };
 
-export function filterViewableTvShows(
+export const filterViewableTvShows = (
   page: PaginationResponse<TvShowListItem>
-): PaginationResponse<TvShowListItem> {
+): PaginationResponse<TvShowListItem> => {
   const remainingItems = page.results.filter(shouldViewTvShow);
   const removedItemCount = page.results.length - remainingItems.length;
   return {
@@ -28,7 +28,7 @@ export function filterViewableTvShows(
     // This is not the perfect way to do it. But it's just for demo purposes.
     total_pages: !remainingItems.length ? page.page : page.total_pages,
   };
-}
+};
 
 export const TV_SHOWS_SORT_BY = {
   popularityDesc: {

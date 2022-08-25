@@ -14,11 +14,11 @@ export const getNextPage = (paginated: PaginationResponse) => {
   return null;
 };
 
-export function getAllPageResults<T extends { id: Id }>(
+export const getAllPageResults = <T extends { id: Id }>(
   allPages: PaginationResponse<T>[]
-): T[] {
+): T[] => {
   return _.uniqBy(
     allPages.flatMap((page) => page.results) ?? [],
     (item) => item.id
   );
-}
+};

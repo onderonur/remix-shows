@@ -35,6 +35,7 @@ export default function FancyCard({
         <BaseImage
           key={backgroundImageSrc}
           src={backgroundImageSrc}
+          alt={`${imageAlt} - Background`}
           objectFit="cover"
           position="absolute"
           inset={0}
