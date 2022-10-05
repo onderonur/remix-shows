@@ -37,7 +37,12 @@ export default function SearchBar() {
           fontSize="1.2em"
           children={<SearchIcon />}
         />
-        <Input placeholder="Search..." name="keyword" defaultValue={keyword} />
+        <Input
+          placeholder="Search..."
+          name="keyword"
+          defaultValue={keyword}
+          type="search"
+        />
       </InputGroup>
     </Form>
   );

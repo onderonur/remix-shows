@@ -8,6 +8,12 @@ export default function handleRequest(
   responseHeaders: Headers,
   remixContext: EntryContext
 ) {
+  if (!process.env.API_KEY) {
+    return new Response("API_KEY (TMDb API key) env variable is missing.", {
+      status: 500,
+    });
+  }
+
   let markup = renderToString(
     <RemixServer context={remixContext} url={request.url} />
   );
