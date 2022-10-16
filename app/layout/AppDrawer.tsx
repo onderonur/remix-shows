@@ -5,10 +5,10 @@ import {
   DrawerHeader,
   DrawerOverlay,
   useBreakpointValue,
-} from "@chakra-ui/react";
-import { useLocation } from "@remix-run/react";
-import { useEffect } from "react";
-import AppNavigation from "./AppNavigation";
+} from '@chakra-ui/react';
+import { useLocation } from '@remix-run/react';
+import { useEffect } from 'react';
+import AppNavigation from './AppNavigation';
 
 type AppDrawerProps = {
   isOpen: boolean;
@@ -30,7 +30,7 @@ export default function AppDrawer({ isOpen, header, onClose }: AppDrawerProps) {
 
   return (
     <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
-      <DrawerOverlay display={{ lg: "none" }} />
+      <DrawerOverlay display={{ lg: 'none' }} />
       <DrawerContent>
         <DrawerHeader borderBottomWidth="1px">{header}</DrawerHeader>
         <DrawerBody padding={0}>

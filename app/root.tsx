@@ -6,11 +6,11 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
-} from "@remix-run/react";
-import type { MetaFunction, LoaderFunction } from "@remix-run/node";
-import { getMetaTags } from "./seo/SeoUtils";
-import type { Genre } from "./genres/GenresTypes";
-import { genresService } from "./genres/GenresService";
+} from '@remix-run/react';
+import type { MetaFunction, LoaderFunction } from '@remix-run/node';
+import { getMetaTags } from './seo/SeoUtils';
+import type { Genre } from './genres/GenresTypes';
+import { genresService } from './genres/GenresService';
 import {
   Box,
   Button,
@@ -20,19 +20,19 @@ import {
   Alert,
   AlertIcon,
   AlertTitle,
-} from "@chakra-ui/react";
-import GenresProvider from "./genres/GenresContext";
-import AppLayout from "./layout/AppLayout";
-import { theme } from "./theme/theme";
-import { PLACEHOLDER_IMAGE_SRC } from "./medias/MediaUtils";
-import { APP_TITLE } from "./common/CommonUtils";
-import { APP_HEADER_HEIGHT } from "./layout/AppHeader";
+} from '@chakra-ui/react';
+import GenresProvider from './genres/GenresContext';
+import AppLayout from './layout/AppLayout';
+import { theme } from './theme/theme';
+import { PLACEHOLDER_IMAGE_SRC } from './medias/MediaUtils';
+import { APP_TITLE } from './common/CommonUtils';
+import { APP_HEADER_HEIGHT } from './layout/AppHeader';
 
 export const meta: MetaFunction = () => {
   return {
     ...getMetaTags({ image: PLACEHOLDER_IMAGE_SRC }),
-    charset: "utf-8",
-    viewport: "width=device-width,initial-scale=1",
+    charset: 'utf-8',
+    viewport: 'width=device-width,initial-scale=1',
   };
 };
 
@@ -85,7 +85,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
                 <Button
                   colorScheme="red"
                   onClick={() => {
-                    window.location.href = "/";
+                    window.location.href = '/';
                   }}
                 >
                   Back to home page

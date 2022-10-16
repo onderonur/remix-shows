@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import type { Genre } from "./GenresTypes";
+import React, { useContext } from 'react';
+import type { Genre } from './GenresTypes';
 
 type GenresContextValue = Genre[];
 

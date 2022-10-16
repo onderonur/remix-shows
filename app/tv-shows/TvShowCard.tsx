@@ -1,10 +1,10 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
-import { getYear, isOfType } from "~/common/CommonUtils";
-import FancyCard from "~/common/FancyCard";
-import VoteRating from "~/common/VoteRating";
-import { getImageUrl } from "~/medias/MediaUtils";
-import GenreTags from "../genres/GenreTags";
-import type { TvShow, TvShowListItem } from "./TvShowsTypes";
+import { Box, Flex, Text } from '@chakra-ui/react';
+import { getYear, isOfType } from '~/common/CommonUtils';
+import FancyCard from '~/common/FancyCard';
+import VoteRating from '~/common/VoteRating';
+import { getImageUrl } from '~/medias/MediaUtils';
+import GenreTags from '../genres/GenreTags';
+import type { TvShow, TvShowListItem } from './TvShowsTypes';
 
 type TvShowCardProps = {
   tvShow: TvShowListItem | TvShow;
@@ -27,7 +27,7 @@ export default function TvShowCard({
       backgroundImageSrc={
         hasBackgroundImage
           ? getImageUrl(tvShow.backdrop_path, {
-              size: "original",
+              size: 'original',
             })
           : undefined
       }
@@ -50,7 +50,7 @@ export default function TvShowCard({
         </div>
         <GenreTags
           genres={
-            isOfType<TvShowListItem>(tvShow, ["genre_ids"])
+            isOfType<TvShowListItem>(tvShow, ['genre_ids'])
               ? tvShow.genre_ids
               : tvShow.genres
           }

@@ -1,9 +1,9 @@
-import { Box, List, ListItem } from "@chakra-ui/react";
-import { Link } from "@remix-run/react";
-import { paperStyles } from "~/common/CommonStyles";
-import type { Maybe } from "~/common/CommonTypes";
-import EmptyAlert from "~/common/EmptyAlert";
-import type { VideoMedia } from "./MediaTypes";
+import { Box, List, ListItem } from '@chakra-ui/react';
+import { Link } from '@remix-run/react';
+import { paperStyles } from '~/common/CommonStyles';
+import type { Maybe } from '~/common/CommonTypes';
+import EmptyAlert from '~/common/EmptyAlert';
+import type { VideoMedia } from './MediaTypes';
 
 type VideoListProps = {
   videos: Maybe<VideoMedia[]>;

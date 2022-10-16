@@ -1,17 +1,17 @@
-import { BaseService } from "~/api/BaseService";
-import type { Id, Maybe } from "~/common/CommonTypes";
-import type { PaginationResponse } from "~/pagination/PaginationTypes";
+import { BaseService } from '~/api/BaseService';
+import type { Id, Maybe } from '~/common/CommonTypes';
+import type { PaginationResponse } from '~/pagination/PaginationTypes';
 import type {
   TvShow,
   TvShowEpisode,
   TvShowListItem,
   TvShowSeason,
-} from "./TvShowsTypes";
+} from './TvShowsTypes';
 import {
   filterViewableTvShows,
   shouldViewTvShow,
   VIEW_FILTER_LIMIT,
-} from "./TvShowsUtils";
+} from './TvShowsUtils';
 
 class TvShowsService extends BaseService {
   discover = async (params: {
@@ -25,8 +25,8 @@ class TvShowsService extends BaseService {
         page: params.page,
         sort_by: params.sortBy,
         with_genres: params.genreId ? [params.genreId].join() : null,
-        "vote_count.gte": VIEW_FILTER_LIMIT.minVoteCount,
-      }
+        'vote_count.gte': VIEW_FILTER_LIMIT.minVoteCount,
+      },
     );
 
     return filterViewableTvShows(tvShows);
@@ -38,7 +38,7 @@ class TvShowsService extends BaseService {
     });
 
     if (!shouldViewTvShow(tvShow)) {
-      throw new Error("Not found");
+      throw new Error('Not found');
     }
 
     if (tvShow.similar) {
@@ -47,7 +47,7 @@ class TvShowsService extends BaseService {
 
     if (tvShow.videos) {
       tvShow.videos.results = tvShow.videos.results.filter(
-        (video) => video.site === "YouTube"
+        (video) => video.site === 'YouTube',
       );
     }
 
@@ -68,14 +68,14 @@ class TvShowsService extends BaseService {
   episodeDetails = async (
     tvShowId: Id,
     seasonNumber: number,
-    episodeNumber: number
+    episodeNumber: number,
   ) => {
     const [tvShow, tvShowEpisode] = await Promise.all([
       // To check tvShow is viewable, we fetch it too.
       this.details(tvShowId),
       this.get<TvShowEpisode>(
         `/tv/${tvShowId}/season/${seasonNumber}/episode/${episodeNumber}`,
-        { append_to_response: "images,videos" }
+        { append_to_response: 'images,videos' },
       ),
     ]);
 

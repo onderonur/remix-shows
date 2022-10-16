@@ -1,5 +1,5 @@
-import type { ImgProps } from "@chakra-ui/react";
-import { Img } from "@chakra-ui/react";
+import type { ImgProps } from '@chakra-ui/react';
+import { Img } from '@chakra-ui/react';
 
 type BaseImageProps = ImgProps;
 

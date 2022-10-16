@@ -1,14 +1,14 @@
-import type { BoxProps } from "@chakra-ui/react";
-import { Box, Flex } from "@chakra-ui/react";
-import type { GlowingImageProps } from "~/common/GlowingImage";
-import GlowingImage from "~/common/GlowingImage";
-import BaseImage from "./BaseImage";
+import type { BoxProps } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
+import type { GlowingImageProps } from '~/common/GlowingImage';
+import GlowingImage from '~/common/GlowingImage';
+import BaseImage from './BaseImage';
 
 type FancyCardProps = React.PropsWithChildren<{
   imageSrc: string;
   imageAlt: string;
-  imageFlexBasis?: BoxProps["flexBasis"];
-  imageRatio: GlowingImageProps["aspectRatio"];
+  imageFlexBasis?: BoxProps['flexBasis'];
+  imageRatio: GlowingImageProps['aspectRatio'];
   backgroundImageSrc?: string;
 }>;
 
@@ -45,7 +45,7 @@ export default function FancyCard({
         />
       )}
       <Flex gap={4} flexWrap="wrap">
-        <Box flexBasis={imageFlexBasis ?? "2xs"} marginX="auto">
+        <Box flexBasis={imageFlexBasis ?? '2xs'} marginX="auto">
           <GlowingImage
             key={imageSrc}
             src={imageSrc}

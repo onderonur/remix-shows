@@ -1,7 +1,7 @@
-import YouTubePlayer from "./YouTubePlayer";
-import MediaViewer from "./MediaViewer";
-import type { Maybe } from "~/common/CommonTypes";
-import type { VideoMedia } from "./MediaTypes";
+import YouTubePlayer from './YouTubePlayer';
+import MediaViewer from './MediaViewer';
+import type { Maybe } from '~/common/CommonTypes';
+import type { VideoMedia } from './MediaTypes';
 
 type VideoViewerProps = {
   title: string;

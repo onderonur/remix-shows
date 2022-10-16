@@ -1,18 +1,18 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import { getImageUrl } from "~/medias/MediaUtils";
-import { getMetaTags } from "~/seo/SeoUtils";
-import { Box, Flex } from "@chakra-ui/react";
-import VoteRating from "~/common/VoteRating";
-import SectionTitle from "~/common/SectionTitle";
-import { tvShowsService } from "~/tv-shows/TvShowsService";
-import type { TvShow, TvShowEpisode } from "~/tv-shows/TvShowsTypes";
-import FancyCard from "~/common/FancyCard";
-import ImageViewer from "~/medias/ImageViewer";
-import VideoList from "~/medias/VideoList";
-import VideoViewer from "~/medias/VideoViewer";
-import ImageList from "~/medias/ImageList";
-import { getDateString } from "~/common/CommonUtils";
+import type { LoaderFunction, MetaFunction } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
+import { getImageUrl } from '~/medias/MediaUtils';
+import { getMetaTags } from '~/seo/SeoUtils';
+import { Box, Flex } from '@chakra-ui/react';
+import VoteRating from '~/common/VoteRating';
+import SectionTitle from '~/common/SectionTitle';
+import { tvShowsService } from '~/tv-shows/TvShowsService';
+import type { TvShow, TvShowEpisode } from '~/tv-shows/TvShowsTypes';
+import FancyCard from '~/common/FancyCard';
+import ImageViewer from '~/medias/ImageViewer';
+import VideoList from '~/medias/VideoList';
+import VideoViewer from '~/medias/VideoViewer';
+import ImageList from '~/medias/ImageList';
+import { getDateString } from '~/common/CommonUtils';
 
 type LoaderData = {
   tvShow: TvShow;
@@ -25,7 +25,7 @@ export const loader: LoaderFunction = async ({
   const { tvShow, tvShowEpisode } = await tvShowsService.episodeDetails(
     Number(params.tvShowId),
     Number(params.seasonNumber),
-    Number(params.episodeNumber)
+    Number(params.episodeNumber),
   );
 
   return { tvShow, tvShowEpisode };
@@ -42,8 +42,8 @@ export const meta: MetaFunction = ({
 }) => {
   if (!data) {
     return getMetaTags({
-      title: "Not found",
-      description: "Show not found",
+      title: 'Not found',
+      description: 'Show not found',
     });
   }
 
@@ -51,7 +51,7 @@ export const meta: MetaFunction = ({
     title: getPageTitle(data),
     description: data.tvShowEpisode.overview || data.tvShowEpisode.overview,
     image: getImageUrl(
-      data.tvShowEpisode.still_path || data.tvShow.poster_path
+      data.tvShowEpisode.still_path || data.tvShow.poster_path,
     ),
   });
 };
@@ -84,7 +84,7 @@ export default function EpisodeRoute() {
             imageFlexBasis="xs"
             imageRatio={16 / 9}
             backgroundImageSrc={getImageUrl(tvShow.backdrop_path, {
-              size: "original",
+              size: 'original',
             })}
           >
             <Flex justifyContent="space-between" gap={4}>

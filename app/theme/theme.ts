@@ -1,16 +1,16 @@
-import { extendTheme } from "@chakra-ui/react";
+import { extendTheme } from '@chakra-ui/react';
 
 const activeLabelStyles = {
-  transform: "scale(0.85) translateY(-24px)",
+  transform: 'scale(0.85) translateY(-24px)',
 };
 
 export const theme = extendTheme({
   styles: {
     global: {
-      "html, body": {
-        height: "100%",
-        "& > div:not(.chakra-portal)": {
-          minHeight: "100%",
+      'html, body': {
+        height: '100%',
+        '& > div:not(.chakra-portal)': {
+          minHeight: '100%',
         },
       },
     },
@@ -26,20 +26,20 @@ export const theme = extendTheme({
                 ...activeLabelStyles,
               },
             },
-            "input:not(:placeholder-shown) + label, .chakra-select__wrapper + label":
+            'input:not(:placeholder-shown) + label, .chakra-select__wrapper + label':
               {
                 ...activeLabelStyles,
               },
             label: {
               top: 0,
               left: 0,
-              position: "absolute",
-              backgroundColor: "white",
-              pointerEvents: "none",
+              position: 'absolute',
+              backgroundColor: 'white',
+              pointerEvents: 'none',
               mx: 3,
               px: 1,
               my: 2,
-              transformOrigin: "left top",
+              transformOrigin: 'left top',
             },
           },
         },

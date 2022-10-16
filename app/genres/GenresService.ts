@@ -1,5 +1,5 @@
-import { BaseService } from "~/api/BaseService";
-import type { Genre } from "./GenresTypes";
+import { BaseService } from '~/api/BaseService';
+import type { Genre } from './GenresTypes';
 
 class GenresService extends BaseService {
   getAll = async () => {

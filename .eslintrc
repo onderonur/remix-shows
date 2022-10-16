@@ -1,6 +1,12 @@
 {
-  "extends": ["@remix-run/eslint-config", "@remix-run/eslint-config/node"],
+  "extends": [
+    "@remix-run/eslint-config",
+    "@remix-run/eslint-config/node",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["prettier"],
   "rules": {
+    "prettier/prettier": "warn",
     "no-console": "warn",
     "@typescript-eslint/no-explicit-any": "warn"
   }

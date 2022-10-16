@@ -1,7 +1,7 @@
-import { Box, Flex } from "@chakra-ui/react";
-import SearchBar from "~/search/SearchBar";
+import { Box, Flex } from '@chakra-ui/react';
+import SearchBar from '~/search/SearchBar';
 
-export const APP_HEADER_HEIGHT = "70px";
+export const APP_HEADER_HEIGHT = '70px';
 
 type AppHeaderProps = {
   title: React.ReactNode;
@@ -14,7 +14,7 @@ export default function AppHeader({ title }: AppHeaderProps) {
         as="header"
         height={APP_HEADER_HEIGHT}
         boxShadow="md"
-        alignItems={"center"}
+        alignItems={'center'}
         padding={4}
         position="fixed"
         top={0}

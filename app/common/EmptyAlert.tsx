@@ -1,4 +1,4 @@
-import { Alert, AlertIcon, AlertTitle } from "@chakra-ui/react";
+import { Alert, AlertIcon, AlertTitle } from '@chakra-ui/react';
 
 type EmptyAlertProps = {
   title: string;

@@ -1,10 +1,10 @@
-import { AspectRatio, Box, Flex, ListItem } from "@chakra-ui/react";
-import BaseImage from "~/common/BaseImage";
-import { paperStyles } from "~/common/CommonStyles";
-import { getDateString } from "~/common/CommonUtils";
-import VoteRating from "~/common/VoteRating";
-import { getImageUrl } from "~/medias/MediaUtils";
-import type { BaseTvShowEpisode } from "./TvShowsTypes";
+import { AspectRatio, Box, Flex, ListItem } from '@chakra-ui/react';
+import BaseImage from '~/common/BaseImage';
+import { paperStyles } from '~/common/CommonStyles';
+import { getDateString } from '~/common/CommonUtils';
+import VoteRating from '~/common/VoteRating';
+import { getImageUrl } from '~/medias/MediaUtils';
+import type { BaseTvShowEpisode } from './TvShowsTypes';
 
 type TvShowEpisodeListItemProps = {
   episode: BaseTvShowEpisode;

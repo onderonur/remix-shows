@@ -1,7 +1,7 @@
-import type { PaginationResponse } from "~/pagination/PaginationTypes";
-import type { TvShowListItem } from "~/tv-shows/TvShowsTypes";
-import { filterViewableTvShows } from "~/tv-shows/TvShowsUtils";
-import { BaseService } from "../api/BaseService";
+import type { PaginationResponse } from '~/pagination/PaginationTypes';
+import type { TvShowListItem } from '~/tv-shows/TvShowsTypes';
+import { filterViewableTvShows } from '~/tv-shows/TvShowsUtils';
+import { BaseService } from '../api/BaseService';
 
 type SearchInput = { searchQuery?: string; page?: number };
 
@@ -12,7 +12,7 @@ class SearchService extends BaseService {
       {
         query: searchQuery,
         page,
-      }
+      },
     );
     return filterViewableTvShows(results);
   };

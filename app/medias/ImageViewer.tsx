@@ -1,8 +1,8 @@
-import { getImageUrl } from "~/medias/MediaUtils";
-import BaseImage from "../common/BaseImage";
-import type { Maybe } from "../common/CommonTypes";
-import type { ImageMedia } from "./MediaTypes";
-import MediaViewer from "./MediaViewer";
+import { getImageUrl } from '~/medias/MediaUtils';
+import BaseImage from '../common/BaseImage';
+import type { Maybe } from '../common/CommonTypes';
+import type { ImageMedia } from './MediaTypes';
+import MediaViewer from './MediaViewer';
 
 type ImageViewerProps = {
   title: string;
@@ -19,7 +19,7 @@ export default function ImageViewer({ title, images }: ImageViewerProps) {
       renderMedia={({ media }) => {
         return (
           <BaseImage
-            src={getImageUrl(media.file_path, { size: "original" })}
+            src={getImageUrl(media.file_path, { size: 'original' })}
             alt={title}
           />
         );

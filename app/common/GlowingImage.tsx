@@ -1,5 +1,5 @@
-import { Box } from "@chakra-ui/react";
-import BaseImage from "./BaseImage";
+import { Box } from '@chakra-ui/react';
+import BaseImage from './BaseImage';
 
 export type GlowingImageProps = {
   src: string;
@@ -16,15 +16,15 @@ function GlowingImage({ src, alt, aspectRatio }: GlowingImageProps) {
       sx={{ aspectRatio: aspectRatio.toString() }}
       _before={{
         content: "''",
-        position: "absolute",
+        position: 'absolute',
         inset: 0,
         background: `url(${src})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        filter: "blur(0.6rem) saturate(3)",
-        borderRadius: "inherit",
-        aspectRatio: "inherit",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        filter: 'blur(0.6rem) saturate(3)',
+        borderRadius: 'inherit',
+        aspectRatio: 'inherit',
       }}
     >
       <BaseImage

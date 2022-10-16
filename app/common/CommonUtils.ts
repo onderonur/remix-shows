@@ -1,6 +1,6 @@
-import { isNil } from "lodash";
+import { isNil } from 'lodash';
 
-export const APP_TITLE = "Remix-Shows";
+export const APP_TITLE = 'Remix-Shows';
 
 export const getYear = (dateString: string) =>
   dateString ? new Date(dateString).getFullYear() : null;
@@ -23,7 +23,7 @@ export const getDateString = (date: string) => {
 
 export const isOfType = <T extends Object>(
   val: unknown,
-  keys: Array<keyof T>
+  keys: Array<keyof T>,
 ): val is T => {
   if (isNil(val)) {
     return false;

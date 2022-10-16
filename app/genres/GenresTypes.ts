@@ -1,4 +1,4 @@
-import type { Id } from "~/common/CommonTypes";
+import type { Id } from '~/common/CommonTypes';
 
 export type Genre = {
   id: Id;

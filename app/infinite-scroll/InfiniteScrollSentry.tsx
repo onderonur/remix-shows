@@ -1,9 +1,9 @@
-import { Flex, Spinner } from "@chakra-ui/react";
-import useInfiniteScroll from "react-infinite-scroll-hook";
+import { Flex, Spinner } from '@chakra-ui/react';
+import useInfiniteScroll from 'react-infinite-scroll-hook';
 
 type InfiniteScrollSentryProps = Pick<
   Parameters<typeof useInfiniteScroll>[0],
-  "hasNextPage" | "loading" | "onLoadMore"
+  'hasNextPage' | 'loading' | 'onLoadMore'
 >;
 
 export default function InfiniteScrollSentry({

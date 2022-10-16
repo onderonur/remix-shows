@@ -1,31 +1,31 @@
-import { Input } from "@chakra-ui/react";
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import { Input } from '@chakra-ui/react';
+import type { LoaderFunction, MetaFunction } from '@remix-run/node';
 import {
   Form,
   useFetcher,
   useLoaderData,
   useSearchParams,
   useSubmit,
-} from "@remix-run/react";
-import type { Maybe } from "~/common/CommonTypes";
-import SectionTitle from "~/common/SectionTitle";
-import { useGenres } from "~/genres/GenresContext";
-import InfiniteScrollSentry from "~/infinite-scroll/InfiniteScrollSentry";
-import type { PaginationResponse } from "~/pagination/PaginationTypes";
+} from '@remix-run/react';
+import type { Maybe } from '~/common/CommonTypes';
+import SectionTitle from '~/common/SectionTitle';
+import { useGenres } from '~/genres/GenresContext';
+import InfiniteScrollSentry from '~/infinite-scroll/InfiniteScrollSentry';
+import type { PaginationResponse } from '~/pagination/PaginationTypes';
 import {
   checkHasNextPage,
   getAllPageResults,
   getNextPage,
-} from "~/pagination/PaginationUtils";
-import type { RootLoaderData } from "~/root";
-import { getMetaTags } from "~/seo/SeoUtils";
-import TvShowList from "~/tv-shows/TvShowList";
-import { tvShowsService } from "~/tv-shows/TvShowsService";
-import type { TvShowListItem } from "~/tv-shows/TvShowsTypes";
-import { TV_SHOWS_SORT_BY } from "~/tv-shows/TvShowsUtils";
-import BaseSelect from "~/common/BaseSelect";
-import { useHasChanged } from "~/common/CommonHooks";
-import { useMemo, useState } from "react";
+} from '~/pagination/PaginationUtils';
+import type { RootLoaderData } from '~/root';
+import { getMetaTags } from '~/seo/SeoUtils';
+import TvShowList from '~/tv-shows/TvShowList';
+import { tvShowsService } from '~/tv-shows/TvShowsService';
+import type { TvShowListItem } from '~/tv-shows/TvShowsTypes';
+import { TV_SHOWS_SORT_BY } from '~/tv-shows/TvShowsUtils';
+import BaseSelect from '~/common/BaseSelect';
+import { useHasChanged } from '~/common/CommonHooks';
+import { useMemo, useState } from 'react';
 
 type LoaderData = {
   genreId: Maybe<number>;
@@ -33,16 +33,16 @@ type LoaderData = {
 };
 
 const getGenreId = (searchParams: URLSearchParams) => {
-  const genreId = searchParams.get("genreId");
+  const genreId = searchParams.get('genreId');
   return genreId ? Number(genreId) : null;
 };
 
 const getPage = (searchParams: URLSearchParams) =>
-  Number(searchParams.get("page")) || 1;
+  Number(searchParams.get('page')) || 1;
 
 const getSortBy = (searchParams: URLSearchParams) => {
   const defaultSortBy = TV_SHOWS_SORT_BY.popularityDesc;
-  const sortById = searchParams.get("sortBy");
+  const sortById = searchParams.get('sortBy');
 
   if (!sortById) {
     return defaultSortBy;
@@ -141,17 +141,17 @@ export default function IndexRoute() {
       <TvShowList tvShows={tvShows} />
       <InfiniteScrollSentry
         hasNextPage={checkHasNextPage(tvShows)}
-        loading={fetcher.state === "loading"}
+        loading={fetcher.state === 'loading'}
         onLoadMore={() => {
           const nextPage = getNextPage(tvShows);
           if (!nextPage) {
             return;
           }
 
-          searchParams.set("page", nextPage.toString());
+          searchParams.set('page', nextPage.toString());
 
           // https://remix.run/docs/en/v1/guides/routing#what-is-the-index-query-param
-          searchParams.set("index", "");
+          searchParams.set('index', '');
 
           fetcher.load(`/?${searchParams.toString()}`);
         }}

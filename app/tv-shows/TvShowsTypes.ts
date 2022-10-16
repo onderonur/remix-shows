@@ -1,7 +1,7 @@
-import type  { Id } from "~/common/CommonTypes";
-import type  { Genre } from "~/genres/GenresTypes";
-import type  { ImageMedia, VideoMedia } from "~/medias/MediaTypes";
-import type  { PaginationResponse } from "~/pagination/PaginationTypes";
+import type { Id } from '~/common/CommonTypes';
+import type { Genre } from '~/genres/GenresTypes';
+import type { ImageMedia, VideoMedia } from '~/medias/MediaTypes';
+import type { PaginationResponse } from '~/pagination/PaginationTypes';
 
 export type BaseTvShow = {
   id: Id;

@@ -1,6 +1,6 @@
-import type { Id } from "~/common/CommonTypes";
-import type { PaginationResponse } from "./PaginationTypes";
-import _ from "lodash";
+import type { Id } from '~/common/CommonTypes';
+import type { PaginationResponse } from './PaginationTypes';
+import _ from 'lodash';
 
 export const checkHasNextPage = (paginated: PaginationResponse) => {
   const { page, total_pages } = paginated;
@@ -15,10 +15,10 @@ export const getNextPage = (paginated: PaginationResponse) => {
 };
 
 export const getAllPageResults = <T extends { id: Id }>(
-  allPages: PaginationResponse<T>[]
+  allPages: PaginationResponse<T>[],
 ): T[] => {
   return _.uniqBy(
     allPages.flatMap((page) => page.results) ?? [],
-    (item) => item.id
+    (item) => item.id,
   );
 };

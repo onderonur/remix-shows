@@ -1,10 +1,10 @@
-import type { SelectProps } from "@chakra-ui/react";
-import { FormControl, FormLabel, Select } from "@chakra-ui/react";
-import { useId } from "react";
+import type { SelectProps } from '@chakra-ui/react';
+import { FormControl, FormLabel, Select } from '@chakra-ui/react';
+import { useId } from 'react';
 
 type BaseSelectProps = Pick<
   SelectProps,
-  "name" | "value" | "children" | "onChange"
+  'name' | 'value' | 'children' | 'onChange'
 > & { label?: string };
 
 export default function BaseSelect({

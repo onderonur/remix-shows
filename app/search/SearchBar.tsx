@@ -1,16 +1,16 @@
-import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
+import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
+import { SearchIcon } from '@chakra-ui/icons';
 import {
   Form,
   useLocation,
   useNavigate,
   useSearchParams,
   useSubmit,
-} from "@remix-run/react";
+} from '@remix-run/react';
 
 export default function SearchBar() {
   const [searchParams] = useSearchParams();
-  const keyword = searchParams.get("keyword") ?? "";
+  const keyword = searchParams.get('keyword') ?? '';
   const submit = useSubmit();
   const navigate = useNavigate();
   const location = useLocation();
@@ -19,14 +19,14 @@ export default function SearchBar() {
     <Form
       autoComplete="off"
       onChange={(e) => {
-        const isSearchRoute = location.pathname === "/search";
+        const isSearchRoute = location.pathname === '/search';
         const formData = new FormData(e.currentTarget);
-        const trimmedKeyword = formData.get("keyword")?.toString().trim();
+        const trimmedKeyword = formData.get('keyword')?.toString().trim();
         if (trimmedKeyword) {
-          formData.set("keyword", trimmedKeyword);
-          submit(formData, { action: "/search", replace: isSearchRoute });
+          formData.set('keyword', trimmedKeyword);
+          submit(formData, { action: '/search', replace: isSearchRoute });
         } else if (isSearchRoute) {
-          navigate("/");
+          navigate('/');
         }
       }}
     >

@@ -1,8 +1,8 @@
-import { Link } from "@remix-run/react";
-import type { TvShow } from "~/tv-shows/TvShowsTypes";
-import { Box, Flex } from "@chakra-ui/react";
-import { ChevronRightIcon } from "@chakra-ui/icons";
-import { baseTransitionStyles, paperStyles } from "~/common/CommonStyles";
+import { Link } from '@remix-run/react';
+import type { TvShow } from '~/tv-shows/TvShowsTypes';
+import { Box, Flex } from '@chakra-ui/react';
+import { ChevronRightIcon } from '@chakra-ui/icons';
+import { baseTransitionStyles, paperStyles } from '~/common/CommonStyles';
 
 type TvShowSeasonsLinkProps = {
   tvShow: TvShow;
@@ -28,10 +28,10 @@ export default function TvShowSeasonsLink({ tvShow }: TvShowSeasonsLinkProps) {
           </Box>
         </Box>
         <ChevronRightIcon
-          fontSize={"5xl"}
+          fontSize={'5xl'}
           {...baseTransitionStyles}
           color="red.200"
-          _groupHover={{ color: "red.500", transform: "scale(1.1)" }}
+          _groupHover={{ color: 'red.500', transform: 'scale(1.1)' }}
         />
       </Flex>
     </Link>

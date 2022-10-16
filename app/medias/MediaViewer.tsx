@@ -10,11 +10,11 @@ import {
   ModalHeader,
   ModalOverlay,
   useBreakpointValue,
-} from "@chakra-ui/react";
-import { useNavigate, useSearchParams } from "@remix-run/react";
-import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
-import type { Maybe } from "~/common/CommonTypes";
-import { useGoBack } from "~/routing/RoutingHooks";
+} from '@chakra-ui/react';
+import { useNavigate, useSearchParams } from '@remix-run/react';
+import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
+import type { Maybe } from '~/common/CommonTypes';
+import { useGoBack } from '~/routing/RoutingHooks';
 
 const stepperButtonDistanceFromEdge = 2;
 
@@ -42,7 +42,7 @@ export default function MediaViewer<MediaItem>({
     medias?.findIndex((media) => getMediaKey(media) === mediaKey) ?? -1;
   const media = medias?.[currentIndex];
 
-  const size = useBreakpointValue({ base: "full", md: "6xl" });
+  const size = useBreakpointValue({ base: 'full', md: '6xl' });
 
   const navigate = useNavigate();
 
@@ -57,7 +57,7 @@ export default function MediaViewer<MediaItem>({
         {
           replace: true,
           state: { canGoBack: true },
-        }
+        },
       );
     }
   };

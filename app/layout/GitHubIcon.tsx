@@ -1,4 +1,4 @@
-import { Icon } from "@chakra-ui/react";
+import { Icon } from '@chakra-ui/react';
 
 const ICON_SIZE = 8;
 
@@ -9,7 +9,7 @@ export default function GitHubIcon() {
       width={ICON_SIZE}
       viewBox="0 0 16 16"
       fill="gray.700"
-      _hover={{ fill: "gray.600" }}
+      _hover={{ fill: 'gray.600' }}
     >
       <path
         fillRule="evenodd"

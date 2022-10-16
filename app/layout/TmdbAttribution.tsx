@@ -1,8 +1,8 @@
-import { Icon, Text, Stack } from "@chakra-ui/react";
-import { useId } from "react";
-import ExternalLink from "~/common/ExternalLink";
+import { Icon, Text, Stack } from '@chakra-ui/react';
+import { useId } from 'react';
+import ExternalLink from '~/common/ExternalLink';
 
-const ICON_SIZE = "16";
+const ICON_SIZE = '16';
 
 export default function TmdbAttribution() {
   const linearGradientId = useId();
@@ -39,7 +39,7 @@ export default function TmdbAttribution() {
             </g>
           </g>
         </Icon>
-        <Text fontSize={"xs"}>
+        <Text fontSize={'xs'}>
           This product uses the TMDB API but is not endorsed or certified by
           TMDB.
         </Text>

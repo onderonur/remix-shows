@@ -1,15 +1,15 @@
-import type { LoaderFunction } from "@remix-run/node";
-import { redirect } from "@remix-run/node";
-import { useLoaderData, useSearchParams } from "@remix-run/react";
-import { useScrollToTopOnRouteChange } from "~/common/CommonHooks";
-import SectionTitle from "~/common/SectionTitle";
-import type { PaginationResponse } from "~/pagination/PaginationTypes";
-import { searchService } from "~/search/SearchService";
-import TvShowList from "~/tv-shows/TvShowList";
-import type { TvShowListItem } from "~/tv-shows/TvShowsTypes";
+import type { LoaderFunction } from '@remix-run/node';
+import { redirect } from '@remix-run/node';
+import { useLoaderData, useSearchParams } from '@remix-run/react';
+import { useScrollToTopOnRouteChange } from '~/common/CommonHooks';
+import SectionTitle from '~/common/SectionTitle';
+import type { PaginationResponse } from '~/pagination/PaginationTypes';
+import { searchService } from '~/search/SearchService';
+import TvShowList from '~/tv-shows/TvShowList';
+import type { TvShowListItem } from '~/tv-shows/TvShowsTypes';
 
 const getKeyword = (searchParams: URLSearchParams) => {
-  return searchParams.get("keyword")?.trim();
+  return searchParams.get('keyword')?.trim();
 };
 
 type LoaderData = {
@@ -23,7 +23,7 @@ export const loader: LoaderFunction = async ({
   const keyword = getKeyword(url.searchParams);
 
   if (!keyword) {
-    return redirect("/");
+    return redirect('/');
   }
 
   const tvShows = await searchService.searchTvShows({

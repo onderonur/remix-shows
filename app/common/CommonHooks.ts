@@ -1,5 +1,5 @@
-import { useLocation } from "@remix-run/react";
-import { useEffect, useState } from "react";
+import { useLocation } from '@remix-run/react';
+import { useEffect, useState } from 'react';
 
 export function useScrollToTopOnRouteChange() {
   const location = useLocation();

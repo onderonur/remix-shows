@@ -1,22 +1,22 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { LoaderFunction, MetaFunction } from '@remix-run/node';
 import {
   Form,
   Link,
   useLoaderData,
   useSearchParams,
   useSubmit,
-} from "@remix-run/react";
-import type { TvShow, TvShowSeason } from "~/tv-shows/TvShowsTypes";
-import { createNumberArray } from "~/common/CommonUtils";
-import { getMetaTags } from "~/seo/SeoUtils";
-import { Box, Flex, List } from "@chakra-ui/react";
-import { getImageUrl } from "~/medias/MediaUtils";
-import TvShowEpisodeListItem from "~/tv-shows/TvShowEpisodeListItems";
-import SectionTitle from "~/common/SectionTitle";
-import FancyCard from "~/common/FancyCard";
-import { tvShowsService } from "~/tv-shows/TvShowsService";
-import BaseSelect from "~/common/BaseSelect";
-import { useScrollToTopOnRouteChange } from "~/common/CommonHooks";
+} from '@remix-run/react';
+import type { TvShow, TvShowSeason } from '~/tv-shows/TvShowsTypes';
+import { createNumberArray } from '~/common/CommonUtils';
+import { getMetaTags } from '~/seo/SeoUtils';
+import { Box, Flex, List } from '@chakra-ui/react';
+import { getImageUrl } from '~/medias/MediaUtils';
+import TvShowEpisodeListItem from '~/tv-shows/TvShowEpisodeListItems';
+import SectionTitle from '~/common/SectionTitle';
+import FancyCard from '~/common/FancyCard';
+import { tvShowsService } from '~/tv-shows/TvShowsService';
+import BaseSelect from '~/common/BaseSelect';
+import { useScrollToTopOnRouteChange } from '~/common/CommonHooks';
 
 type LoaderData = {
   tvShow: TvShow;
@@ -24,7 +24,7 @@ type LoaderData = {
 };
 
 const getSelectedSeason = (searchParams: URLSearchParams) => {
-  return Number(searchParams.get("season")) || 1;
+  return Number(searchParams.get('season')) || 1;
 };
 
 export const loader: LoaderFunction = async ({
@@ -35,7 +35,7 @@ export const loader: LoaderFunction = async ({
 
   const { tvShow, tvShowSeason } = await tvShowsService.seasonDetails(
     Number(params.tvShowId),
-    getSelectedSeason(url.searchParams)
+    getSelectedSeason(url.searchParams),
   );
 
   return { tvShow, tvShowSeason };
@@ -52,8 +52,8 @@ export const meta: MetaFunction = ({
 }) => {
   if (!data) {
     return getMetaTags({
-      title: "Not found",
-      description: "Show not found",
+      title: 'Not found',
+      description: 'Show not found',
     });
   }
 
@@ -87,7 +87,7 @@ export default function SeasonsIndexRoute() {
           imageFlexBasis="36"
           imageRatio={2 / 3}
           backgroundImageSrc={getImageUrl(tvShow.backdrop_path, {
-            size: "original",
+            size: 'original',
           })}
         >
           {tvShowSeason.overview}
@@ -113,7 +113,7 @@ export default function SeasonsIndexRoute() {
                             Season {seasonNo}
                           </option>
                         );
-                      }
+                      },
                     )}
                   </BaseSelect>
                 </Form>

@@ -1,12 +1,12 @@
-import type { BoxProps } from "@chakra-ui/react";
-import { Box, Flex } from "@chakra-ui/react";
-import type { GoBackButtonProps } from "~/routing/GoBackButton";
-import GoBackButton from "~/routing/GoBackButton";
+import type { BoxProps } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
+import type { GoBackButtonProps } from '~/routing/GoBackButton';
+import GoBackButton from '~/routing/GoBackButton';
 
 type SectionTitleProps = {
   goBackButtonProps?: GoBackButtonProps;
   title: string;
-  titleAs?: BoxProps["as"];
+  titleAs?: BoxProps['as'];
   subtitle?: string;
   extra?: React.ReactNode;
 };
@@ -20,7 +20,7 @@ export default function SectionTitle({
 }: SectionTitleProps) {
   return (
     <Flex
-      alignItems={"center"}
+      alignItems={'center'}
       gap={3}
       mb={2}
       color="gray.700"
@@ -34,12 +34,12 @@ export default function SectionTitle({
           <Box
             as={titleAs}
             fontWeight="bold"
-            fontSize={{ base: "xl", lg: "2xl" }}
+            fontSize={{ base: 'xl', lg: '2xl' }}
           >
             {title}
           </Box>
           {subtitle && (
-            <Box fontSize={{ base: "sm", lg: "md" }} color="gray.600">
+            <Box fontSize={{ base: 'sm', lg: 'md' }} color="gray.600">
               {subtitle}
             </Box>
           )}

@@ -1,7 +1,7 @@
 export class BaseService {
   get = async <T>(
     endpoint: string,
-    params?: Record<string, string | number | undefined | null>
+    params?: Record<string, string | number | undefined | null>,
   ): Promise<T> => {
     const searchParams = new URLSearchParams({
       api_key: process.env.API_KEY as string,
@@ -24,7 +24,7 @@ export class BaseService {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data?.status_message ?? "Something went wrong");
+      throw new Error(data?.status_message ?? 'Something went wrong');
     }
 
     return data as T;
