@@ -73,7 +73,11 @@ export default function MediaViewer<MediaItem>({
   return (
     <Modal isCentered isOpen={!!media} size={size} onClose={goBack}>
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent
+        // To prevent images and videos to overflow from the bottom of the modal.
+        // So, the border-radius of the modal can be visible.
+        overflow="hidden"
+      >
         <ModalHeader>{title}</ModalHeader>
         <ModalCloseButton />
         <ModalBody padding={0}>
