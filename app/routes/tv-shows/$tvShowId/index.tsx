@@ -1,6 +1,6 @@
-import type { LoaderFunction, MetaFunction } from '@remix-run/node';
+import type { LoaderArgs, MetaFunction } from '@remix-run/node';
+import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import type { TvShow } from '~/tv-shows/TvShowsTypes';
 import { getMetaTags } from '~/seo/SeoUtils';
 import { Box, Flex } from '@chakra-ui/react';
 import TvShowList from '~/tv-shows/TvShowList';
@@ -14,26 +14,16 @@ import VideoViewer from '~/medias/VideoViewer';
 import ImageList from '~/medias/ImageList';
 import { getImageUrl } from '~/medias/MediaUtils';
 
-type LoaderData = {
-  tvShow: TvShow;
-};
-
-export const loader: LoaderFunction = async ({
-  params,
-}): Promise<LoaderData> => {
+export const loader = async ({ params }: LoaderArgs) => {
   const tvShow = await tvShowsService.details(Number(params.tvShowId), {
     appendToResponse: ['videos', 'images', 'similar'],
   });
 
-  return { tvShow };
+  return json({ tvShow });
 };
 
-export const meta: MetaFunction = ({
-  data,
-}: {
-  data: LoaderData | undefined;
-}) => {
-  if (!data?.tvShow) {
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  if (!data.tvShow) {
     return getMetaTags({
       title: 'Not found',
       description: 'Show not found',
@@ -48,7 +38,7 @@ export const meta: MetaFunction = ({
 };
 
 export default function TvShowsIndexRoute() {
-  const { tvShow } = useLoaderData<LoaderData>();
+  const { tvShow } = useLoaderData<typeof loader>();
 
   return (
     <Flex flexDirection="column" gap={4}>

@@ -7,9 +7,9 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from '@remix-run/react';
-import type { MetaFunction, LoaderFunction } from '@remix-run/node';
+import type { MetaFunction } from '@remix-run/node';
+import { json } from '@remix-run/node';
 import { getMetaTags } from './seo/SeoUtils';
-import type { Genre } from './genres/GenresTypes';
 import { genresService } from './genres/GenresService';
 import {
   Box,
@@ -36,11 +36,9 @@ export const meta: MetaFunction = () => {
   };
 };
 
-export type RootLoaderData = { genres: Genre[] };
-
-export const loader: LoaderFunction = async (): Promise<RootLoaderData> => {
+export const loader = async () => {
   const genres = await genresService.getAll();
-  return { genres };
+  return json({ genres });
 };
 
 export function ErrorBoundary({ error }: { error: Error }) {
@@ -101,7 +99,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
 }
 
 export default function App() {
-  const { genres } = useLoaderData<RootLoaderData>();
+  const { genres } = useLoaderData<typeof loader>();
 
   return (
     <html lang="en">

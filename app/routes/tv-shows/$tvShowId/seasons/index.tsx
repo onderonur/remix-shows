@@ -1,4 +1,5 @@
-import type { LoaderFunction, MetaFunction } from '@remix-run/node';
+import type { LoaderArgs, MetaFunction, SerializeFrom } from '@remix-run/node';
+import { json } from '@remix-run/node';
 import {
   Form,
   Link,
@@ -6,7 +7,6 @@ import {
   useSearchParams,
   useSubmit,
 } from '@remix-run/react';
-import type { TvShow, TvShowSeason } from '~/tv-shows/TvShowsTypes';
 import { createNumberArray } from '~/common/CommonUtils';
 import { getMetaTags } from '~/seo/SeoUtils';
 import { Box, Flex, List } from '@chakra-ui/react';
@@ -18,19 +18,11 @@ import { tvShowsService } from '~/tv-shows/TvShowsService';
 import BaseSelect from '~/common/BaseSelect';
 import { useScrollToTopOnRouteChange } from '~/common/CommonHooks';
 
-type LoaderData = {
-  tvShow: TvShow;
-  tvShowSeason: TvShowSeason;
-};
-
 const getSelectedSeason = (searchParams: URLSearchParams) => {
   return Number(searchParams.get('season')) || 1;
 };
 
-export const loader: LoaderFunction = async ({
-  params,
-  request,
-}): Promise<LoaderData> => {
+export const loader = async ({ params, request }: LoaderArgs) => {
   const url = new URL(request.url);
 
   const { tvShow, tvShowSeason } = await tvShowsService.seasonDetails(
@@ -38,18 +30,17 @@ export const loader: LoaderFunction = async ({
     getSelectedSeason(url.searchParams),
   );
 
-  return { tvShow, tvShowSeason };
+  return json({ tvShow, tvShowSeason });
 };
 
-const getPageTitle = ({ tvShow, tvShowSeason }: LoaderData) => {
+const getPageTitle = ({
+  tvShow,
+  tvShowSeason,
+}: SerializeFrom<typeof loader>) => {
   return `${tvShow.name} - ${tvShowSeason.name}`;
 };
 
-export const meta: MetaFunction = ({
-  data,
-}: {
-  data: LoaderData | undefined;
-}) => {
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
   if (!data) {
     return getMetaTags({
       title: 'Not found',
@@ -65,7 +56,7 @@ export const meta: MetaFunction = ({
 };
 
 export default function SeasonsIndexRoute() {
-  const loaderData = useLoaderData<LoaderData>();
+  const loaderData = useLoaderData<typeof loader>();
   const pageTitle = getPageTitle(loaderData);
   const { tvShow, tvShowSeason } = loaderData;
   const [searchParams] = useSearchParams();

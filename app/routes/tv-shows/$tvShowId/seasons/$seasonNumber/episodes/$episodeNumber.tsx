@@ -1,4 +1,5 @@
-import type { LoaderFunction, MetaFunction } from '@remix-run/node';
+import type { LoaderArgs, MetaFunction, SerializeFrom } from '@remix-run/node';
+import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { getImageUrl } from '~/medias/MediaUtils';
 import { getMetaTags } from '~/seo/SeoUtils';
@@ -6,7 +7,6 @@ import { Box, Flex } from '@chakra-ui/react';
 import VoteRating from '~/common/VoteRating';
 import SectionTitle from '~/common/SectionTitle';
 import { tvShowsService } from '~/tv-shows/TvShowsService';
-import type { TvShow, TvShowEpisode } from '~/tv-shows/TvShowsTypes';
 import FancyCard from '~/common/FancyCard';
 import ImageViewer from '~/medias/ImageViewer';
 import VideoList from '~/medias/VideoList';
@@ -14,32 +14,24 @@ import VideoViewer from '~/medias/VideoViewer';
 import ImageList from '~/medias/ImageList';
 import { getDateString } from '~/common/CommonUtils';
 
-type LoaderData = {
-  tvShow: TvShow;
-  tvShowEpisode: TvShowEpisode;
-};
-
-export const loader: LoaderFunction = async ({
-  params,
-}): Promise<LoaderData> => {
+export const loader = async ({ params }: LoaderArgs) => {
   const { tvShow, tvShowEpisode } = await tvShowsService.episodeDetails(
     Number(params.tvShowId),
     Number(params.seasonNumber),
     Number(params.episodeNumber),
   );
 
-  return { tvShow, tvShowEpisode };
+  return json({ tvShow, tvShowEpisode });
 };
 
-const getPageTitle = ({ tvShow, tvShowEpisode }: LoaderData) => {
+const getPageTitle = ({
+  tvShow,
+  tvShowEpisode,
+}: SerializeFrom<typeof loader>) => {
   return `${tvShow.name} - ${tvShowEpisode.name}`;
 };
 
-export const meta: MetaFunction = ({
-  data,
-}: {
-  data: LoaderData | undefined;
-}) => {
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
   if (!data) {
     return getMetaTags({
       title: 'Not found',
@@ -57,7 +49,7 @@ export const meta: MetaFunction = ({
 };
 
 export default function EpisodeRoute() {
-  const loaderData = useLoaderData<LoaderData>();
+  const loaderData = useLoaderData<typeof loader>();
   const pageTitle = getPageTitle(loaderData);
   const { tvShow, tvShowEpisode } = loaderData;
 

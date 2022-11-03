@@ -1,24 +1,17 @@
-import type { LoaderFunction } from '@remix-run/node';
+import type { LoaderArgs } from '@remix-run/node';
+import { json } from '@remix-run/node';
 import { redirect } from '@remix-run/node';
 import { useLoaderData, useSearchParams } from '@remix-run/react';
 import { useScrollToTopOnRouteChange } from '~/common/CommonHooks';
 import SectionTitle from '~/common/SectionTitle';
-import type { PaginationResponse } from '~/pagination/PaginationTypes';
 import { searchService } from '~/search/SearchService';
 import TvShowList from '~/tv-shows/TvShowList';
-import type { TvShowListItem } from '~/tv-shows/TvShowsTypes';
 
 const getKeyword = (searchParams: URLSearchParams) => {
   return searchParams.get('keyword')?.trim();
 };
 
-type LoaderData = {
-  tvShows: PaginationResponse<TvShowListItem>;
-};
-
-export const loader: LoaderFunction = async ({
-  request,
-}): Promise<LoaderData | ReturnType<typeof redirect>> => {
+export const loader = async ({ request }: LoaderArgs) => {
   const url = new URL(request.url);
   const keyword = getKeyword(url.searchParams);
 
@@ -31,11 +24,11 @@ export const loader: LoaderFunction = async ({
     page: 1,
   });
 
-  return { tvShows };
+  return json({ tvShows });
 };
 
 export default function SearchRoute() {
-  const { tvShows } = useLoaderData<LoaderData>();
+  const { tvShows } = useLoaderData<typeof loader>();
   const [searchParams] = useSearchParams();
   const keyword = getKeyword(searchParams);
 

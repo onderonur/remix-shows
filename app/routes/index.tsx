@@ -1,5 +1,6 @@
 import { Input } from '@chakra-ui/react';
-import type { LoaderFunction, MetaFunction } from '@remix-run/node';
+import type { LoaderArgs, MetaFunction } from '@remix-run/node';
+import { json } from '@remix-run/node';
 import {
   Form,
   useFetcher,
@@ -7,30 +8,22 @@ import {
   useSearchParams,
   useSubmit,
 } from '@remix-run/react';
-import type { Maybe } from '~/common/CommonTypes';
 import SectionTitle from '~/common/SectionTitle';
 import { useGenres } from '~/genres/GenresContext';
 import InfiniteScrollSentry from '~/infinite-scroll/InfiniteScrollSentry';
-import type { PaginationResponse } from '~/pagination/PaginationTypes';
 import {
   checkHasNextPage,
   getAllPageResults,
   getNextPage,
 } from '~/pagination/PaginationUtils';
-import type { RootLoaderData } from '~/root';
+import type { loader as rootLoader } from '~/root';
 import { getMetaTags } from '~/seo/SeoUtils';
 import TvShowList from '~/tv-shows/TvShowList';
 import { tvShowsService } from '~/tv-shows/TvShowsService';
-import type { TvShowListItem } from '~/tv-shows/TvShowsTypes';
 import { TV_SHOWS_SORT_BY } from '~/tv-shows/TvShowsUtils';
 import BaseSelect from '~/common/BaseSelect';
 import { useHasChanged } from '~/common/CommonHooks';
 import { useMemo, useState } from 'react';
-
-type LoaderData = {
-  genreId: Maybe<number>;
-  tvShows: PaginationResponse<TvShowListItem>;
-};
 
 const getGenreId = (searchParams: URLSearchParams) => {
   const genreId = searchParams.get('genreId');
@@ -54,9 +47,7 @@ const getSortBy = (searchParams: URLSearchParams) => {
   );
 };
 
-export const loader: LoaderFunction = async ({
-  request,
-}): Promise<LoaderData> => {
+export const loader = async ({ request }: LoaderArgs) => {
   const url = new URL(request.url);
 
   const tvShows = await tvShowsService.discover({
@@ -65,16 +56,19 @@ export const loader: LoaderFunction = async ({
     sortBy: getSortBy(url.searchParams).id,
   });
 
-  return {
+  return json({
     // We are using `genreId` in MetaFunction
     genreId: getGenreId(url.searchParams),
     tvShows,
-  };
+  });
 };
 
-export const meta: MetaFunction = ({ parentsData, data }) => {
-  const { genreId } = data as LoaderData;
-  const { genres } = parentsData.root as RootLoaderData;
+export const meta: MetaFunction<typeof loader, { root: typeof rootLoader }> = ({
+  parentsData,
+  data,
+}) => {
+  const { genreId } = data;
+  const { genres } = parentsData.root;
   const genre = genres.find((genre) => genre.id === genreId);
   if (!genre) {
     return getMetaTags();
@@ -83,13 +77,13 @@ export const meta: MetaFunction = ({ parentsData, data }) => {
 };
 
 export default function IndexRoute() {
-  const { tvShows: firstPage } = useLoaderData<LoaderData>();
+  const { tvShows: firstPage } = useLoaderData<typeof loader>();
   const [pages, setPages] = useState([firstPage]);
   if (useHasChanged(firstPage)) {
     setPages([firstPage]);
   }
 
-  const fetcher = useFetcher<LoaderData>();
+  const fetcher = useFetcher<typeof loader>();
   const fetcherTvShows = fetcher.data?.tvShows;
   if (useHasChanged(fetcherTvShows) && fetcherTvShows) {
     setPages((current) => [...current, fetcherTvShows]);
