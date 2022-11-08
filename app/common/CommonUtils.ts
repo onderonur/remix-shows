@@ -18,7 +18,7 @@ export const getDateString = (date: string) => {
     return null;
   }
 
-  return new Date(date).toLocaleDateString();
+  return new Date(date).toLocaleDateString('en');
 };
 
 export const isOfType = <T extends Object>(

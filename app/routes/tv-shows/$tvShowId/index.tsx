@@ -2,7 +2,7 @@ import type { LoaderArgs, MetaFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { getMetaTags } from '~/seo/SeoUtils';
-import { Box, Flex } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import TvShowList from '~/tv-shows/TvShowList';
 import SectionTitle from '~/common/SectionTitle';
 import { tvShowsService } from '~/tv-shows/TvShowsService';
@@ -53,25 +53,25 @@ export default function TvShowsIndexRoute() {
 
       <TvShowSeasonsLink tvShow={tvShow} />
 
-      <Box>
-        <SectionTitle title="Videos" />
+      <div>
+        <SectionTitle title="Videos" titleAs="h2" />
         <VideoList videos={tvShow.videos?.results} />
         <VideoViewer title={tvShow.name} videos={tvShow.videos?.results} />
-      </Box>
+      </div>
 
-      <Box>
-        <SectionTitle title="Images" />
+      <div>
+        <SectionTitle title="Images" titleAs="h2" />
         <ImageList
           images={tvShow.images?.backdrops}
           getImageAlt={(image, i) => `${tvShow.name} Image ${i + 1}`}
         />
         <ImageViewer title={tvShow.name} images={tvShow.images?.backdrops} />
-      </Box>
+      </div>
 
-      <Box>
-        <SectionTitle title="Similar TV Shows" />
+      <div>
+        <SectionTitle title="Similar TV Shows" titleAs="h2" />
         <TvShowList tvShows={tvShow.similar} />
-      </Box>
+      </div>
     </Flex>
   );
 }

@@ -86,6 +86,7 @@ export default function SeasonsIndexRoute() {
         <Box>
           <SectionTitle
             title="Episodes"
+            titleAs="h2"
             extra={
               <Box>
                 <Form>

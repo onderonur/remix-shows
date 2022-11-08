@@ -91,13 +91,13 @@ export default function EpisodeRoute() {
       </div>
 
       <Box>
-        <SectionTitle title="Videos" />
+        <SectionTitle title="Videos" titleAs="h2" />
         <VideoList videos={tvShowEpisode.videos.results} />
         <VideoViewer title={pageTitle} videos={tvShowEpisode.videos.results} />
       </Box>
 
       <Box>
-        <SectionTitle title="Images" />
+        <SectionTitle title="Images" titleAs="h2" />
         <ImageList
           images={tvShowEpisode.images.stills}
           getImageAlt={(image, i) => `${tvShowEpisode.name} Image ${i + 1}`}
