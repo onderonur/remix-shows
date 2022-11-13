@@ -4,7 +4,7 @@ import { useLoaderData } from '@remix-run/react';
 import { getMetaTags } from '~/seo/SeoUtils';
 import { Flex } from '@chakra-ui/react';
 import TvShowList from '~/tv-shows/TvShowList';
-import SectionTitle from '~/common/SectionTitle';
+import Title from '~/common/Title';
 import { tvShowsService } from '~/tv-shows/TvShowsService';
 import TvShowCard from '~/tv-shows/TvShowCard';
 import TvShowSeasonsLink from '~/tv-shows/TvShowSeasonsLink';
@@ -13,6 +13,7 @@ import VideoList from '~/medias/VideoList';
 import VideoViewer from '~/medias/VideoViewer';
 import ImageList from '~/medias/ImageList';
 import { getImageUrl } from '~/medias/MediaUtils';
+import PageTitle from '~/common/PageTitle';
 
 export const loader = async ({ params }: LoaderArgs) => {
   const tvShow = await tvShowsService.details(Number(params.tvShowId), {
@@ -43,9 +44,8 @@ export default function TvShowsIndexRoute() {
   return (
     <Flex flexDirection="column" gap={4}>
       <div>
-        <SectionTitle
+        <PageTitle
           goBackButtonProps={{ getFallback: () => '/' }}
-          titleAs="h1"
           title={tvShow.name}
         />
         <TvShowCard tvShow={tvShow} genresAsLink hasBackgroundImage />
@@ -53,25 +53,25 @@ export default function TvShowsIndexRoute() {
 
       <TvShowSeasonsLink tvShow={tvShow} />
 
-      <div>
-        <SectionTitle title="Videos" titleAs="h2" />
+      <section>
+        <Title title="Videos" titleAs="h2" />
         <VideoList videos={tvShow.videos?.results} />
         <VideoViewer title={tvShow.name} videos={tvShow.videos?.results} />
-      </div>
+      </section>
 
-      <div>
-        <SectionTitle title="Images" titleAs="h2" />
+      <section>
+        <Title title="Images" titleAs="h2" />
         <ImageList
           images={tvShow.images?.backdrops}
           getImageAlt={(image, i) => `${tvShow.name} Image ${i + 1}`}
         />
         <ImageViewer title={tvShow.name} images={tvShow.images?.backdrops} />
-      </div>
+      </section>
 
-      <div>
-        <SectionTitle title="Similar TV Shows" titleAs="h2" />
+      <section>
+        <Title title="Similar TV Shows" titleAs="h2" />
         <TvShowList tvShows={tvShow.similar} />
-      </div>
+      </section>
     </Flex>
   );
 }

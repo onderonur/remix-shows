@@ -5,7 +5,7 @@ import { getImageUrl } from '~/medias/MediaUtils';
 import { getMetaTags } from '~/seo/SeoUtils';
 import { Box, Flex } from '@chakra-ui/react';
 import VoteRating from '~/common/VoteRating';
-import SectionTitle from '~/common/SectionTitle';
+import Title from '~/common/Title';
 import { tvShowsService } from '~/tv-shows/TvShowsService';
 import FancyCard from '~/common/FancyCard';
 import ImageViewer from '~/medias/ImageViewer';
@@ -13,6 +13,7 @@ import VideoList from '~/medias/VideoList';
 import VideoViewer from '~/medias/VideoViewer';
 import ImageList from '~/medias/ImageList';
 import { getDateString } from '~/common/CommonUtils';
+import PageTitle from '~/common/PageTitle';
 
 export const loader = async ({ params }: LoaderArgs) => {
   const { tvShow, tvShowEpisode } = await tvShowsService.episodeDetails(
@@ -56,7 +57,7 @@ export default function EpisodeRoute() {
   return (
     <Flex flexDirection="column" gap={4}>
       <div>
-        <SectionTitle
+        <PageTitle
           goBackButtonProps={{
             getFallback: () => ({
               pathname: `/tv-shows/${tvShow.id}/seasons`,
@@ -65,45 +66,40 @@ export default function EpisodeRoute() {
               }).toString(),
             }),
           }}
-          titleAs="h1"
           title={pageTitle}
           subtitle={`S ${tvShowEpisode.season_number}, Ep ${tvShowEpisode.episode_number}`}
         />
-        <Flex gap={4}>
-          <FancyCard
-            imageSrc={getImageUrl(tvShowEpisode.still_path)}
-            imageAlt={pageTitle}
-            imageFlexBasis="xs"
-            imageRatio={16 / 9}
-            backgroundImageSrc={getImageUrl(tvShow.backdrop_path, {
-              size: 'original',
-            })}
-          >
-            <Flex justifyContent="space-between" gap={4}>
-              <VoteRating rating={tvShowEpisode.vote_average} size="md" />
-              <Box color="gray.600">
-                {getDateString(tvShowEpisode.air_date)}
-              </Box>
-            </Flex>
-            <div>{tvShowEpisode.overview}</div>
-          </FancyCard>
-        </Flex>
+        <FancyCard
+          imageSrc={getImageUrl(tvShowEpisode.still_path)}
+          imageAlt={pageTitle}
+          imageFlexBasis="xs"
+          imageRatio={16 / 9}
+          backgroundImageSrc={getImageUrl(tvShow.backdrop_path, {
+            size: 'original',
+          })}
+        >
+          <Flex justifyContent="space-between" gap={4}>
+            <VoteRating rating={tvShowEpisode.vote_average} size="md" />
+            <Box color="gray.600">{getDateString(tvShowEpisode.air_date)}</Box>
+          </Flex>
+          <div>{tvShowEpisode.overview}</div>
+        </FancyCard>
       </div>
 
-      <Box>
-        <SectionTitle title="Videos" titleAs="h2" />
+      <section>
+        <Title title="Videos" titleAs="h2" />
         <VideoList videos={tvShowEpisode.videos.results} />
         <VideoViewer title={pageTitle} videos={tvShowEpisode.videos.results} />
-      </Box>
+      </section>
 
-      <Box>
-        <SectionTitle title="Images" titleAs="h2" />
+      <section>
+        <Title title="Images" titleAs="h2" />
         <ImageList
           images={tvShowEpisode.images.stills}
           getImageAlt={(image, i) => `${tvShowEpisode.name} Image ${i + 1}`}
         />
         <ImageViewer title={pageTitle} images={tvShowEpisode.images.stills} />
-      </Box>
+      </section>
     </Flex>
   );
 }

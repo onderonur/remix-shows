@@ -3,7 +3,7 @@ import { json } from '@remix-run/node';
 import { redirect } from '@remix-run/node';
 import { useLoaderData, useSearchParams } from '@remix-run/react';
 import { useScrollToTopOnRouteChange } from '~/common/CommonHooks';
-import SectionTitle from '~/common/SectionTitle';
+import PageTitle from '~/common/PageTitle';
 import { searchService } from '~/search/SearchService';
 import TvShowList from '~/tv-shows/TvShowList';
 
@@ -36,7 +36,7 @@ export default function SearchRoute() {
 
   return (
     <>
-      <SectionTitle title={`Search results for '${keyword}'`} />
+      <PageTitle title={`Search results for '${keyword}'`} />
       <TvShowList tvShows={tvShows} />
     </>
   );

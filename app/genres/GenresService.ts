@@ -1,11 +1,13 @@
-import { BaseService } from '~/api/BaseService';
+import { httpClient } from '~/http-client/httpClient';
 import type { Genre } from './GenresTypes';
 
-class GenresService extends BaseService {
-  getAll = async () => {
-    const { genres } = await this.get<{ genres: Genre[] }>(`/genre/tv/list`);
-    return genres;
-  };
-}
+const getAll = async () => {
+  const { genres } = await httpClient.get<{ genres: Genre[] }>(
+    `/genre/tv/list`,
+  );
+  return genres;
+};
 
-export const genresService = new GenresService();
+export const genresService = {
+  getAll,
+};

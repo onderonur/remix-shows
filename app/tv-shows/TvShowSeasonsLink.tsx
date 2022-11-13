@@ -19,14 +19,14 @@ export default function TvShowSeasonsLink({ tvShow }: TvShowSeasonsLinkProps) {
         role="group"
         {...paperStyles}
       >
-        <Box>
+        <div>
           <Box fontWeight="bold" fontSize="2xl">
             Seasons: {tvShow.number_of_seasons}
           </Box>
           <Box color="gray.600" fontSize="sm">
             Episodes: {tvShow.number_of_episodes}
           </Box>
-        </Box>
+        </div>
         <ChevronRightIcon
           fontSize={'5xl'}
           {...baseTransitionStyles}

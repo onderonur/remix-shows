@@ -8,7 +8,6 @@ import {
   useSearchParams,
   useSubmit,
 } from '@remix-run/react';
-import SectionTitle from '~/common/SectionTitle';
 import { useGenres } from '~/genres/GenresContext';
 import InfiniteScrollSentry from '~/infinite-scroll/InfiniteScrollSentry';
 import {
@@ -24,6 +23,7 @@ import { TV_SHOWS_SORT_BY } from '~/tv-shows/TvShowsUtils';
 import BaseSelect from '~/common/BaseSelect';
 import { useHasChanged } from '~/common/CommonHooks';
 import { useMemo, useState } from 'react';
+import PageTitle from '~/common/PageTitle';
 
 const getGenreId = (searchParams: URLSearchParams) => {
   const genreId = searchParams.get('genreId');
@@ -104,11 +104,10 @@ export default function IndexRoute() {
 
   return (
     <>
-      <SectionTitle
+      <PageTitle
         title="TV Shows"
-        titleAs="h1"
         subtitle={genre?.name}
-        extra={
+        after={
           <Form>
             <BaseSelect
               name="sortBy"

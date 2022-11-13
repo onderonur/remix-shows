@@ -1,5 +1,5 @@
-export class BaseService {
-  get = async <T>(
+export const httpClient = {
+  get: async <T>(
     endpoint: string,
     params?: Record<string, string | number | undefined | null>,
   ): Promise<T> => {
@@ -28,5 +28,5 @@ export class BaseService {
     }
 
     return data as T;
-  };
-}
+  },
+};

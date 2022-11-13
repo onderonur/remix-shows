@@ -35,7 +35,7 @@ export default function TvShowCard({
       <Flex flexDirection="column" gap={2}>
         <Flex gap={2}>
           <VoteRating rating={tvShow.vote_average} size="lg" />
-          <Box>&middot;</Box>
+          <div>&middot;</div>
           <Box color="gray.600" fontWeight="semibold" fontSize="lg">
             {getYear(tvShow.first_air_date)}
           </Box>
