@@ -41,6 +41,23 @@ export const loader = async () => {
   return json({ genres });
 };
 
+function Font() {
+  return (
+    <>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin="anonymous"
+      />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400..800"
+        rel="stylesheet"
+      />
+    </>
+  );
+}
+
 export function ErrorBoundary({ error }: { error: Error }) {
   return (
     <html>
@@ -48,6 +65,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
         <title>{error.message}</title>
         <Meta />
         <Links />
+        <Font />
       </head>
       <body>
         <ChakraProvider theme={theme}>
@@ -106,6 +124,7 @@ export default function App() {
       <head>
         <Meta />
         <Links />
+        <Font />
       </head>
       <body>
         <ChakraProvider theme={theme}>

@@ -5,6 +5,9 @@ const activeLabelStyles = {
 };
 
 export const theme = extendTheme({
+  fonts: {
+    body: `"Inter", sans-serif`,
+  },
   styles: {
     global: {
       'html, body': {

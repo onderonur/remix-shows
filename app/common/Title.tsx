@@ -22,7 +22,7 @@ export default function Title({
       <Flex flexDirection="column" justifyContent="center" flex={1}>
         <Box
           as={titleAs}
-          fontWeight="bold"
+          fontWeight="extrabold"
           fontSize={{ base: 'xl', lg: '2xl' }}
           color="gray.700"
         >
