@@ -13,7 +13,7 @@ import { Flex, List } from '@chakra-ui/react';
 import { getImageUrl } from '~/medias/MediaUtils';
 import TvShowEpisodeListItem from '~/tv-shows/TvShowEpisodeListItems';
 import Title from '~/common/Title';
-import FancyCard from '~/common/FancyCard';
+import HeaderCard from '~/common/HeaderCard';
 import { tvShowsService } from '~/tv-shows/TvShowsService';
 import BaseSelect from '~/common/BaseSelect';
 import { useScrollToTopOnRouteChange } from '~/common/CommonHooks';
@@ -72,7 +72,7 @@ export default function SeasonsIndexRoute() {
           goBackButtonProps={{ getFallback: () => `/tv-shows/${tvShow.id}` }}
           title={pageTitle}
         />
-        <FancyCard
+        <HeaderCard
           imageSrc={getImageUrl(tvShowSeason.poster_path)}
           imageAlt={pageTitle}
           imageFlexBasis="36"
@@ -82,7 +82,7 @@ export default function SeasonsIndexRoute() {
           })}
         >
           {tvShowSeason.overview}
-        </FancyCard>
+        </HeaderCard>
       </div>
 
       <section>

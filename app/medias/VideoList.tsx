@@ -2,7 +2,7 @@ import { Box, List, ListItem } from '@chakra-ui/react';
 import { Link } from '@remix-run/react';
 import { paperStyles } from '~/common/CommonStyles';
 import type { Maybe } from '~/common/CommonTypes';
-import EmptyAlert from '~/common/EmptyAlert';
+import InfoAlert from '~/common/InfoAlert';
 import type { VideoMedia } from './MediaTypes';
 
 type VideoListProps = {
@@ -11,7 +11,7 @@ type VideoListProps = {
 
 export default function VideoList({ videos }: VideoListProps) {
   if (!videos?.length) {
-    return <EmptyAlert title="There are no videos..." />;
+    return <InfoAlert title="There are no videos..." />;
   }
 
   return (

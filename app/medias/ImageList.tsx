@@ -4,7 +4,7 @@ import { Grid, GridItem } from '@chakra-ui/react';
 import { Link } from '@remix-run/react';
 import type { Maybe } from '~/common/CommonTypes';
 import type { ImageMedia } from './MediaTypes';
-import EmptyAlert from '~/common/EmptyAlert';
+import InfoAlert from '~/common/InfoAlert';
 
 type ImageListProps = {
   images: Maybe<ImageMedia[]>;
@@ -13,7 +13,7 @@ type ImageListProps = {
 
 export default function ImageList({ images, getImageAlt }: ImageListProps) {
   if (!images?.length) {
-    return <EmptyAlert title="There are no images..." />;
+    return <InfoAlert title="There are no images..." />;
   }
 
   return (

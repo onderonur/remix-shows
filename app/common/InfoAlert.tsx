@@ -1,10 +1,10 @@
 import { Alert, AlertIcon, AlertTitle } from '@chakra-ui/react';
 
-type EmptyAlertProps = {
+type InfoAlertProps = {
   title: string;
 };
 
-export default function EmptyAlert({ title }: EmptyAlertProps) {
+export default function InfoAlert({ title }: InfoAlertProps) {
   return (
     <Alert status="info">
       <AlertIcon />

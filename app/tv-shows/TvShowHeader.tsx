@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 import { getYear } from '~/common/CommonUtils';
-import FancyCard from '~/common/FancyCard';
+import HeaderCard from '~/common/HeaderCard';
 import VoteRating from '~/common/VoteRating';
 import GenreTags from '~/genres/GenreTags';
 import { getImageUrl } from '~/medias/MediaUtils';
@@ -12,7 +12,7 @@ type TvShowHeaderProps = {
 
 export default function TvShowHeader({ tvShow }: TvShowHeaderProps) {
   return (
-    <FancyCard
+    <HeaderCard
       imageSrc={getImageUrl(tvShow.poster_path)}
       imageAlt={tvShow.name}
       imageFlexBasis="2xs"
@@ -39,6 +39,6 @@ export default function TvShowHeader({ tvShow }: TvShowHeaderProps) {
         </div>
         <GenreTags genres={tvShow.genres} />
       </Flex>
-    </FancyCard>
+    </HeaderCard>
   );
 }

@@ -7,7 +7,7 @@ import { Box, Flex } from '@chakra-ui/react';
 import VoteRating from '~/common/VoteRating';
 import Title from '~/common/Title';
 import { tvShowsService } from '~/tv-shows/TvShowsService';
-import FancyCard from '~/common/FancyCard';
+import HeaderCard from '~/common/HeaderCard';
 import ImageViewer from '~/medias/ImageViewer';
 import VideoList from '~/medias/VideoList';
 import VideoViewer from '~/medias/VideoViewer';
@@ -69,7 +69,7 @@ export default function EpisodeRoute() {
           title={pageTitle}
           subtitle={`S ${tvShowEpisode.season_number}, Ep ${tvShowEpisode.episode_number}`}
         />
-        <FancyCard
+        <HeaderCard
           imageSrc={getImageUrl(tvShowEpisode.still_path)}
           imageAlt={pageTitle}
           imageFlexBasis="xs"
@@ -83,7 +83,7 @@ export default function EpisodeRoute() {
             <Box color="gray.600">{getDateString(tvShowEpisode.air_date)}</Box>
           </Flex>
           <div>{tvShowEpisode.overview}</div>
-        </FancyCard>
+        </HeaderCard>
       </div>
 
       <section>

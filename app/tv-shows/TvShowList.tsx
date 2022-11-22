@@ -4,7 +4,7 @@ import type { PaginationResponse } from '~/pagination/PaginationTypes';
 import type { TvShowListItem } from '~/tv-shows/TvShowsTypes';
 import TvShowCard from './TvShowCard';
 import type { Maybe } from '~/common/CommonTypes';
-import EmptyAlert from '~/common/EmptyAlert';
+import InfoAlert from '~/common/InfoAlert';
 
 type TvShowListProps = {
   tvShows: Maybe<PaginationResponse<TvShowListItem>>;
@@ -12,7 +12,7 @@ type TvShowListProps = {
 
 export default function TvShowList({ tvShows }: TvShowListProps) {
   if (!tvShows?.results.length) {
-    return <EmptyAlert title="There are no tv shows..." />;
+    return <InfoAlert title="There are no tv shows..." />;
   }
 
   return (

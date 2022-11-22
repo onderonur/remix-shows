@@ -4,7 +4,7 @@ import type { GlowingImageProps } from '~/common/GlowingImage';
 import GlowingImage from '~/common/GlowingImage';
 import BaseImage from './BaseImage';
 
-type FancyCardProps = React.PropsWithChildren<{
+type HeaderCardProps = React.PropsWithChildren<{
   imageSrc: string;
   imageAlt: string;
   imageFlexBasis: BoxProps['flexBasis'];
@@ -12,14 +12,14 @@ type FancyCardProps = React.PropsWithChildren<{
   backgroundImageSrc?: string;
 }>;
 
-export default function FancyCard({
+export default function HeaderCard({
   children,
   imageSrc,
   imageAlt,
   imageFlexBasis,
   imageRatio,
   backgroundImageSrc,
-}: FancyCardProps) {
+}: HeaderCardProps) {
   return (
     <Box
       width="full"

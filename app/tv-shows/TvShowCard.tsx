@@ -37,7 +37,7 @@ export default function TvShowCard({ tvShow }: TvShowCardProps) {
         <Text fontWeight="bold" fontSize="md" lineHeight="short">
           {tvShow.name}
         </Text>
-        <Text color="gray.500" fontSize="xs">
+        <Text color="gray.700" fontSize="xs">
           {tvShow.genre_ids
             .map(
               (genreId) => genres.find((genre) => genre.id === genreId)?.name,
