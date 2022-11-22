@@ -31,7 +31,11 @@ export default function TvShowSeasonsLink({ tvShow }: TvShowSeasonsLinkProps) {
           fontSize={'5xl'}
           {...baseTransitionStyles}
           color="red.200"
-          _groupHover={{ color: 'red.500', transform: 'scale(1.1)' }}
+          position="relative"
+          _groupHover={{
+            color: 'red.500',
+            transform: 'scale(1.1) translate(10px)',
+          }}
         />
       </Flex>
     </Link>

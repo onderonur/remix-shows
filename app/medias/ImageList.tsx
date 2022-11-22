@@ -1,6 +1,6 @@
 import { getImageUrl } from '~/medias/MediaUtils';
 import BaseImage from '~/common/BaseImage';
-import { AspectRatio, Grid, GridItem } from '@chakra-ui/react';
+import { Grid, GridItem } from '@chakra-ui/react';
 import { Link } from '@remix-run/react';
 import type { Maybe } from '~/common/CommonTypes';
 import type { ImageMedia } from './MediaTypes';
@@ -28,9 +28,11 @@ export default function ImageList({ images, getImageAlt }: ImageListProps) {
               to={{ search: searchParams.toString() }}
               state={{ canGoBack: true }}
             >
-              <AspectRatio ratio={16 / 9}>
-                <BaseImage src={getImageUrl(src)} alt={alt} />
-              </AspectRatio>
+              <BaseImage
+                src={getImageUrl(src)}
+                alt={alt}
+                sx={{ aspectRatio: '16 / 9' }}
+              />{' '}
             </Link>
           </GridItem>
         );

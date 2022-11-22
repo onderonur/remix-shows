@@ -19,7 +19,12 @@ export default function Title({
   return (
     <Flex alignItems={'center'} gap={3} mb={2} flexWrap="wrap">
       {before && <div>{before}</div>}
-      <Flex flexDirection="column" justifyContent="center" flex={1}>
+      <Flex
+        flexDirection="column"
+        justifyContent="center"
+        flex={1}
+        lineHeight="short"
+      >
         <Box
           as={titleAs}
           fontWeight="extrabold"
@@ -29,7 +34,11 @@ export default function Title({
           {title}
         </Box>
         {subtitle && (
-          <Box fontSize={{ base: 'sm', lg: 'md' }} color="gray.600">
+          <Box
+            fontSize={{ base: 'sm', lg: 'md' }}
+            color="gray.600"
+            fontWeight="semibold"
+          >
             {subtitle}
           </Box>
         )}

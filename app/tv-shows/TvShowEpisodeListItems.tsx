@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Flex, ListItem } from '@chakra-ui/react';
+import { Box, Flex, ListItem } from '@chakra-ui/react';
 import BaseImage from '~/common/BaseImage';
 import { paperStyles } from '~/common/CommonStyles';
 import { getDateString } from '~/common/CommonUtils';
@@ -32,9 +32,11 @@ export default function TvShowEpisodeListItem({
         rounded="md"
         overflow="hidden"
       >
-        <AspectRatio ratio={500 / 281}>
-          <BaseImage src={getImageUrl(episode.still_path)} alt={episode.name} />
-        </AspectRatio>
+        <BaseImage
+          src={getImageUrl(episode.still_path)}
+          alt={episode.name}
+          sx={{ aspectRatio: '500 / 281' }}
+        />
         <Box
           textAlign="center"
           position="absolute"

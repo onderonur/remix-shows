@@ -73,13 +73,13 @@ export default function EpisodeRoute() {
           imageSrc={getImageUrl(tvShowEpisode.still_path)}
           imageAlt={pageTitle}
           imageFlexBasis="xs"
-          imageRatio={16 / 9}
+          imageRatio="16 / 9"
           backgroundImageSrc={getImageUrl(tvShow.backdrop_path, {
             size: 'original',
           })}
         >
           <Flex justifyContent="space-between" gap={4}>
-            <VoteRating rating={tvShowEpisode.vote_average} size="md" />
+            <VoteRating rating={tvShowEpisode.vote_average} />
             <Box color="gray.600">{getDateString(tvShowEpisode.air_date)}</Box>
           </Flex>
           <div>{tvShowEpisode.overview}</div>

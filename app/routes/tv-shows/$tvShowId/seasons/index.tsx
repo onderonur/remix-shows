@@ -76,7 +76,7 @@ export default function SeasonsIndexRoute() {
           imageSrc={getImageUrl(tvShowSeason.poster_path)}
           imageAlt={pageTitle}
           imageFlexBasis="36"
-          imageRatio={2 / 3}
+          imageRatio="2 / 3"
           backgroundImageSrc={getImageUrl(tvShow.backdrop_path, {
             size: 'original',
           })}

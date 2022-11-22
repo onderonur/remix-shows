@@ -8,5 +8,5 @@ type BaseImageProps = ImgProps;
 // and not `Image`.
 // https://chakra-ui.com/docs/components/image#usage-with-ssr
 export default function BaseImage(props: BaseImageProps) {
-  return <Img {...props} />;
+  return <Img backgroundColor="gray.400" {...props} />;
 }

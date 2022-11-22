@@ -4,7 +4,7 @@ import BaseImage from './BaseImage';
 export type GlowingImageProps = {
   src: string;
   alt: string;
-  aspectRatio: string | number;
+  aspectRatio: string;
 };
 
 function GlowingImage({ src, alt, aspectRatio }: GlowingImageProps) {
@@ -13,7 +13,7 @@ function GlowingImage({ src, alt, aspectRatio }: GlowingImageProps) {
       position="relative"
       borderRadius="md"
       width="full"
-      sx={{ aspectRatio: aspectRatio.toString() }}
+      sx={{ aspectRatio }}
       _before={{
         content: "''",
         position: 'absolute',

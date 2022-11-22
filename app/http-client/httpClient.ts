@@ -9,7 +9,7 @@ export const httpClient = {
 
     Object.entries(params ?? {}).forEach(([key, value]) => {
       if (value !== null && value !== undefined) {
-        searchParams.set(key, value?.toString());
+        searchParams.set(key, value.toString());
       }
     });
 

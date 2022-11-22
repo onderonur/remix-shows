@@ -6,7 +6,6 @@ import { Flex } from '@chakra-ui/react';
 import TvShowList from '~/tv-shows/TvShowList';
 import Title from '~/common/Title';
 import { tvShowsService } from '~/tv-shows/TvShowsService';
-import TvShowCard from '~/tv-shows/TvShowCard';
 import TvShowSeasonsLink from '~/tv-shows/TvShowSeasonsLink';
 import ImageViewer from '~/medias/ImageViewer';
 import VideoList from '~/medias/VideoList';
@@ -14,6 +13,7 @@ import VideoViewer from '~/medias/VideoViewer';
 import ImageList from '~/medias/ImageList';
 import { getImageUrl } from '~/medias/MediaUtils';
 import PageTitle from '~/common/PageTitle';
+import TvShowHeader from '~/tv-shows/TvShowHeader';
 
 export const loader = async ({ params }: LoaderArgs) => {
   const tvShow = await tvShowsService.details(Number(params.tvShowId), {
@@ -48,7 +48,7 @@ export default function TvShowsIndexRoute() {
           goBackButtonProps={{ getFallback: () => '/' }}
           title={tvShow.name}
         />
-        <TvShowCard tvShow={tvShow} genresAsLink hasBackgroundImage />
+        <TvShowHeader tvShow={tvShow} />
       </div>
 
       <TvShowSeasonsLink tvShow={tvShow} />

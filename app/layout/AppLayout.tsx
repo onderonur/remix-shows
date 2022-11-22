@@ -48,7 +48,12 @@ export default function AppLayout({ children }: AppLayoutProps) {
           </Box>
         </GridItem>
         <GridItem gridArea="appContent">
-          <Container as="main" maxW="container.xl" padding={6}>
+          <Container
+            as="main"
+            maxW="container.xl"
+            paddingY={{ base: 4, md: 6 }}
+            paddingX={{ base: 2, md: 6 }}
+          >
             {children}
           </Container>
         </GridItem>

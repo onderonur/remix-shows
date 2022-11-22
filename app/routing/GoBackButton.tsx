@@ -9,6 +9,7 @@ export default function GoBackButton(props: GoBackButtonProps) {
 
   return (
     <IconButton
+      variant="outline"
       aria-label="Go back"
       icon={<ChevronLeftIcon />}
       onClick={goBack}

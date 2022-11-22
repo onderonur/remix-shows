@@ -1,62 +1,55 @@
-import { Box, Flex, Text } from '@chakra-ui/react';
-import { getYear, isOfType } from '~/common/CommonUtils';
-import FancyCard from '~/common/FancyCard';
+import { Flex, Text, VStack } from '@chakra-ui/react';
+import BaseImage from '~/common/BaseImage';
+import { baseTransitionStyles } from '~/common/CommonStyles';
+import { getYear } from '~/common/CommonUtils';
 import VoteRating from '~/common/VoteRating';
+import { useGenres } from '~/genres/GenresContext';
 import { getImageUrl } from '~/medias/MediaUtils';
-import GenreTags from '../genres/GenreTags';
-import type { TvShow, TvShowListItem } from './TvShowsTypes';
+import type { TvShowListItem } from './TvShowsTypes';
 
 type TvShowCardProps = {
-  tvShow: TvShowListItem | TvShow;
-  overviewNoOfLines?: number;
-  genresAsLink: boolean;
-  hasBackgroundImage?: boolean;
+  tvShow: TvShowListItem;
 };
 
-export default function TvShowCard({
-  tvShow,
-  overviewNoOfLines,
-  genresAsLink,
-  hasBackgroundImage,
-}: TvShowCardProps) {
+export default function TvShowCard({ tvShow }: TvShowCardProps) {
+  const genres = useGenres();
+
   return (
-    <FancyCard
-      imageSrc={getImageUrl(tvShow.poster_path)}
-      imageAlt={tvShow.name}
-      imageRatio={2 / 3}
-      backgroundImageSrc={
-        hasBackgroundImage
-          ? getImageUrl(tvShow.backdrop_path, {
-              size: 'original',
-            })
-          : undefined
-      }
+    <VStack
+      spacing="1.5"
+      align="stretch"
+      borderRadius="md"
+      borderColor="gray.200"
+      position="relative"
+      {...baseTransitionStyles}
+      _hover={{
+        transform: 'scale(1.04)',
+      }}
     >
-      <Flex flexDirection="column" gap={2}>
-        <Flex gap={2}>
-          <VoteRating rating={tvShow.vote_average} size="lg" />
-          <div>&middot;</div>
-          <Box color="gray.600" fontWeight="semibold" fontSize="lg">
-            {getYear(tvShow.first_air_date)}
-          </Box>
+      <BaseImage
+        src={getImageUrl(tvShow.backdrop_path)}
+        alt={tvShow.name}
+        sx={{ aspectRatio: '500 / 281' }}
+        borderRadius="md"
+        objectFit="cover"
+      />
+      <VStack align="stretch" spacing="0.5">
+        <Text fontWeight="bold" fontSize="md" lineHeight="short">
+          {tvShow.name}
+        </Text>
+        <Text color="gray.500" fontSize="xs">
+          {tvShow.genre_ids
+            .map(
+              (genreId) => genres.find((genre) => genre.id === genreId)?.name,
+            )
+            .join(', ')}
+        </Text>
+        <Flex color="gray.600" fontWeight="semibold" fontSize="sm" gap="1">
+          {getYear(tvShow.first_air_date)}
+          <span>&middot;</span>
+          <VoteRating rating={tvShow.vote_average} />
         </Flex>
-        <div>
-          {tvShow.tagline && (
-            <Text color="gray.600" fontSize="lg">
-              {tvShow.tagline}
-            </Text>
-          )}
-          <Text noOfLines={overviewNoOfLines}>{tvShow.overview}</Text>
-        </div>
-        <GenreTags
-          genres={
-            isOfType<TvShowListItem>(tvShow, ['genre_ids'])
-              ? tvShow.genre_ids
-              : tvShow.genres
-          }
-          asLink={genresAsLink}
-        />
-      </Flex>
-    </FancyCard>
+      </VStack>
+    </VStack>
   );
 }
