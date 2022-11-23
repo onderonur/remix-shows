@@ -18,14 +18,12 @@ export default function GenreTags({ genres }: GenreTagsProps) {
         });
 
         return (
-          <React.Fragment key={id}>
-            <Link
-              key={id}
-              to={{ pathname: '/', search: searchParams.toString() }}
-            >
-              <Tag colorScheme="red">{name}</Tag>
-            </Link>
-          </React.Fragment>
+          <Link
+            key={id}
+            to={{ pathname: '/', search: searchParams.toString() }}
+          >
+            <Tag colorScheme="red">{name}</Tag>
+          </Link>
         );
       })}
     </Flex>

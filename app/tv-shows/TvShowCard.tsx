@@ -23,7 +23,7 @@ export default function TvShowCard({ tvShow }: TvShowCardProps) {
       position="relative"
       {...baseTransitionStyles}
       _hover={{
-        transform: 'scale(1.04)',
+        transform: 'scale(1.03)',
       }}
     >
       <BaseImage

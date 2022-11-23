@@ -14,6 +14,11 @@ import VideoViewer from '~/medias/VideoViewer';
 import ImageList from '~/medias/ImageList';
 import { getDateString } from '~/common/CommonUtils';
 import PageTitle from '~/common/PageTitle';
+import HeaderCardBackgroundImage from '~/common/HeaderCardBackgroundImage';
+import HeaderCardContent from '~/common/HeaderCardContent';
+import HeaderCardImage from '~/common/HeaderCardImage';
+import HeaderCardBody from '~/common/HeaderCardBody';
+import ImageListItem from '~/medias/ImageListItem';
 
 export const loader = async ({ params }: LoaderArgs) => {
   const { tvShow, tvShowEpisode } = await tvShowsService.episodeDetails(
@@ -69,20 +74,30 @@ export default function EpisodeRoute() {
           title={pageTitle}
           subtitle={`S ${tvShowEpisode.season_number}, Ep ${tvShowEpisode.episode_number}`}
         />
-        <HeaderCard
-          imageSrc={getImageUrl(tvShowEpisode.still_path)}
-          imageAlt={pageTitle}
-          imageFlexBasis="xs"
-          imageRatio="16 / 9"
-          backgroundImageSrc={getImageUrl(tvShow.backdrop_path, {
-            size: 'original',
-          })}
-        >
-          <Flex justifyContent="space-between" gap={4}>
-            <VoteRating rating={tvShowEpisode.vote_average} />
-            <Box color="gray.600">{getDateString(tvShowEpisode.air_date)}</Box>
-          </Flex>
-          <div>{tvShowEpisode.overview}</div>
+        <HeaderCard>
+          <HeaderCardBackgroundImage
+            src={getImageUrl(tvShow.backdrop_path, {
+              size: 'original',
+            })}
+            alt={pageTitle}
+          />
+          <HeaderCardContent>
+            <HeaderCardImage
+              src={getImageUrl(tvShowEpisode.still_path)}
+              alt={pageTitle}
+              flexBasis="xs"
+              aspectRatio="17 / 9"
+            />
+            <HeaderCardBody>
+              <Flex justifyContent="space-between" gap={4}>
+                <VoteRating rating={tvShowEpisode.vote_average} />
+                <Box color="gray.600">
+                  {getDateString(tvShowEpisode.air_date)}
+                </Box>
+              </Flex>
+              <div>{tvShowEpisode.overview}</div>
+            </HeaderCardBody>
+          </HeaderCardContent>
         </HeaderCard>
       </div>
 
@@ -94,10 +109,18 @@ export default function EpisodeRoute() {
 
       <section>
         <Title title="Images" titleAs="h2" />
-        <ImageList
-          images={tvShowEpisode.images.stills}
-          getImageAlt={(image, i) => `${tvShowEpisode.name} Image ${i + 1}`}
-        />
+        <ImageList>
+          {tvShowEpisode.images.stills.map((image, i) => {
+            const src = image.file_path;
+            return (
+              <ImageListItem
+                key={src}
+                src={src}
+                alt={`${tvShowEpisode.name} Image ${i + 1}`}
+              />
+            );
+          })}
+        </ImageList>
         <ImageViewer title={pageTitle} images={tvShowEpisode.images.stills} />
       </section>
     </Flex>

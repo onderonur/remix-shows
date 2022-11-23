@@ -18,6 +18,10 @@ import { tvShowsService } from '~/tv-shows/TvShowsService';
 import BaseSelect from '~/common/BaseSelect';
 import { useScrollToTopOnRouteChange } from '~/common/CommonHooks';
 import PageTitle from '~/common/PageTitle';
+import HeaderCardBackgroundImage from '~/common/HeaderCardBackgroundImage';
+import HeaderCardContent from '~/common/HeaderCardContent';
+import HeaderCardImage from '~/common/HeaderCardImage';
+import HeaderCardBody from '~/common/HeaderCardBody';
 
 const getSelectedSeason = (searchParams: URLSearchParams) => {
   return Number(searchParams.get('season')) || 1;
@@ -72,16 +76,22 @@ export default function SeasonsIndexRoute() {
           goBackButtonProps={{ getFallback: () => `/tv-shows/${tvShow.id}` }}
           title={pageTitle}
         />
-        <HeaderCard
-          imageSrc={getImageUrl(tvShowSeason.poster_path)}
-          imageAlt={pageTitle}
-          imageFlexBasis="36"
-          imageRatio="2 / 3"
-          backgroundImageSrc={getImageUrl(tvShow.backdrop_path, {
-            size: 'original',
-          })}
-        >
-          {tvShowSeason.overview}
+        <HeaderCard>
+          <HeaderCardBackgroundImage
+            src={getImageUrl(tvShow.backdrop_path, {
+              size: 'original',
+            })}
+            alt={pageTitle}
+          />
+          <HeaderCardContent>
+            <HeaderCardImage
+              src={getImageUrl(tvShowSeason.poster_path)}
+              alt={pageTitle}
+              aspectRatio="2 / 3"
+              flexBasis="36"
+            />
+            <HeaderCardBody>{tvShowSeason.overview}</HeaderCardBody>
+          </HeaderCardContent>
         </HeaderCard>
       </div>
 

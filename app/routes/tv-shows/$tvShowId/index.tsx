@@ -14,6 +14,7 @@ import ImageList from '~/medias/ImageList';
 import { getImageUrl } from '~/medias/MediaUtils';
 import PageTitle from '~/common/PageTitle';
 import TvShowHeader from '~/tv-shows/TvShowHeader';
+import ImageListItem from '~/medias/ImageListItem';
 
 export const loader = async ({ params }: LoaderArgs) => {
   const tvShow = await tvShowsService.details(Number(params.tvShowId), {
@@ -61,10 +62,18 @@ export default function TvShowsIndexRoute() {
 
       <section>
         <Title title="Images" titleAs="h2" />
-        <ImageList
-          images={tvShow.images?.backdrops}
-          getImageAlt={(image, i) => `${tvShow.name} Image ${i + 1}`}
-        />
+        <ImageList>
+          {tvShow.images?.backdrops.map((image, i) => {
+            const src = image.file_path;
+            return (
+              <ImageListItem
+                key={src}
+                src={src}
+                alt={`${tvShow.name} Image ${i + 1}`}
+              />
+            );
+          })}
+        </ImageList>
         <ImageViewer title={tvShow.name} images={tvShow.images?.backdrops} />
       </section>
 
