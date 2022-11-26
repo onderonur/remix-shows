@@ -17,14 +17,9 @@ export default function Title({
   after,
 }: TitleProps) {
   return (
-    <Flex alignItems={'center'} gap={3} mb={2} flexWrap="wrap">
+    <Flex as="header" alignItems={'center'} gap={3} mb={2} flexWrap="wrap">
       {before && <div>{before}</div>}
-      <Flex
-        flexDirection="column"
-        justifyContent="center"
-        flex={1}
-        lineHeight="short"
-      >
+      <Flex flexDirection="column" flex={1} lineHeight="short">
         <Box
           as={titleAs}
           fontWeight="extrabold"

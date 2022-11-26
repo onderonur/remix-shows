@@ -15,8 +15,8 @@ export default function PageTitle({
 }: PageTitleProps) {
   return (
     <Title
-      title={title}
       titleAs="h1"
+      title={title}
       subtitle={subtitle}
       before={goBackButtonProps && <GoBackButton {...goBackButtonProps} />}
       after={after}
