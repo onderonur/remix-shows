@@ -11,9 +11,9 @@ export const theme = extendTheme({
   styles: {
     global: {
       'html, body': {
-        height: '100%',
+        height: 'full',
         '& > div:not(.chakra-portal)': {
-          minHeight: '100%',
+          minHeight: 'full',
         },
       },
     },

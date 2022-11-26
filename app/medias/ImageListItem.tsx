@@ -20,7 +20,7 @@ export default function ImageListItem({ src, alt }: ImageListItemProps) {
         <BaseImage
           src={getImageUrl(src)}
           alt={alt}
-          sx={{ aspectRatio: '16 / 9' }}
+          sx={{ width: 'full', aspectRatio: '16 / 9' }}
         />
       </Link>
     </GridItem>

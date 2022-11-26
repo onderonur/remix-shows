@@ -41,7 +41,7 @@ export default function TvShowEpisodeListItem({
           textAlign="center"
           position="absolute"
           bottom={0}
-          width="100%"
+          width=""
           backgroundImage={`linear-gradient(to bottom, transparent, #02050b)`}
           color="gray.200"
           padding={1}
