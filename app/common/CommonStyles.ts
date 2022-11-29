@@ -1,7 +1,7 @@
 import type { StyleProps } from '@chakra-ui/react';
 
 export const paperStyles: StyleProps = {
-  boxShadow: 'md',
+  borderWidth: 'medium',
   rounded: 'md',
   overflow: 'hidden',
 };

@@ -22,7 +22,7 @@ function GlowingImage({ src, alt, aspectRatio }: GlowingImageProps) {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        filter: 'blur(0.6rem) saturate(3)',
+        filter: 'blur(0.3rem) saturate(2)',
         borderRadius: 'inherit',
         aspectRatio: 'inherit',
       }}

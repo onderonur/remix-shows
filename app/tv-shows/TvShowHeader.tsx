@@ -32,18 +32,14 @@ export default function TvShowHeader({ tvShow }: TvShowHeaderProps) {
         />
         <HeaderCardBody>
           <Flex flexDirection="column" gap={2}>
-            <div>
-              {tvShow.tagline && (
-                <Text color="gray.600" fontSize="lg" fontWeight="semibold">
-                  {tvShow.tagline}
-                </Text>
-              )}
-              <Text>{tvShow.overview}</Text>
-            </div>
+            {tvShow.tagline && (
+              <Text fontSize="lg" fontWeight="bold" opacity={0.7}>
+                {tvShow.tagline}
+              </Text>
+            )}
+            <Text>{tvShow.overview}</Text>
             <Flex gap={2} fontSize="lg">
-              <Box color="gray.600" fontWeight="semibold">
-                {getYear(tvShow.first_air_date)}
-              </Box>
+              <Box fontWeight="semibold">{getYear(tvShow.first_air_date)}</Box>
               <div>&middot;</div>
               <VoteRating rating={tvShow.vote_average} />
             </Flex>

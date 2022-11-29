@@ -21,7 +21,7 @@ export default function AppTitle({ onClickToggle }: AppTitleProps) {
         <Box
           fontWeight="bold"
           fontSize={{ base: 'lg', md: 'xl', lg: '2xl' }}
-          color="red.500"
+          color="red.400"
         >
           {APP_TITLE}
         </Box>

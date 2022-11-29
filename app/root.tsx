@@ -20,13 +20,14 @@ import {
   Alert,
   AlertIcon,
   AlertTitle,
+  ColorModeScript,
 } from '@chakra-ui/react';
 import GenresProvider from './genres/GenresContext';
 import AppLayout from './layout/AppLayout';
 import { theme } from './theme/theme';
 import { PLACEHOLDER_IMAGE_SRC } from './medias/MediaUtils';
 import { APP_TITLE } from './common/CommonUtils';
-import { APP_HEADER_HEIGHT } from './layout/AppHeader';
+import { APP_HEADER_HEIGHT } from './layout/LayoutUtils';
 
 export const meta: MetaFunction = () => {
   return {
@@ -68,6 +69,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
         <Font />
       </head>
       <body>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <ChakraProvider theme={theme}>
           <Grid gridTemplateRows={`${APP_HEADER_HEIGHT} 1fr`}>
             <Grid as="header" placeContent="center" boxShadow="md">
@@ -75,7 +77,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
                 as="h1"
                 fontWeight="bold"
                 fontSize="2xl"
-                color="red.500"
+                color="red.400"
                 userSelect="none"
               >
                 {APP_TITLE}
@@ -127,6 +129,7 @@ export default function App() {
         <Font />
       </head>
       <body>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <ChakraProvider theme={theme}>
           <GenresProvider genres={genres}>
             <AppLayout>

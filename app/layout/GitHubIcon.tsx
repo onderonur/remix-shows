@@ -8,8 +8,8 @@ export default function GitHubIcon() {
       height={ICON_SIZE}
       width={ICON_SIZE}
       viewBox="0 0 16 16"
-      fill="gray.700"
-      _hover={{ fill: 'gray.600' }}
+      fill="gray.400"
+      _hover={{ fill: 'gray.300' }}
     >
       <path
         fillRule="evenodd"

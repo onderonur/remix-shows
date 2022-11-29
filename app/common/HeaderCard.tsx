@@ -10,9 +10,7 @@ export default function HeaderCard({ children }: HeaderCardProps) {
       padding="4"
       rounded="md"
       overflow="hidden"
-      backgroundImage="radial-gradient(circle at 20% 50%, rgb(255 255 255 / 87%) 0%, rgb(255 255 255 / 92%) 100%)"
-      border="1px"
-      borderColor="gray.300"
+      borderWidth="medium"
     >
       {children}
     </Box>

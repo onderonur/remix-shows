@@ -2,11 +2,14 @@ import { Box, Container, Grid, GridItem } from '@chakra-ui/react';
 import { useCallback, useState } from 'react';
 import { APP_TITLE } from '~/common/CommonUtils';
 import AppTitle from '~/layout/AppTitle';
-import AppHeader, { APP_HEADER_HEIGHT } from './AppHeader';
+import AppHeader from './AppHeader';
 import AppDrawer from './AppDrawer';
 import AppNavigation from './AppNavigation';
-
-const APP_FOOTER_HEIGHT = '64px';
+import {
+  APP_DRAWER_WIDTH,
+  APP_FOOTER_HEIGHT,
+  APP_HEADER_HEIGHT,
+} from './LayoutUtils';
 
 type AppLayoutProps = React.PropsWithChildren<{}>;
 
@@ -30,7 +33,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
         'appSideBar appFooter'
         `}
         gridTemplateRows={`${APP_HEADER_HEIGHT} 1fr ${APP_FOOTER_HEIGHT}`}
-        gridTemplateColumns={{ base: '0 1fr', lg: '224px 1fr' }}
+        gridTemplateColumns={{ base: '0 1fr', lg: `${APP_DRAWER_WIDTH} 1fr` }}
       >
         <GridItem gridArea="appHeader">
           <AppHeader title={appTitle} />
@@ -42,7 +45,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
             top={APP_HEADER_HEIGHT}
             bottom={0}
             width="3xs"
-            background="gray.50"
+            background="chakra-subtle-bg"
           >
             <AppNavigation />
           </Box>
@@ -60,7 +63,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
         <GridItem gridArea="appFooter">
           <Box
             height={APP_FOOTER_HEIGHT}
-            background="gray.100"
+            background="chakra-subtle-bg"
             alignItems="center"
             padding={4}
             as="footer"

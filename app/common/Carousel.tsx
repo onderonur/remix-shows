@@ -1,25 +1,60 @@
 import type { IconButtonProps } from '@chakra-ui/react';
+import { useBreakpointValue } from '@chakra-ui/react';
 import { IconButton } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import React, { useRef, useState } from 'react';
 import InfoAlert from './InfoAlert';
+import { useIsTouchDevice } from './CommonHooks';
+import type { Maybe } from './CommonTypes';
 
-type CarouselProps = React.PropsWithChildren<{ visibleItemCount: number }>;
+type CarouselProps = React.PropsWithChildren<{
+  visibleItemCount: {
+    base: number;
+    sm?: number;
+    md?: number;
+    lg?: number;
+    xl?: number;
+    '2xl'?: number;
+  };
+}>;
 
-// TODO: Performance fix'leri yapılabilir.
-// TODO: Responsive'lik
+const gap = 12;
+
 export default function Carousel({
   visibleItemCount,
   children,
 }: CarouselProps) {
   const carouselRef = useRef<HTMLDivElement>(null);
-  const [current, setCurrent] = useState<number>(0);
-  const itemCount = React.Children.count(children);
-  const gap = '12px';
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const totalItemCount = React.Children.count(children);
+  const currentVisibleItemCount =
+    useBreakpointValue(visibleItemCount) ?? visibleItemCount.base;
 
-  const buttonProps = (navType: 'previous' | 'next'): IconButtonProps => ({
+  const getItemWidth = () => {
+    const carousel = carouselRef.current;
+    if (!carousel) {
+      return 0;
+    }
+    const totalGapWidth = gap * (totalItemCount - 1);
+    const itemWidth = (carousel.scrollWidth - totalGapWidth) / totalItemCount;
+    return itemWidth;
+  };
+
+  const isBeginning = (itemIndex: number) => itemIndex <= 0;
+
+  const isEnd = (itemIndex: number) =>
+    itemIndex >= totalItemCount - currentVisibleItemCount;
+
+  const getButtonProps = ({
+    navType,
+    disabled,
+  }: {
+    navType: 'previous' | 'next';
+    disabled: boolean;
+  }): IconButtonProps => ({
     'aria-label': navType,
+    disabled,
     sx: {
       position: 'absolute',
       top: '50%',
@@ -27,30 +62,74 @@ export default function Carousel({
       right: navType === 'next' ? 0 : 'auto',
       translate: '0 -50%',
       marginX: 2,
+      fontSize: '2xl',
+      backgroundColor: 'whiteAlpha.600',
+      '&:hover': disabled
+        ? undefined
+        : {
+            backgroundColor: 'whiteAlpha.500',
+          },
+    },
+    onClick: () => {
+      if (
+        (navType === 'previous' && isBeginning(currentIndex)) ||
+        (navType === 'next' && isEnd(currentIndex))
+      ) {
+        return;
+      }
+
+      const carousel = carouselRef.current;
+      if (!carousel) {
+        return;
+      }
+
+      const newIndex = navType === 'next' ? currentIndex + 1 : currentIndex - 1;
+      const itemWidth = getItemWidth();
+      carousel.scrollTo({
+        left: itemWidth * newIndex + gap * newIndex,
+        behavior: 'smooth',
+      });
+      setCurrentIndex(newIndex);
     },
   });
 
-  const isTouchDevice =
-    typeof window !== 'undefined' &&
-    ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  const isTouchDevice = useIsTouchDevice();
+
+  const getGridAutoColumns = (colCount: Maybe<number>) =>
+    colCount
+      ? `calc(100% / ${colCount} - (${gap}px *  (${
+          colCount - 1
+        } / ${colCount})))`
+      : undefined;
+
+  const scrollTimerRef = useRef<NodeJS.Timeout>();
 
   if (!React.Children.count(children)) {
-    return <InfoAlert title="There are no images..." />;
+    return <InfoAlert title="Nothing found here..." />;
   }
 
   return (
     <Box
       sx={{
         position: 'relative',
-        // TODO: Buna daha iyi bi alternatif var mı bak
+        // TODO: May not need this. Will check it.
         display: 'grid',
       }}
     >
       <Box
         ref={carouselRef}
-        className="carousel"
         sx={{
-          display: 'flex',
+          display: 'grid',
+          gridAutoFlow: 'column',
+          gridAutoColumns: {
+            base: getGridAutoColumns(visibleItemCount.base),
+            sm: getGridAutoColumns(visibleItemCount.sm),
+            md: getGridAutoColumns(visibleItemCount.md),
+            lg: getGridAutoColumns(visibleItemCount.lg),
+            xl: getGridAutoColumns(visibleItemCount.xl),
+            '2xl': getGridAutoColumns(visibleItemCount['2xl']),
+          },
+          gap: `${gap}px`,
           width: 'full',
           scrollSnapType: 'x mandatory',
           overflowX: 'auto',
@@ -62,79 +141,44 @@ export default function Carousel({
             display: 'none',
           },
         }}
-        onScroll={(e) => {
-          const carousel = carouselRef.current;
-          if (carousel) {
-            const rect = carousel.getBoundingClientRect();
-            const newCurrent = Math.round(
-              carousel.scrollLeft / (rect.width / visibleItemCount),
-            );
-            setCurrent(newCurrent);
-          }
-        }}
-      >
-        {React.Children.map(children, (child, i) => {
-          if (!React.isValidElement(child)) {
-            return null;
+        onScroll={() => {
+          const scrollTimer = scrollTimerRef.current;
+          if (scrollTimer) {
+            clearTimeout(scrollTimer);
           }
 
-          return (
-            <Box
-              sx={{
-                scrollSnapAlign: 'start',
-                flex: 'none',
-                marginRight: i !== itemCount - 1 ? gap : 0,
-                width: `calc(100% / ${visibleItemCount} - (${gap} *  (${
-                  visibleItemCount - 1
-                } / ${visibleItemCount})))`,
-              }}
-            >
-              {React.cloneElement(child)}
-            </Box>
-          );
-        })}
+          scrollTimerRef.current = setTimeout(() => {
+            const carousel = carouselRef.current;
+            if (!carousel) {
+              return;
+            }
+            const itemWidth = getItemWidth();
+            const newIndex = Math.round(
+              carousel.scrollLeft / (itemWidth + gap),
+            );
+            setCurrentIndex(newIndex);
+          }, 150);
+        }}
+      >
+        {children}
       </Box>
-      {!isTouchDevice && (
+      {!isTouchDevice && totalItemCount > currentVisibleItemCount && (
         <>
           <IconButton
-            {...buttonProps('previous')}
+            {...getButtonProps({
+              navType: 'previous',
+              disabled: isBeginning(currentIndex),
+            })}
             icon={<ChevronLeftIcon />}
-            onClick={(e) => {
-              const carousel = carouselRef.current;
-              if (carousel) {
-                const rect = carousel.getBoundingClientRect();
-                const newCurrent = current - 1;
-                if (newCurrent < 0) {
-                  return;
-                }
-                carousel.scrollTo({
-                  left: (rect.width / visibleItemCount) * newCurrent,
-                  behavior: 'smooth',
-                });
-                setCurrent(newCurrent);
-              }
-            }}
           >
             Previous
           </IconButton>
           <IconButton
-            {...buttonProps('next')}
+            {...getButtonProps({
+              navType: 'next',
+              disabled: isEnd(currentIndex),
+            })}
             icon={<ChevronRightIcon />}
-            onClick={(e) => {
-              const carousel = carouselRef.current;
-              if (carousel) {
-                const rect = carousel.getBoundingClientRect();
-                const newCurrent = current + 1;
-                if (newCurrent > itemCount - visibleItemCount) {
-                  return;
-                }
-                carousel.scrollTo({
-                  left: (rect.width / visibleItemCount) * newCurrent,
-                  behavior: 'smooth',
-                });
-                setCurrent(newCurrent);
-              }
-            }}
           >
             Next
           </IconButton>

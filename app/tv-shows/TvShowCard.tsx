@@ -19,7 +19,6 @@ export default function TvShowCard({ tvShow }: TvShowCardProps) {
       spacing="1.5"
       align="stretch"
       borderRadius="md"
-      borderColor="gray.200"
       position="relative"
       {...baseTransitionStyles}
       _hover={{
@@ -37,14 +36,14 @@ export default function TvShowCard({ tvShow }: TvShowCardProps) {
         <Text fontWeight="bold" fontSize="md" lineHeight="short">
           {tvShow.name}
         </Text>
-        <Text color="gray.700" fontSize="xs">
+        <Text opacity={0.7} fontSize="xs">
           {tvShow.genre_ids
             .map(
               (genreId) => genres.find((genre) => genre.id === genreId)?.name,
             )
             .join(', ')}
         </Text>
-        <Flex color="gray.600" fontWeight="semibold" fontSize="sm" gap="1">
+        <Flex fontWeight="semibold" fontSize="sm" gap="1">
           {getYear(tvShow.first_air_date)}
           <span>&middot;</span>
           <VoteRating rating={tvShow.vote_average} />

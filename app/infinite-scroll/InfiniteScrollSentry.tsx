@@ -27,7 +27,7 @@ export default function InfiniteScrollSentry({
         thickness="0.4rem"
         speed="0.65s"
         emptyColor="gray.200"
-        color="red.500"
+        color="red.400"
         size="xl"
       />
     </Flex>

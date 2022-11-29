@@ -8,13 +8,13 @@ import Title from '~/common/Title';
 import { tvShowsService } from '~/tv-shows/TvShowsService';
 import TvShowSeasonsLink from '~/tv-shows/TvShowSeasonsLink';
 import ImageViewer from '~/medias/ImageViewer';
-import VideoList from '~/medias/VideoList';
+import VideoCarousel from '~/medias/VideoCarousel';
 import VideoViewer from '~/medias/VideoViewer';
 import { getImageUrl } from '~/medias/MediaUtils';
 import PageTitle from '~/common/PageTitle';
 import TvShowHeader from '~/tv-shows/TvShowHeader';
-import ImageListItem from '~/medias/ImageListItem';
-import Carousel from '~/common/Carousel';
+import ImageCarousel from '~/medias/ImageCarousel';
+import TvShowBackground from '~/tv-shows/TvShowBackground';
 
 export const loader = async ({ params }: LoaderArgs) => {
   const tvShow = await tvShowsService.details(Number(params.tvShowId), {
@@ -43,44 +43,47 @@ export default function TvShowsIndexRoute() {
   const { tvShow } = useLoaderData<typeof loader>();
 
   return (
-    <Flex flexDirection="column" gap={4}>
-      <div>
-        <PageTitle
-          goBackButtonProps={{ getFallback: () => '/' }}
-          title={tvShow.name}
-        />
-        <TvShowHeader tvShow={tvShow} />
-      </div>
+    <>
+      <TvShowBackground src={tvShow.backdrop_path} alt={tvShow.name} />
+      <Flex
+        // To reset things like horizontal scroll positions on tvShow change.
+        // Because we can navigate between tvShow pages directly by using "Similar Shows" section.
+        key={tvShow.id}
+        flexDirection="column"
+        gap={4}
+      >
+        <div>
+          <PageTitle
+            goBackButtonProps={{ getFallback: () => '/' }}
+            title={tvShow.name}
+          />
+          <TvShowHeader tvShow={tvShow} />
+        </div>
 
-      <TvShowSeasonsLink tvShow={tvShow} />
+        <TvShowSeasonsLink tvShow={tvShow} />
 
-      <section>
-        <Title title="Videos" titleAs="h2" />
-        <VideoList videos={tvShow.videos?.results} />
-        <VideoViewer title={tvShow.name} videos={tvShow.videos?.results} />
-      </section>
+        <section>
+          <Title title="Videos" titleAs="h2" />
+          <VideoCarousel videos={tvShow.videos?.results} />
+          <VideoViewer title={tvShow.name} videos={tvShow.videos?.results} />
+        </section>
 
-      <section>
-        <Title title="Images" titleAs="h2" />
-        <Carousel visibleItemCount={4}>
-          {tvShow.images?.backdrops.map((image, i) => {
-            const src = image.file_path;
-            return (
-              <ImageListItem
-                key={src}
-                src={src}
-                alt={`${tvShow.name} Image ${i + 1}`}
-              />
-            );
-          })}
-        </Carousel>
-        <ImageViewer title={tvShow.name} images={tvShow.images?.backdrops} />
-      </section>
+        <section>
+          <Title title="Images" titleAs="h2" />
+          <ImageCarousel
+            images={tvShow.images?.backdrops.map((backdrop, i) => ({
+              src: backdrop.file_path,
+              alt: `${tvShow.name} Image ${i + 1}`,
+            }))}
+          />
+          <ImageViewer title={tvShow.name} images={tvShow.images?.backdrops} />
+        </section>
 
-      <section>
-        <Title title="Similar TV Shows" titleAs="h2" />
-        <TvShowList tvShows={tvShow.similar} />
-      </section>
-    </Flex>
+        <section>
+          <Title title="Similar TV Shows" titleAs="h2" />
+          <TvShowList tvShows={tvShow.similar} />
+        </section>
+      </Flex>
+    </>
   );
 }

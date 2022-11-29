@@ -4,7 +4,13 @@ const activeLabelStyles = {
   transform: 'scale(0.85) translateY(-24px)',
 };
 
+// TODO: When localStorage has chakra-ui-color-mode: true, dark mode is not working.
+// Try to find a way to force it.
 export const theme = extendTheme({
+  config: {
+    initialColorMode: 'dark',
+    useSystemColorMode: false,
+  },
   fonts: {
     body: `"Inter", sans-serif`,
   },
@@ -37,7 +43,7 @@ export const theme = extendTheme({
               top: 0,
               left: 0,
               position: 'absolute',
-              backgroundColor: 'white',
+              backgroundColor: 'chakra-body-bg',
               pointerEvents: 'none',
               mx: 3,
               px: 1,

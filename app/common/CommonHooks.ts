@@ -1,5 +1,6 @@
 import { useLocation } from '@remix-run/react';
 import { useEffect, useState } from 'react';
+import isTouchDevice from 'is-touch-device';
 
 export function useScrollToTopOnRouteChange() {
   const location = useLocation();
@@ -19,4 +20,16 @@ export function useHasChanged<Val>(val: Val) {
     setPrevVal(val);
     return true;
   }
+}
+
+export function useIsTouchDevice() {
+  const [isTouchable, setIsTouchable] = useState(true);
+
+  // To prevent hydration failure based on server-client markup mismatch,
+  // we use `useEffect`.
+  useEffect(() => {
+    setIsTouchable(isTouchDevice());
+  }, []);
+
+  return isTouchable;
 }

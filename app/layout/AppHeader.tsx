@@ -1,7 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react';
 import SearchBar from '~/search/SearchBar';
-
-export const APP_HEADER_HEIGHT = '70px';
+import { APP_HEADER_HEIGHT } from './LayoutUtils';
 
 type AppHeaderProps = {
   title: React.ReactNode;
@@ -21,7 +20,7 @@ export default function AppHeader({ title }: AppHeaderProps) {
         left={0}
         right={0}
         zIndex={1}
-        backgroundColor="white"
+        backgroundColor="chakra-subtle-bg"
         flexShrink={0}
         gap={2}
       >

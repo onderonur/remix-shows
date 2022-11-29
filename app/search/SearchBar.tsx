@@ -33,7 +33,6 @@ export default function SearchBar() {
       <InputGroup>
         <InputLeftElement
           pointerEvents="none"
-          color="gray.300"
           fontSize="1.2em"
           children={<SearchIcon />}
         />

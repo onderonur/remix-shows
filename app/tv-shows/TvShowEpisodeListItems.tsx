@@ -1,4 +1,4 @@
-import { Box, Flex, ListItem } from '@chakra-ui/react';
+import { Box, Flex, ListItem, Text } from '@chakra-ui/react';
 import BaseImage from '~/common/BaseImage';
 import { paperStyles } from '~/common/CommonStyles';
 import { getDateString } from '~/common/CommonUtils';
@@ -41,9 +41,8 @@ export default function TvShowEpisodeListItem({
           textAlign="center"
           position="absolute"
           bottom={0}
-          width=""
+          width="full"
           backgroundImage={`linear-gradient(to bottom, transparent, #02050b)`}
-          color="gray.200"
           padding={1}
         >
           S {episode.season_number}, Ep {episode.episode_number}
@@ -54,12 +53,12 @@ export default function TvShowEpisodeListItem({
           <Box fontWeight="bold" fontSize="lg">
             {episode.name}
           </Box>
-          <Box fontSize="sm" color="gray.600">
+          <Box fontSize="sm" opacity={0.7}>
             {getDateString(episode.air_date)}
           </Box>
         </Flex>
         <VoteRating rating={episode.vote_average} />
-        <Box marginTop={2}>{episode.overview}</Box>
+        <Text marginTop={2}>{episode.overview}</Text>
       </Box>
     </ListItem>
   );

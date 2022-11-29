@@ -24,16 +24,11 @@ export default function Title({
           as={titleAs}
           fontWeight="extrabold"
           fontSize={{ base: 'xl', lg: '2xl' }}
-          color="gray.700"
         >
           {title}
         </Box>
         {subtitle && (
-          <Box
-            fontSize={{ base: 'sm', lg: 'md' }}
-            color="gray.600"
-            fontWeight="semibold"
-          >
+          <Box fontSize={{ base: 'sm', lg: 'md' }} fontWeight="semibold">
             {subtitle}
           </Box>
         )}

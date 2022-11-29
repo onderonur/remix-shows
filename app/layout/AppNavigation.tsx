@@ -1,4 +1,4 @@
-import { Box, Flex, List, ListItem, Stack } from '@chakra-ui/react';
+import { Box, Flex, List, ListItem, Stack, VStack } from '@chakra-ui/react';
 import { Link, useLocation, useSearchParams } from '@remix-run/react';
 import ExternalLink from '~/common/ExternalLink';
 import { useGenres } from '~/genres/GenresContext';
@@ -19,10 +19,8 @@ export default function AppNavigation() {
       overflow="hidden"
       paddingBottom={6}
     >
-      <Box flex={1} padding={4} overflow="auto">
-        <Box fontWeight="bold" color="gray.600">
-          Genres
-        </Box>
+      <VStack align="stretch" spacing={1} flex={1} padding={4} overflow="auto">
+        <Box fontWeight="bold">Genres</Box>
         <Box as="nav">
           <List>
             {genres.map((genre) => {
@@ -32,11 +30,11 @@ export default function AppNavigation() {
                 <ListItem
                   key={genre.id}
                   marginY={0.5}
-                  color={isSelected ? 'red.500' : undefined}
-                  backgroundColor={isSelected ? 'red.50' : undefined}
+                  color={isSelected ? 'red.400' : undefined}
+                  backgroundColor={isSelected ? 'gray.600' : undefined}
                   fontWeight={isSelected ? 'bold' : undefined}
-                  _hover={{ backgroundColor: 'gray.200' }}
-                  _active={{ backgroundColor: 'gray.300' }}
+                  _hover={{ backgroundColor: 'gray.500' }}
+                  _active={{ backgroundColor: 'gray.600' }}
                   rounded="md"
                 >
                   <Link to={{ pathname: '/', search: `genreId=${genre.id}` }}>
@@ -47,7 +45,7 @@ export default function AppNavigation() {
             })}
           </List>
         </Box>
-      </Box>
+      </VStack>
       <Box paddingX={4}>
         <TmdbAttribution />
       </Box>

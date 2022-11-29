@@ -9,16 +9,16 @@ import Title from '~/common/Title';
 import { tvShowsService } from '~/tv-shows/TvShowsService';
 import HeaderCard from '~/common/HeaderCard';
 import ImageViewer from '~/medias/ImageViewer';
-import VideoList from '~/medias/VideoList';
+import VideoCarousel from '~/medias/VideoCarousel';
 import VideoViewer from '~/medias/VideoViewer';
-import ImageList from '~/medias/ImageList';
 import { getDateString } from '~/common/CommonUtils';
 import PageTitle from '~/common/PageTitle';
 import HeaderCardBackgroundImage from '~/common/HeaderCardBackgroundImage';
 import HeaderCardContent from '~/common/HeaderCardContent';
 import HeaderCardImage from '~/common/HeaderCardImage';
 import HeaderCardBody from '~/common/HeaderCardBody';
-import ImageListItem from '~/medias/ImageListItem';
+import ImageCarousel from '~/medias/ImageCarousel';
+import TvShowBackground from '~/tv-shows/TvShowBackground';
 
 export const loader = async ({ params }: LoaderArgs) => {
   const { tvShow, tvShowEpisode } = await tvShowsService.episodeDetails(
@@ -60,69 +60,69 @@ export default function EpisodeRoute() {
   const { tvShow, tvShowEpisode } = loaderData;
 
   return (
-    <Flex flexDirection="column" gap={4}>
-      <div>
-        <PageTitle
-          goBackButtonProps={{
-            getFallback: () => ({
-              pathname: `/tv-shows/${tvShow.id}/seasons`,
-              search: new URLSearchParams({
-                season: tvShowEpisode.season_number.toString(),
-              }).toString(),
-            }),
-          }}
-          title={pageTitle}
-          subtitle={`S ${tvShowEpisode.season_number}, Ep ${tvShowEpisode.episode_number}`}
-        />
-        <HeaderCard>
-          <HeaderCardBackgroundImage
-            src={getImageUrl(tvShow.backdrop_path, {
-              size: 'original',
-            })}
-            alt={pageTitle}
+    <>
+      <TvShowBackground src={tvShow.backdrop_path} alt={pageTitle} />
+      <Flex flexDirection="column" gap={4}>
+        <div>
+          <PageTitle
+            goBackButtonProps={{
+              getFallback: () => ({
+                pathname: `/tv-shows/${tvShow.id}/seasons`,
+                search: new URLSearchParams({
+                  season: tvShowEpisode.season_number.toString(),
+                }).toString(),
+              }),
+            }}
+            title={pageTitle}
+            subtitle={`S ${tvShowEpisode.season_number}, Ep ${tvShowEpisode.episode_number}`}
           />
-          <HeaderCardContent>
-            <HeaderCardImage
-              src={getImageUrl(tvShowEpisode.still_path)}
+          <HeaderCard>
+            <HeaderCardBackgroundImage
+              src={getImageUrl(tvShow.backdrop_path, {
+                size: 'original',
+              })}
               alt={pageTitle}
-              flexBasis="xs"
-              aspectRatio="17 / 9"
             />
-            <HeaderCardBody>
-              <Flex justifyContent="space-between" gap={4}>
-                <VoteRating rating={tvShowEpisode.vote_average} />
-                <Box color="gray.600">
-                  {getDateString(tvShowEpisode.air_date)}
-                </Box>
-              </Flex>
-              <div>{tvShowEpisode.overview}</div>
-            </HeaderCardBody>
-          </HeaderCardContent>
-        </HeaderCard>
-      </div>
-
-      <section>
-        <Title title="Videos" titleAs="h2" />
-        <VideoList videos={tvShowEpisode.videos.results} />
-        <VideoViewer title={pageTitle} videos={tvShowEpisode.videos.results} />
-      </section>
-
-      <section>
-        <Title title="Images" titleAs="h2" />
-        <ImageList>
-          {tvShowEpisode.images.stills.map((image, i) => {
-            const src = image.file_path;
-            return (
-              <ImageListItem
-                key={src}
-                src={src}
-                alt={`${tvShowEpisode.name} Image ${i + 1}`}
+            <HeaderCardContent>
+              <HeaderCardImage
+                src={getImageUrl(tvShowEpisode.still_path)}
+                alt={pageTitle}
+                flexBasis="xs"
+                aspectRatio="17 / 9"
               />
-            );
-          })}
-        </ImageList>
-        <ImageViewer title={pageTitle} images={tvShowEpisode.images.stills} />
-      </section>
-    </Flex>
+              <HeaderCardBody>
+                <Flex justifyContent="space-between" gap={4}>
+                  <VoteRating rating={tvShowEpisode.vote_average} />
+                  <Box opacity={0.7}>
+                    {getDateString(tvShowEpisode.air_date)}
+                  </Box>
+                </Flex>
+                <div>{tvShowEpisode.overview}</div>
+              </HeaderCardBody>
+            </HeaderCardContent>
+          </HeaderCard>
+        </div>
+
+        <section>
+          <Title title="Videos" titleAs="h2" />
+          <VideoCarousel videos={tvShowEpisode.videos.results} />
+          <VideoViewer
+            title={pageTitle}
+            videos={tvShowEpisode.videos.results}
+          />
+        </section>
+
+        <section>
+          <Title title="Images" titleAs="h2" />
+          <ImageCarousel
+            images={tvShowEpisode.images.stills.map((still, i) => ({
+              src: still.file_path,
+              alt: `${tvShowEpisode.name} Image ${i + 1}`,
+            }))}
+          />
+          <ImageViewer title={pageTitle} images={tvShowEpisode.images.stills} />
+        </section>
+      </Flex>
+    </>
   );
 }

@@ -9,6 +9,8 @@ export default function HeaderCardBackgroundImage({
   src,
   alt,
 }: HeaderCardBackgroundImageProps) {
+  return null;
+
   return (
     <BaseImage
       key={src}

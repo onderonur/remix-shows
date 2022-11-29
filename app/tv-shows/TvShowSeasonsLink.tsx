@@ -23,17 +23,17 @@ export default function TvShowSeasonsLink({ tvShow }: TvShowSeasonsLinkProps) {
           <Box fontWeight="bold" fontSize="2xl">
             Seasons: {tvShow.number_of_seasons}
           </Box>
-          <Box color="gray.600" fontSize="sm">
+          <Box fontSize="sm" opacity={0.7}>
             Episodes: {tvShow.number_of_episodes}
           </Box>
         </div>
         <ChevronRightIcon
           fontSize={'5xl'}
           {...baseTransitionStyles}
-          color="red.200"
+          color="red.300"
           position="relative"
           _groupHover={{
-            color: 'red.500',
+            color: 'red.400',
             transform: 'scale(1.1) translate(10px)',
           }}
         />
