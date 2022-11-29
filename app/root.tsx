@@ -28,6 +28,7 @@ import { theme } from './theme/theme';
 import { PLACEHOLDER_IMAGE_SRC } from './medias/MediaUtils';
 import { APP_TITLE } from './common/CommonUtils';
 import { APP_HEADER_HEIGHT } from './layout/LayoutUtils';
+import ForceDarkMode from './theme/ForceDarkMode';
 
 export const meta: MetaFunction = () => {
   return {
@@ -131,6 +132,7 @@ export default function App() {
       <body>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <ChakraProvider theme={theme}>
+          <ForceDarkMode />
           <GenresProvider genres={genres}>
             <AppLayout>
               <Outlet />

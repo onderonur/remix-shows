@@ -28,7 +28,11 @@ export default function Title({
           {title}
         </Box>
         {subtitle && (
-          <Box fontSize={{ base: 'sm', lg: 'md' }} fontWeight="semibold">
+          <Box
+            fontSize={{ base: 'sm', lg: 'md' }}
+            fontWeight="semibold"
+            opacity={0.7}
+          >
             {subtitle}
           </Box>
         )}
