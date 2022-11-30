@@ -21,6 +21,12 @@ export type BaseTvShow = {
 
 export type TvShow = BaseTvShow & {
   genres: Genre[];
+  networks: Array<{
+    id: Id;
+    name: string;
+    logo_path: string;
+    origin_country: string;
+  }>;
   images?: { backdrops: ImageMedia[]; posters: ImageMedia[] };
   videos?: { results: VideoMedia[] };
   similar?: PaginationResponse<TvShowListItem>;

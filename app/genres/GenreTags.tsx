@@ -1,4 +1,4 @@
-import { Flex, Tag } from '@chakra-ui/react';
+import { List, ListItem, Tag } from '@chakra-ui/react';
 import React from 'react';
 import { Link } from '@remix-run/react';
 import type { Genre } from '~/genres/GenresTypes';
@@ -9,7 +9,7 @@ type GenreTagsProps = {
 
 export default function GenreTags({ genres }: GenreTagsProps) {
   return (
-    <Flex gap={2} flexWrap="wrap">
+    <List gap={2} display="flex" flexWrap="wrap">
       {genres.map((genre) => {
         const { id, name } = genre;
 
@@ -18,14 +18,13 @@ export default function GenreTags({ genres }: GenreTagsProps) {
         });
 
         return (
-          <Link
-            key={id}
-            to={{ pathname: '/', search: searchParams.toString() }}
-          >
-            <Tag colorScheme="red">{name}</Tag>
-          </Link>
+          <ListItem key={id}>
+            <Link to={{ pathname: '/', search: searchParams.toString() }}>
+              <Tag colorScheme="red">{name}</Tag>
+            </Link>
+          </ListItem>
         );
       })}
-    </Flex>
+    </List>
   );
 }
