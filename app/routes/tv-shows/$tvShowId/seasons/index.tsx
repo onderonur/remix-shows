@@ -18,7 +18,6 @@ import { tvShowsService } from '~/tv-shows/TvShowsService';
 import BaseSelect from '~/common/BaseSelect';
 import { useScrollToTopOnRouteChange } from '~/common/CommonHooks';
 import PageTitle from '~/common/PageTitle';
-import HeaderCardBackgroundImage from '~/common/HeaderCardBackgroundImage';
 import HeaderCardContent from '~/common/HeaderCardContent';
 import HeaderCardImage from '~/common/HeaderCardImage';
 import HeaderCardBody from '~/common/HeaderCardBody';
@@ -80,12 +79,6 @@ export default function SeasonsIndexRoute() {
             title={pageTitle}
           />
           <HeaderCard>
-            <HeaderCardBackgroundImage
-              src={getImageUrl(tvShow.backdrop_path, {
-                size: 'original',
-              })}
-              alt={pageTitle}
-            />
             <HeaderCardContent>
               <HeaderCardImage
                 src={getImageUrl(tvShowSeason.poster_path)}

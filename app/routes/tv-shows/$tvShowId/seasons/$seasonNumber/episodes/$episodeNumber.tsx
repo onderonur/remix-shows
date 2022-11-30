@@ -13,7 +13,6 @@ import VideoCarousel from '~/medias/VideoCarousel';
 import VideoViewer from '~/medias/VideoViewer';
 import { getDateString } from '~/common/CommonUtils';
 import PageTitle from '~/common/PageTitle';
-import HeaderCardBackgroundImage from '~/common/HeaderCardBackgroundImage';
 import HeaderCardContent from '~/common/HeaderCardContent';
 import HeaderCardImage from '~/common/HeaderCardImage';
 import HeaderCardBody from '~/common/HeaderCardBody';
@@ -77,12 +76,6 @@ export default function EpisodeRoute() {
             subtitle={`S ${tvShowEpisode.season_number}, Ep ${tvShowEpisode.episode_number}`}
           />
           <HeaderCard>
-            <HeaderCardBackgroundImage
-              src={getImageUrl(tvShow.backdrop_path, {
-                size: 'original',
-              })}
-              alt={pageTitle}
-            />
             <HeaderCardContent>
               <HeaderCardImage
                 src={getImageUrl(tvShowEpisode.still_path)}

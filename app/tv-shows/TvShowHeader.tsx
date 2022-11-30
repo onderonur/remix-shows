@@ -1,7 +1,6 @@
 import { Box, Flex, List, ListItem, Text } from '@chakra-ui/react';
 import { getYear } from '~/common/CommonUtils';
 import HeaderCard from '~/common/HeaderCard';
-import HeaderCardBackgroundImage from '~/common/HeaderCardBackgroundImage';
 import HeaderCardContent from '~/common/HeaderCardContent';
 import HeaderCardBody from '~/common/HeaderCardBody';
 import HeaderCardImage from '~/common/HeaderCardImage';
@@ -18,12 +17,6 @@ type TvShowHeaderProps = {
 export default function TvShowHeader({ tvShow }: TvShowHeaderProps) {
   return (
     <HeaderCard>
-      <HeaderCardBackgroundImage
-        src={getImageUrl(tvShow.backdrop_path, {
-          size: 'original',
-        })}
-        alt={tvShow.name}
-      />
       <HeaderCardContent>
         <HeaderCardImage
           src={getImageUrl(tvShow.poster_path)}

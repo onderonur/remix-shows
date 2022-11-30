@@ -64,13 +64,19 @@ export default function TvShowsIndexRoute() {
 
         <section>
           <Title title="Videos" titleAs="h2" />
-          <VideoCarousel videos={tvShow.videos?.results} />
+          <VideoCarousel
+            // To reset the carousel as user redirects from tv show to another tv show
+            key={tvShow.id}
+            videos={tvShow.videos?.results}
+          />
           <VideoViewer title={tvShow.name} videos={tvShow.videos?.results} />
         </section>
 
         <section>
           <Title title="Images" titleAs="h2" />
           <ImageCarousel
+            // To reset the carousel as user redirects from tv show to another tv show
+            key={tvShow.id}
             images={tvShow.images?.backdrops.map((backdrop, i) => ({
               src: backdrop.file_path,
               alt: `${tvShow.name} Image ${i + 1}`,
