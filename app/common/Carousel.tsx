@@ -58,10 +58,9 @@ export default function Carousel({
     sx: {
       position: 'absolute',
       top: '50%',
-      left: navType === 'previous' ? 0 : 'auto',
-      right: navType === 'next' ? 0 : 'auto',
+      left: navType === 'previous' ? { base: -1, md: -4 } : 'auto',
+      right: navType === 'next' ? { base: -1, md: -4 } : 'auto',
       translate: '0 -50%',
-      marginX: 2,
       fontSize: '2xl',
       backgroundColor: 'whiteAlpha.600',
       '&:hover': disabled
