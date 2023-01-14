@@ -24,6 +24,8 @@ import BaseSelect from '~/common/BaseSelect';
 import { useHasChanged } from '~/common/CommonHooks';
 import { useMemo, useState } from 'react';
 import PageTitle from '~/common/PageTitle';
+import { createErrorResponse } from '~/error-handling/ErrorHandlingUtils';
+import { goTry } from 'go-try';
 
 const getGenreId = (searchParams: URLSearchParams) => {
   const genreId = searchParams.get('genreId');
@@ -50,11 +52,17 @@ const getSortBy = (searchParams: URLSearchParams) => {
 export const loader = async ({ request }: LoaderArgs) => {
   const url = new URL(request.url);
 
-  const tvShows = await tvShowsService.discover({
-    page: getPage(url.searchParams),
-    genreId: getGenreId(url.searchParams),
-    sortBy: getSortBy(url.searchParams).id,
-  });
+  const [err, tvShows] = await goTry(() =>
+    tvShowsService.discover({
+      page: getPage(url.searchParams),
+      genreId: getGenreId(url.searchParams),
+      sortBy: getSortBy(url.searchParams).id,
+    }),
+  );
+
+  if (err) {
+    throw createErrorResponse(err);
+  }
 
   return json({
     // We are using `genreId` in MetaFunction

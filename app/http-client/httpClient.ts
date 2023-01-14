@@ -1,3 +1,5 @@
+import createHttpError from 'http-errors';
+
 export const httpClient = {
   get: async <T>(
     endpoint: string,
@@ -24,7 +26,10 @@ export const httpClient = {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data?.status_message ?? 'Something went wrong');
+      throw createHttpError(
+        response.status,
+        data?.status_message ?? 'Something went wrong',
+      );
     }
 
     return data as T;

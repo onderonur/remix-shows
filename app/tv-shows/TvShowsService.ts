@@ -12,6 +12,7 @@ import {
   shouldViewTvShow,
   VIEW_FILTER_LIMIT,
 } from './TvShowsUtils';
+import createHttpError from 'http-errors';
 
 const discover = async (params: {
   page: number;
@@ -40,7 +41,7 @@ const details = async (
   });
 
   if (!shouldViewTvShow(tvShow)) {
-    throw new Error('Not found');
+    throw new createHttpError.NotFound('Tv Show not found');
   }
 
   if (tvShow.similar) {

@@ -18,15 +18,23 @@ import HeaderCardImage from '~/common/HeaderCardImage';
 import HeaderCardBody from '~/common/HeaderCardBody';
 import ImageCarousel from '~/medias/ImageCarousel';
 import TvShowBackground from '~/tv-shows/TvShowBackground';
+import { createErrorResponse } from '~/error-handling/ErrorHandlingUtils';
+import { goTry } from 'go-try';
 
 export const loader = async ({ params }: LoaderArgs) => {
-  const { tvShow, tvShowEpisode } = await tvShowsService.episodeDetails(
-    Number(params.tvShowId),
-    Number(params.seasonNumber),
-    Number(params.episodeNumber),
+  const [err, data] = await goTry(() =>
+    tvShowsService.episodeDetails(
+      Number(params.tvShowId),
+      Number(params.seasonNumber),
+      Number(params.episodeNumber),
+    ),
   );
 
-  return json({ tvShow, tvShowEpisode });
+  if (err) {
+    throw createErrorResponse(err);
+  }
+
+  return json(data);
 };
 
 const getPageTitle = ({

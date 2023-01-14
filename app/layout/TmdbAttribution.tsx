@@ -1,6 +1,5 @@
-import { Icon, Text, Stack } from '@chakra-ui/react';
+import { Icon, Text, Stack, Link as ChakraLink } from '@chakra-ui/react';
 import { useId } from 'react';
-import ExternalLink from '~/common/ExternalLink';
 
 const ICON_SIZE = '16';
 
@@ -8,9 +7,10 @@ export default function TmdbAttribution() {
   const linearGradientId = useId();
 
   return (
-    <ExternalLink
+    <ChakraLink
       aria-label="Go to TMDb website"
       href="https://www.themoviedb.org/"
+      isExternal
     >
       <Stack spacing={1} alignItems="center" textAlign="center">
         <Icon viewBox="0 0 185.04 133.4" width={ICON_SIZE} height={ICON_SIZE}>
@@ -44,6 +44,6 @@ export default function TmdbAttribution() {
           TMDB.
         </Text>
       </Stack>
-    </ExternalLink>
+    </ChakraLink>
   );
 }

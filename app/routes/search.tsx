@@ -2,8 +2,10 @@ import type { LoaderArgs } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { redirect } from '@remix-run/node';
 import { useLoaderData, useSearchParams } from '@remix-run/react';
+import { goTry } from 'go-try';
 import { useScrollToTopOnRouteChange } from '~/common/CommonHooks';
 import PageTitle from '~/common/PageTitle';
+import { createErrorResponse } from '~/error-handling/ErrorHandlingUtils';
 import { searchService } from '~/search/SearchService';
 import TvShowList from '~/tv-shows/TvShowList';
 
@@ -19,10 +21,16 @@ export const loader = async ({ request }: LoaderArgs) => {
     return redirect('/');
   }
 
-  const tvShows = await searchService.searchTvShows({
-    searchQuery: keyword,
-    page: 1,
-  });
+  const [err, tvShows] = await goTry(() =>
+    searchService.searchTvShows({
+      searchQuery: keyword,
+      page: 1,
+    }),
+  );
+
+  if (err) {
+    throw createErrorResponse(err);
+  }
 
   return json({ tvShows });
 };

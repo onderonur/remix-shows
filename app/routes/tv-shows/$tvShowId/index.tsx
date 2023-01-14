@@ -15,17 +15,25 @@ import PageTitle from '~/common/PageTitle';
 import TvShowHeader from '~/tv-shows/TvShowHeader';
 import ImageCarousel from '~/medias/ImageCarousel';
 import TvShowBackground from '~/tv-shows/TvShowBackground';
+import { createErrorResponse } from '~/error-handling/ErrorHandlingUtils';
+import { goTry } from 'go-try';
 
 export const loader = async ({ params }: LoaderArgs) => {
-  const tvShow = await tvShowsService.details(Number(params.tvShowId), {
-    appendToResponse: ['videos', 'images', 'similar'],
-  });
+  const [err, tvShow] = await goTry(() =>
+    tvShowsService.details(Number(params.tvShowId), {
+      appendToResponse: ['videos', 'images', 'similar'],
+    }),
+  );
+
+  if (err) {
+    throw createErrorResponse(err);
+  }
 
   return json({ tvShow });
 };
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  if (!data.tvShow) {
+  if (!data) {
     return getMetaTags({
       title: 'Not found',
       description: 'Show not found',

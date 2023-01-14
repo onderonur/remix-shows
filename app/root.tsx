@@ -5,6 +5,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useCatch,
   useLoaderData,
 } from '@remix-run/react';
 import type { MetaFunction } from '@remix-run/node';
@@ -29,6 +30,9 @@ import { PLACEHOLDER_IMAGE_SRC } from './medias/MediaUtils';
 import { APP_TITLE } from './common/CommonUtils';
 import { APP_HEADER_HEIGHT } from './layout/LayoutUtils';
 import ForceDarkMode from './theme/ForceDarkMode';
+import { goTry } from 'go-try';
+import { createErrorResponse } from './error-handling/ErrorHandlingUtils';
+// import { createLoader } from './error-handling/ErrorHandlingUtils';
 
 export const meta: MetaFunction = () => {
   return {
@@ -39,7 +43,12 @@ export const meta: MetaFunction = () => {
 };
 
 export const loader = async () => {
-  const genres = await genresService.getAll();
+  const [err, genres] = await goTry(() => genresService.getAll());
+
+  if (err) {
+    throw createErrorResponse(err);
+  }
+
   return json({ genres });
 };
 
@@ -60,11 +69,11 @@ function Font() {
   );
 }
 
-export function ErrorBoundary({ error }: { error: Error }) {
+function ErrorHandlingBoundary({ message }: { message: string }) {
   return (
     <html>
       <head>
-        <title>{error.message}</title>
+        <title>{message}</title>
         <Meta />
         <Links />
         <Font />
@@ -99,7 +108,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
               >
                 <Alert status="error">
                   <AlertIcon />
-                  <AlertTitle>{error.message}</AlertTitle>
+                  <AlertTitle>{message}</AlertTitle>
                 </Alert>
                 <Button
                   colorScheme="red"
@@ -117,6 +126,18 @@ export function ErrorBoundary({ error }: { error: Error }) {
       </body>
     </html>
   );
+}
+
+export function CatchBoundary() {
+  const caught = useCatch();
+
+  return (
+    <ErrorHandlingBoundary message={`${caught.status} | ${caught.data}`} />
+  );
+}
+
+export function ErrorBoundary({ error }: { error: Error }) {
+  return <ErrorHandlingBoundary message={error.message} />;
 }
 
 export default function App() {

@@ -22,6 +22,8 @@ import HeaderCardContent from '~/common/HeaderCardContent';
 import HeaderCardImage from '~/common/HeaderCardImage';
 import HeaderCardBody from '~/common/HeaderCardBody';
 import TvShowBackground from '~/tv-shows/TvShowBackground';
+import { goTry } from 'go-try';
+import { createErrorResponse } from '~/error-handling/ErrorHandlingUtils';
 
 const getSelectedSeason = (searchParams: URLSearchParams) => {
   return Number(searchParams.get('season')) || 1;
@@ -30,12 +32,18 @@ const getSelectedSeason = (searchParams: URLSearchParams) => {
 export const loader = async ({ params, request }: LoaderArgs) => {
   const url = new URL(request.url);
 
-  const { tvShow, tvShowSeason } = await tvShowsService.seasonDetails(
-    Number(params.tvShowId),
-    getSelectedSeason(url.searchParams),
+  const [err, data] = await goTry(() =>
+    tvShowsService.seasonDetails(
+      Number(params.tvShowId),
+      getSelectedSeason(url.searchParams),
+    ),
   );
 
-  return json({ tvShow, tvShowSeason });
+  if (err) {
+    throw createErrorResponse(err);
+  }
+
+  return json(data);
 };
 
 const getPageTitle = ({

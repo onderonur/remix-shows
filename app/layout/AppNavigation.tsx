@@ -1,6 +1,13 @@
-import { Box, Flex, List, ListItem, Stack, VStack } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  List,
+  ListItem,
+  Stack,
+  VStack,
+  Link as ChakraLink,
+} from '@chakra-ui/react';
 import { Link, useLocation, useSearchParams } from '@remix-run/react';
-import ExternalLink from '~/common/ExternalLink';
 import { useGenres } from '~/genres/GenresContext';
 import GitHubIcon from './GitHubIcon';
 import TmdbAttribution from './TmdbAttribution';
@@ -50,15 +57,16 @@ export default function AppNavigation() {
         <TmdbAttribution />
       </Box>
       <Box paddingX={4}>
-        <ExternalLink
+        <ChakraLink
           aria-label="Check the source code on GitHub"
           href="https://github.com/onderonur/remix-shows"
+          isExternal
         >
           <Stack spacing={2} alignItems={'center'} textAlign={'center'}>
             <GitHubIcon />
             <Box fontSize="xs">Check the source code on GitHub</Box>
           </Stack>
-        </ExternalLink>
+        </ChakraLink>
       </Box>
     </Flex>
   );
