@@ -132,10 +132,9 @@ export default function Carousel({
           width: 'full',
           scrollSnapType: 'x mandatory',
           overflowX: 'auto',
-          // IE and Edge
-          msOverflowStyle: 'none',
           // Firefox
-          scrollbarWidth: 0,
+          scrollbarWidth: 'none',
+          // Chrome, Edge etc.
           '&::-webkit-scrollbar': {
             display: 'none',
           },
