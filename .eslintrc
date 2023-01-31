@@ -2,9 +2,9 @@
   "extends": [
     "@remix-run/eslint-config",
     "@remix-run/eslint-config/node",
+    // https://github.com/prettier/eslint-plugin-prettier#recommended-configuration
     "plugin:prettier/recommended"
   ],
-  "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "warn",
     "no-console": "warn",
