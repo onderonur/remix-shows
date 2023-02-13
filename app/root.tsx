@@ -32,7 +32,6 @@ import { APP_HEADER_HEIGHT } from './layout/LayoutUtils';
 import ForceDarkMode from './theme/ForceDarkMode';
 import { goTry } from 'go-try';
 import { createErrorResponse } from './error-handling/ErrorHandlingUtils';
-// import { createLoader } from './error-handling/ErrorHandlingUtils';
 
 export const meta: MetaFunction = () => {
   return {
