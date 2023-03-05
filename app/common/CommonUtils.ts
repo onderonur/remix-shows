@@ -1,4 +1,5 @@
 import { isNil } from 'lodash';
+import type { AnyObject } from './CommonTypes';
 
 export const APP_TITLE = 'Remix-Shows';
 
@@ -21,7 +22,7 @@ export const getDateString = (date: string) => {
   return new Date(date).toLocaleDateString('en');
 };
 
-export const isOfType = <T extends Object>(
+export const isOfType = <T extends AnyObject>(
   val: unknown,
   keys: Array<keyof T>,
 ): val is T => {

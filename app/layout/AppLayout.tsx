@@ -6,7 +6,7 @@ import AppDrawer from './AppDrawer';
 import AppNavigation from './AppNavigation';
 import { APP_DRAWER_WIDTH, APP_HEADER_HEIGHT } from './LayoutUtils';
 
-type AppLayoutProps = React.PropsWithChildren<{}>;
+type AppLayoutProps = React.PropsWithChildren;
 
 export default function AppLayout({ children }: AppLayoutProps) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);

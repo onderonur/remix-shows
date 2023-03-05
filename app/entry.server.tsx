@@ -14,7 +14,7 @@ export default function handleRequest(
     });
   }
 
-  let markup = renderToString(
+  const markup = renderToString(
     <RemixServer context={remixContext} url={request.url} />,
   );
 
