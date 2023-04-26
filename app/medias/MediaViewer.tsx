@@ -1,7 +1,6 @@
 import {
   AspectRatio,
   Box,
-  Flex,
   IconButton,
   Modal,
   ModalBody,
@@ -86,34 +85,26 @@ export default function MediaViewer<MediaItem>({
               {media && renderMedia({ media })}
             </AspectRatio>
             {currentIndex > firstIndex && (
-              <Flex
+              <IconButton
+                aria-label="Previous image"
+                icon={<ArrowBackIcon />}
+                onClick={() => handleClickStep(medias?.[currentIndex - 1])}
                 position="absolute"
-                top={0}
-                bottom={0}
+                top="50%"
+                sx={{ translate: '0 -50%' }}
                 left={stepperButtonDistanceFromEdge}
-                alignItems="center"
-              >
-                <IconButton
-                  aria-label="Previous image"
-                  icon={<ArrowBackIcon />}
-                  onClick={() => handleClickStep(medias?.[currentIndex - 1])}
-                />
-              </Flex>
+              />
             )}
             {currentIndex < lastIndex && (
-              <Flex
+              <IconButton
+                aria-label="Previous image"
+                icon={<ArrowForwardIcon />}
+                onClick={() => handleClickStep(medias?.[currentIndex + 1])}
                 position="absolute"
-                top={0}
-                bottom={0}
+                top="50%"
+                sx={{ translate: '0 -50%' }}
                 right={stepperButtonDistanceFromEdge}
-                alignItems="center"
-              >
-                <IconButton
-                  aria-label="Previous image"
-                  icon={<ArrowForwardIcon />}
-                  onClick={() => handleClickStep(medias?.[currentIndex + 1])}
-                />
-              </Flex>
+              />
             )}
           </Box>
         </ModalBody>
