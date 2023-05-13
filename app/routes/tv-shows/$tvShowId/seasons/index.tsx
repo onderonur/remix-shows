@@ -7,23 +7,23 @@ import {
   useSearchParams,
   useSubmit,
 } from '@remix-run/react';
-import { createNumberArray } from '~/common/CommonUtils';
-import { getMetaTags } from '~/seo/SeoUtils';
+import { createNumberArray } from '~/common/common-utils';
+import { getMetaTags } from '~/seo/seo-utils';
 import { Flex, List } from '@chakra-ui/react';
-import { getImageUrl } from '~/medias/MediaUtils';
-import TvShowEpisodeListItem from '~/tv-shows/TvShowEpisodeListItems';
-import Title from '~/common/Title';
-import HeaderCard from '~/common/HeaderCard';
-import { tvShowsService } from '~/tv-shows/TvShowsService';
-import BaseSelect from '~/common/BaseSelect';
-import { useScrollToTopOnRouteChange } from '~/common/CommonHooks';
-import PageTitle from '~/common/PageTitle';
-import HeaderCardContent from '~/common/HeaderCardContent';
-import HeaderCardImage from '~/common/HeaderCardImage';
-import HeaderCardBody from '~/common/HeaderCardBody';
-import TvShowBackground from '~/tv-shows/TvShowBackground';
+import { getImageUrl } from '~/medias/media-utils';
+import TvShowEpisodeListItem from '~/tv-shows/tv-show-episode-list-item';
+import Title from '~/common/title';
+import HeaderCard from '~/common/header-card';
+import { tvShowsService } from '~/tv-shows/tv-show-service';
+import BaseSelect from '~/common/base-select';
+import { useScrollToTopOnRouteChange } from '~/common/common-hooks';
+import PageTitle from '~/common/page-title';
+import HeaderCardContent from '~/common/header-card-content';
+import HeaderCardImage from '~/common/header-card-image';
+import HeaderCardBody from '~/common/header-card-body';
+import TvShowBackground from '~/tv-shows/tv-show-background';
 import { goTry } from 'go-try';
-import { createErrorResponse } from '~/error-handling/ErrorHandlingUtils';
+import { createErrorResponse } from '~/error-handling/error-handling-utils';
 
 const getSelectedSeason = (searchParams: URLSearchParams) => {
   return Number(searchParams.get('season')) || 1;

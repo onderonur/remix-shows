@@ -10,8 +10,8 @@ import {
 } from '@remix-run/react';
 import type { MetaFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
-import { getMetaTags } from './seo/SeoUtils';
-import { genresService } from './genres/GenresService';
+import { getMetaTags } from './seo/seo-utils';
+import { genreService } from './genres/genre-service';
 import {
   Box,
   Button,
@@ -23,15 +23,15 @@ import {
   AlertTitle,
   ColorModeScript,
 } from '@chakra-ui/react';
-import GenresProvider from './genres/GenresContext';
-import AppLayout from './layout/AppLayout';
+import GenresProvider from './genres/genres-context';
+import AppLayout from './layout/app-layout';
 import { theme } from './theme/theme';
-import { PLACEHOLDER_IMAGE_SRC } from './medias/MediaUtils';
-import { APP_TITLE } from './common/CommonUtils';
-import { APP_HEADER_HEIGHT } from './layout/LayoutUtils';
-import ForceDarkMode from './theme/ForceDarkMode';
+import { PLACEHOLDER_IMAGE_SRC } from './medias/media-utils';
+import { APP_TITLE } from './common/common-utils';
+import { APP_HEADER_HEIGHT } from './layout/layout-utils';
+import ForceDarkMode from './theme/force-dark-mode';
 import { goTry } from 'go-try';
-import { createErrorResponse } from './error-handling/ErrorHandlingUtils';
+import { createErrorResponse } from './error-handling/error-handling-utils';
 
 export const meta: MetaFunction = () => {
   return {
@@ -42,7 +42,7 @@ export const meta: MetaFunction = () => {
 };
 
 export const loader = async () => {
-  const [err, genres] = await goTry(() => genresService.getAll());
+  const [err, genres] = await goTry(() => genreService.getAll());
 
   if (err) {
     throw createErrorResponse(err);

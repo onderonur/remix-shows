@@ -1,21 +1,21 @@
 import type { LoaderArgs, MetaFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import { getMetaTags } from '~/seo/SeoUtils';
+import { getMetaTags } from '~/seo/seo-utils';
 import { Flex } from '@chakra-ui/react';
-import TvShowList from '~/tv-shows/TvShowList';
-import Title from '~/common/Title';
-import { tvShowsService } from '~/tv-shows/TvShowsService';
-import TvShowSeasonsLink from '~/tv-shows/TvShowSeasonsLink';
-import ImageViewer from '~/medias/ImageViewer';
-import VideoCarousel from '~/medias/VideoCarousel';
-import VideoViewer from '~/medias/VideoViewer';
-import { getImageUrl } from '~/medias/MediaUtils';
-import PageTitle from '~/common/PageTitle';
-import TvShowHeader from '~/tv-shows/TvShowHeader';
-import ImageCarousel from '~/medias/ImageCarousel';
-import TvShowBackground from '~/tv-shows/TvShowBackground';
-import { createErrorResponse } from '~/error-handling/ErrorHandlingUtils';
+import TvShowList from '~/tv-shows/tv-show-list';
+import Title from '~/common/title';
+import { tvShowsService } from '~/tv-shows/tv-show-service';
+import TvShowSeasonsLink from '~/tv-shows/tv-show-seasons-link';
+import ImageViewer from '~/medias/image-viewer';
+import VideoCarousel from '~/medias/video-carousel';
+import VideoViewer from '~/medias/video-viewer';
+import { getImageUrl } from '~/medias/media-utils';
+import PageTitle from '~/common/page-title';
+import TvShowHeader from '~/tv-shows/tv-show-header';
+import ImageCarousel from '~/medias/image-carousel';
+import TvShowBackground from '~/tv-shows/tv-show-background';
+import { createErrorResponse } from '~/error-handling/error-handling-utils';
 import { goTry } from 'go-try';
 
 export const loader = async ({ params }: LoaderArgs) => {

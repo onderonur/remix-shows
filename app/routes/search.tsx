@@ -3,11 +3,11 @@ import { json } from '@remix-run/node';
 import { redirect } from '@remix-run/node';
 import { useLoaderData, useSearchParams } from '@remix-run/react';
 import { goTry } from 'go-try';
-import { useScrollToTopOnRouteChange } from '~/common/CommonHooks';
-import PageTitle from '~/common/PageTitle';
-import { createErrorResponse } from '~/error-handling/ErrorHandlingUtils';
-import { searchService } from '~/search/SearchService';
-import TvShowList from '~/tv-shows/TvShowList';
+import { useScrollToTopOnRouteChange } from '~/common/common-hooks';
+import PageTitle from '~/common/page-title';
+import { createErrorResponse } from '~/error-handling/error-handling-utils';
+import { searchService } from '~/search/search-service';
+import TvShowList from '~/tv-shows/tv-show-list';
 
 const getKeyword = (searchParams: URLSearchParams) => {
   return searchParams.get('keyword')?.trim();

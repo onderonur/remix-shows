@@ -8,23 +8,23 @@ import {
   useSearchParams,
   useSubmit,
 } from '@remix-run/react';
-import { useGenres } from '~/genres/GenresContext';
-import InfiniteScrollSentry from '~/infinite-scroll/InfiniteScrollSentry';
+import { useGenres } from '~/genres/genres-context';
+import InfiniteScrollSentry from '~/infinite-scroll/infinite-scroll-sentry';
 import {
   checkHasNextPage,
   getAllPageResults,
   getNextPage,
-} from '~/pagination/PaginationUtils';
+} from '~/pagination/pagination-utils';
 import type { loader as rootLoader } from '~/root';
-import { getMetaTags } from '~/seo/SeoUtils';
-import TvShowList from '~/tv-shows/TvShowList';
-import { tvShowsService } from '~/tv-shows/TvShowsService';
-import { TV_SHOWS_SORT_BY } from '~/tv-shows/TvShowsUtils';
-import BaseSelect from '~/common/BaseSelect';
-import { useHasChanged } from '~/common/CommonHooks';
+import { getMetaTags } from '~/seo/seo-utils';
+import TvShowList from '~/tv-shows/tv-show-list';
+import { tvShowsService } from '~/tv-shows/tv-show-service';
+import { TV_SHOWS_SORT_BY } from '~/tv-shows/tv-show-utils';
+import BaseSelect from '~/common/base-select';
+import { useHasChanged } from '~/common/common-hooks';
 import { useMemo, useState } from 'react';
-import PageTitle from '~/common/PageTitle';
-import { createErrorResponse } from '~/error-handling/ErrorHandlingUtils';
+import PageTitle from '~/common/page-title';
+import { createErrorResponse } from '~/error-handling/error-handling-utils';
 import { goTry } from 'go-try';
 
 const getGenreId = (searchParams: URLSearchParams) => {
