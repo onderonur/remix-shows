@@ -1,4 +1,5 @@
 import type { IconButtonProps } from '@chakra-ui/react';
+// TODO: Add import/no-duplicates eslint rule.
 import { useBreakpointValue } from '@chakra-ui/react';
 import { IconButton } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/react';
@@ -130,7 +131,6 @@ export default function Carousel({
           },
           gap: `${gap}px`,
           width: 'full',
-          scrollSnapType: 'x mandatory',
           overflowX: 'auto',
           // Firefox
           scrollbarWidth: 'none',

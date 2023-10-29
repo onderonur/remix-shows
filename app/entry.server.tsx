@@ -15,7 +15,13 @@ export default function handleRequest(
   }
 
   const markup = renderToString(
-    <RemixServer context={remixContext} url={request.url} />,
+    <RemixServer
+      // TODO: Will fix this.
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      context={remixContext}
+      url={request.url}
+    />,
   );
 
   responseHeaders.set('Content-Type', 'text/html');

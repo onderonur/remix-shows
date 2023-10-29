@@ -4,17 +4,16 @@
     "plugin:@typescript-eslint/recommended",
     "@remix-run/eslint-config",
     "@remix-run/eslint-config/node",
-    // https://github.com/prettier/eslint-plugin-prettier#recommended-configuration
-    "plugin:prettier/recommended"
+    "prettier"
   ],
   "rules": {
-    "prettier/prettier": "warn",
     "no-console": "warn",
     "no-alert": "warn",
     "prefer-destructuring": "warn",
     "prefer-const": "warn",
     "object-shorthand": "warn",
     "curly": "warn",
-    "eqeqeq": "warn"
+    "eqeqeq": "warn",
+    "require-await": "warn"
   }
 }
