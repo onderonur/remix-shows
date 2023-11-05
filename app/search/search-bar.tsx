@@ -17,6 +17,7 @@ export default function SearchBar() {
 
   return (
     <Form
+      role="search"
       autoComplete="off"
       onChange={(e) => {
         const isSearchRoute = location.pathname === '/search';

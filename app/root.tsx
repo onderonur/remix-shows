@@ -5,8 +5,9 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useCatch,
+  isRouteErrorResponse,
   useLoaderData,
+  useRouteError,
 } from '@remix-run/react';
 import type { V2_MetaFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
@@ -176,16 +177,21 @@ function ErrorHandlingBoundary({ message }: { message: string }) {
   );
 }
 
-export function CatchBoundary() {
-  const caught = useCatch();
+// https://remix.run/docs/en/main/start/v2#catchboundary-and-errorboundary
+export function ErrorBoundary() {
+  const error = useRouteError();
+
+  if (isRouteErrorResponse(error)) {
+    return (
+      <ErrorHandlingBoundary message={`${error.status} - ${error.data}`} />
+    );
+  }
 
   return (
-    <ErrorHandlingBoundary message={`${caught.status} | ${caught.data}`} />
+    <ErrorHandlingBoundary
+      message={error instanceof Error ? error?.message : 'Something went wrong'}
+    />
   );
-}
-
-export function ErrorBoundary({ error }: { error: Error }) {
-  return <ErrorHandlingBoundary message={error.message} />;
 }
 
 export default function App() {

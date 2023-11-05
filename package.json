@@ -13,9 +13,9 @@
     "lint:fix": "eslint --fix --max-warnings 0 .",
     "format": "prettier --check --ignore-unknown .",
     "format:fix": "prettier --write --ignore-unknown .",
-    "codequality": "npm run lint && npm run format",
-    "codequality:fix": "npm run lint:fix && npm run format:fix",
-    "typecheck": "tsc --noEmit"
+    "codequality": "npm run format && npm run lint",
+    "codequality:fix": "npm run format:fix && npm run lint:fix",
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
