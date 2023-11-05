@@ -26,7 +26,7 @@ export default function Carousel({
   visibleItemCount,
   children,
 }: CarouselProps) {
-  const carouselRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<React.ElementRef<'div'>>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const totalItemCount = Children.count(children);
   const currentVisibleItemCount =
