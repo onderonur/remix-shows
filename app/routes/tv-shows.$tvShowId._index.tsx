@@ -1,4 +1,4 @@
-import type { LoaderArgs, MetaFunction } from '@remix-run/node';
+import type { LoaderArgs, V2_MetaFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { getMetaTags } from '~/seo/seo-utils';
@@ -32,7 +32,7 @@ export const loader = async ({ params }: LoaderArgs) => {
   return json({ tvShow });
 };
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
+export const meta: V2_MetaFunction<typeof loader> = ({ data }) => {
   if (!data) {
     return getMetaTags({
       title: 'Not found',

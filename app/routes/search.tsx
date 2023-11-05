@@ -1,5 +1,5 @@
 import type { LoaderArgs } from '@remix-run/node';
-import { json , redirect } from '@remix-run/node';
+import { json, redirect } from '@remix-run/node';
 import { useLoaderData, useSearchParams } from '@remix-run/react';
 import { goTry } from 'go-try';
 import { useScrollToTopOnRouteChange } from '~/common/common-hooks';

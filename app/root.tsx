@@ -8,7 +8,7 @@ import {
   useCatch,
   useLoaderData,
 } from '@remix-run/react';
-import type { MetaFunction } from '@remix-run/node';
+import type { V2_MetaFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { getMetaTags } from './seo/seo-utils';
 import { genreService } from './genres/genre-service';
@@ -37,12 +37,8 @@ import {
   ServerStyleContext,
 } from './styling/style-context';
 
-export const meta: MetaFunction = () => {
-  return {
-    ...getMetaTags({ image: PLACEHOLDER_IMAGE_SRC }),
-    charset: 'utf-8',
-    viewport: 'width=device-width,initial-scale=1',
-  };
+export const meta: V2_MetaFunction = () => {
+  return getMetaTags({ image: PLACEHOLDER_IMAGE_SRC });
 };
 
 export const loader = async () => {
@@ -105,6 +101,9 @@ const Document = withEmotionCache(
       >
         <head>
           {title && <title>{title}</title>}
+          {/* https://remix.run/docs/en/main/route/meta#global-meta */}
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <Meta />
           <Links />
           <Font />

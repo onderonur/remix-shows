@@ -1,4 +1,8 @@
-import type { LoaderArgs, MetaFunction, SerializeFrom } from '@remix-run/node';
+import type {
+  LoaderArgs,
+  SerializeFrom,
+  V2_MetaFunction,
+} from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { getImageUrl } from '~/medias/media-utils';
@@ -44,7 +48,7 @@ const getPageTitle = ({
   return `${tvShow.name} - ${tvShowEpisode.name}`;
 };
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
+export const meta: V2_MetaFunction<typeof loader> = ({ data }) => {
   if (!data) {
     return getMetaTags({
       title: 'Not found',

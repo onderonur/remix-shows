@@ -1,5 +1,5 @@
 import { Input } from '@chakra-ui/react';
-import type { LoaderArgs, MetaFunction } from '@remix-run/node';
+import type { LoaderArgs, V2_MetaFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import {
   Form,
@@ -71,12 +71,13 @@ export const loader = async ({ request }: LoaderArgs) => {
   });
 };
 
-export const meta: MetaFunction<typeof loader, { root: typeof rootLoader }> = ({
-  parentsData,
-  data,
-}) => {
-  const { genreId } = data;
-  const { genres } = parentsData.root;
+export const meta: V2_MetaFunction<
+  typeof loader,
+  { root: typeof rootLoader }
+> = ({ data, matches }) => {
+  const genreId = data?.genreId;
+  const rootData = matches.find((match) => match.id === 'root')?.data;
+  const genres = rootData?.genres ?? [];
   const genre = genres.find((genre) => genre.id === genreId);
   if (!genre) {
     return getMetaTags();

@@ -1,3 +1,4 @@
+import type { V2_MetaDescriptor } from '@remix-run/node';
 import { APP_TITLE } from '~/common/common-utils';
 import { PLACEHOLDER_IMAGE_SRC } from '~/medias/media-utils';
 
@@ -5,28 +6,35 @@ export const getMetaTags = (args?: {
   title?: string;
   description?: string;
   image?: string;
-}) => {
+}): V2_MetaDescriptor[] => {
   const { title, description, image } = args ?? {};
-  const metaTags: Record<string, string> = {};
+
+  const metaDescriptors: V2_MetaDescriptor[] = [];
 
   const metaTitle = title ? `${title} | ${APP_TITLE}` : APP_TITLE;
-  metaTags.title = title ? `${title} | ${APP_TITLE}` : APP_TITLE;
-  metaTags['og:title'] = metaTitle;
-  metaTags['twitter:title'] = metaTitle;
+  metaDescriptors.push({ title: metaTitle });
+  metaDescriptors.push({ property: 'og:title', content: metaTitle });
+  metaDescriptors.push({ name: 'twitter:title', content: metaTitle });
 
   const metaDescription =
     description ?? `${APP_TITLE} is a TV Show guide built with Remix`;
-  metaTags.description = metaDescription;
-  metaTags['og:description'] = metaDescription;
-  metaTags['twitter:description'] = metaDescription;
+  metaDescriptors.push({ name: 'description', content: metaDescription });
+  metaDescriptors.push({
+    property: 'og:description',
+    content: metaDescription,
+  });
+  metaDescriptors.push({
+    name: 'twitter:description',
+    content: metaDescription,
+  });
 
   const imageSrc = image ?? PLACEHOLDER_IMAGE_SRC;
-  metaTags['og:image'] = imageSrc;
-  metaTags['twitter:image'] = imageSrc;
+  metaDescriptors.push({ property: 'og:image', content: imageSrc });
+  metaDescriptors.push({ name: 'twitter:image', content: imageSrc });
 
-  metaTags['og:site_name'] = APP_TITLE;
-  metaTags['twitter:site'] = '@onderonur_';
-  metaTags['twitter:card'] = 'summary';
+  metaDescriptors.push({ property: 'og:site_name', content: APP_TITLE });
+  metaDescriptors.push({ name: 'twitter:site', content: '@onderonur_' });
+  metaDescriptors.push({ property: 'twitter:card', content: 'summary' });
 
-  return metaTags;
+  return metaDescriptors;
 };
