@@ -4,6 +4,7 @@ const activeLabelStyles = {
   transform: 'scale(0.85) translateY(-24px)',
 };
 
+// https://chakra-ui.com/getting-started/remix-guide#customizing-theme
 export const theme = extendTheme({
   config: {
     initialColorMode: 'dark',

@@ -21,7 +21,6 @@ import {
   Alert,
   AlertIcon,
   AlertTitle,
-  ColorModeScript,
 } from '@chakra-ui/react';
 import GenresProvider from './genres/genres-context';
 import AppLayout from './layout/app-layout';
@@ -29,9 +28,14 @@ import { theme } from './theme/theme';
 import { PLACEHOLDER_IMAGE_SRC } from './medias/media-utils';
 import { APP_TITLE } from './common/common-utils';
 import { APP_HEADER_HEIGHT } from './layout/layout-utils';
-import ForceDarkMode from './theme/force-dark-mode';
 import { goTry } from 'go-try';
 import { createErrorResponse } from './error-handling/error-handling-utils';
+import { withEmotionCache } from '@emotion/react';
+import { useContext, useEffect } from 'react';
+import {
+  ClientStyleContext,
+  ServerStyleContext,
+} from './styling/style-context';
 
 export const meta: MetaFunction = () => {
   return {
@@ -68,62 +72,108 @@ function Font() {
   );
 }
 
+// https://chakra-ui.com/getting-started/remix-guide
+type DocumentProps = React.PropsWithChildren<{ title?: string }>;
+
+const Document = withEmotionCache(
+  ({ title, children }: DocumentProps, emotionCache) => {
+    const serverStyleData = useContext(ServerStyleContext);
+    const clientStyleData = useContext(ClientStyleContext);
+
+    // Only executed on client
+    useEffect(() => {
+      // re-link sheet container
+      emotionCache.sheet.container = document.head;
+      // re-inject tags
+      const { tags } = emotionCache.sheet;
+      emotionCache.sheet.flush();
+      tags.forEach((tag) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (emotionCache.sheet as any)._insertTag(tag);
+      });
+      // reset cache to reapply global styles
+      clientStyleData?.reset();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return (
+      <html
+        lang="en"
+        // https://chakra-ui.com/getting-started/remix-guide#add-colormodemanager
+        data-theme="dark"
+        style={{ colorScheme: 'dark' }}
+      >
+        <head>
+          {title && <title>{title}</title>}
+          <Meta />
+          <Links />
+          <Font />
+          {serverStyleData?.map(({ key, ids, css }) => (
+            <style
+              key={key}
+              data-emotion={`${key} ${ids.join(' ')}`}
+              dangerouslySetInnerHTML={{ __html: css }}
+            />
+          ))}
+        </head>
+        <body>
+          {children}
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+        </body>
+      </html>
+    );
+  },
+);
+
 function ErrorHandlingBoundary({ message }: { message: string }) {
   return (
-    <html>
-      <head>
-        <title>{message}</title>
-        <Meta />
-        <Links />
-        <Font />
-      </head>
-      <body>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <ChakraProvider theme={theme}>
-          <Grid gridTemplateRows={`${APP_HEADER_HEIGHT} 1fr`}>
-            <Grid as="header" placeContent="center" boxShadow="md">
-              <Box
-                as="h1"
-                fontWeight="bold"
-                fontSize="2xl"
-                color="red.400"
-                userSelect="none"
-              >
-                {APP_TITLE}
-              </Box>
-            </Grid>
-            <Grid
-              as="main"
-              placeContent="center"
-              minHeight="full"
-              height="full"
-              padding={4}
+    <Document title={message}>
+      <ChakraProvider theme={theme}>
+        <Grid gridTemplateRows={`${APP_HEADER_HEIGHT} 1fr`}>
+          <Grid as="header" placeContent="center" boxShadow="md">
+            <Box
+              as="h1"
+              fontWeight="bold"
+              fontSize="2xl"
+              color="red.400"
+              userSelect="none"
             >
-              <Flex
-                direction="column"
-                alignItems="center"
-                gap={3}
-                marginBottom={16}
-              >
-                <Alert status="error">
-                  <AlertIcon />
-                  <AlertTitle>{message}</AlertTitle>
-                </Alert>
-                <Button
-                  colorScheme="red"
-                  onClick={() => {
-                    window.location.href = '/';
-                  }}
-                >
-                  Back to home page
-                </Button>
-              </Flex>
-            </Grid>
+              {APP_TITLE}
+            </Box>
           </Grid>
-          <Scripts />
-        </ChakraProvider>
-      </body>
-    </html>
+          <Grid
+            as="main"
+            placeContent="center"
+            minHeight="full"
+            height="full"
+            padding={4}
+          >
+            <Flex
+              direction="column"
+              alignItems="center"
+              gap={3}
+              marginBottom={16}
+            >
+              <Alert status="error">
+                <AlertIcon />
+                <AlertTitle>{message}</AlertTitle>
+              </Alert>
+              <Button
+                colorScheme="red"
+                onClick={() => {
+                  window.location.href = '/';
+                }}
+              >
+                Back to home page
+              </Button>
+            </Flex>
+          </Grid>
+        </Grid>
+        <Scripts />
+      </ChakraProvider>
+    </Document>
   );
 }
 
@@ -143,26 +193,17 @@ export default function App() {
   const { genres } = useLoaderData<typeof loader>();
 
   return (
-    <html lang="en">
-      <head>
-        <Meta />
-        <Links />
-        <Font />
-      </head>
-      <body>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <ChakraProvider theme={theme}>
-          <ForceDarkMode />
-          <GenresProvider genres={genres}>
-            <AppLayout>
-              <Outlet />
-              <ScrollRestoration />
-              <Scripts />
-              <LiveReload />
-            </AppLayout>
-          </GenresProvider>
-        </ChakraProvider>
-      </body>
-    </html>
+    <Document>
+      <ChakraProvider theme={theme}>
+        <GenresProvider genres={genres}>
+          <AppLayout>
+            <Outlet />
+            <ScrollRestoration />
+            <Scripts />
+            <LiveReload />
+          </AppLayout>
+        </GenresProvider>
+      </ChakraProvider>
+    </Document>
   );
 }

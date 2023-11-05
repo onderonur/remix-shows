@@ -1,5 +1,4 @@
-import { HStack } from '@chakra-ui/react';
-import { Box } from '@chakra-ui/react';
+import { HStack , Box } from '@chakra-ui/react';
 import { StarIcon } from '@chakra-ui/icons';
 
 type VoteRatingProps = {
