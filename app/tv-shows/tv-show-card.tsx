@@ -6,6 +6,7 @@ import VoteRating from '~/common/vote-rating';
 import { useGenres } from '~/genres/genres-context';
 import { getImageUrl } from '~/medias/media-utils';
 import type { TvShowListItem } from './tv-show-types';
+import { BaseTooltip } from '~/common/base-tooltip';
 
 type TvShowCardProps = {
   tvShow: TvShowListItem;
@@ -33,9 +34,16 @@ export default function TvShowCard({ tvShow }: TvShowCardProps) {
         objectFit="cover"
       />
       <VStack align="stretch" spacing="0.5">
-        <Text fontWeight="bold" fontSize="md" lineHeight="short">
-          {tvShow.name}
-        </Text>
+        <BaseTooltip label={tvShow.name} placement="top-start">
+          <Text
+            fontWeight="bold"
+            fontSize="md"
+            lineHeight="short"
+            noOfLines={2}
+          >
+            {tvShow.name}
+          </Text>
+        </BaseTooltip>
         <Text opacity={0.7} fontSize="xs">
           {tvShow.genre_ids
             .map(

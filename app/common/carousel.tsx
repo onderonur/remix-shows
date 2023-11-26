@@ -92,12 +92,16 @@ export default function Carousel({
 
   const isTouchDevice = useIsTouchDevice();
 
-  const getGridAutoColumns = (colCount: Maybe<number>) =>
-    colCount
-      ? `calc(100% / ${colCount} - (${gap}px *  (${
-          colCount - 1
-        } / ${colCount})))`
-      : undefined;
+  function getGridAutoColumns(colCount: Maybe<number>) {
+    if (!colCount) {
+      return undefined;
+    }
+
+    const gapCount = colCount - 1;
+    const totalGap = `${gap}px * ${gapCount}`;
+
+    return `calc((100% - ${totalGap}) / ${colCount})`;
+  }
 
   const scrollTimerRef = useRef<NodeJS.Timeout>();
 
@@ -109,8 +113,6 @@ export default function Carousel({
     <Box
       sx={{
         position: 'relative',
-        // TODO: May not need this. Will check it.
-        display: 'grid',
       }}
     >
       <Box

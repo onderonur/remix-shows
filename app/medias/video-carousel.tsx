@@ -5,6 +5,7 @@ import CarouselItem from '~/common/carousel-item';
 import { paperStyles } from '~/common/common-styles';
 import type { Maybe } from '~/common/common-types';
 import type { VideoMedia } from './media-types';
+import { BaseTooltip } from '~/common/base-tooltip';
 
 type VideoCarouselProps = {
   videos: Maybe<VideoMedia[]>;
@@ -17,20 +18,26 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
         const searchParams = new URLSearchParams({ video: video.key });
         return (
           <CarouselItem key={video.key}>
-            <Link
-              to={{ search: searchParams.toString() }}
-              state={{ canGoBack: true }}
-              title={video.name}
-            >
-              <Box {...paperStyles} marginBottom={2} paddingY={2} paddingX={4}>
-                <Box fontWeight="semibold" noOfLines={2}>
-                  {video.name}
+            <BaseTooltip label={video.name}>
+              <Link
+                to={{ search: searchParams.toString() }}
+                state={{ canGoBack: true }}
+              >
+                <Box
+                  {...paperStyles}
+                  marginBottom={2}
+                  paddingY={2}
+                  paddingX={4}
+                >
+                  <Box fontWeight="semibold" noOfLines={2}>
+                    {video.name}
+                  </Box>
+                  <Box fontSize="sm" opacity={0.7}>
+                    {video.type}
+                  </Box>
                 </Box>
-                <Box fontSize="sm" opacity={0.7}>
-                  {video.type}
-                </Box>
-              </Box>
-            </Link>
+              </Link>
+            </BaseTooltip>
           </CarouselItem>
         );
       })}
