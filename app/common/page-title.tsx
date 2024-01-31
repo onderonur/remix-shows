@@ -1,5 +1,5 @@
-import type { GoBackButtonProps } from '~/routing/go-back-button';
-import GoBackButton from '~/routing/go-back-button';
+import type { GoBackButtonProps } from '~/common/go-back-button';
+import GoBackButton from '~/common/go-back-button';
 import type { TitleProps } from './title';
 import Title from './title';
 

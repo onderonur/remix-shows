@@ -1,6 +1,6 @@
 import { IconButton } from '@chakra-ui/react';
 import { ChevronLeftIcon } from '@chakra-ui/icons';
-import { useGoBack } from './routing-hooks';
+import { useGoBack } from '../routing/routing-hooks';
 
 export type GoBackButtonProps = Parameters<typeof useGoBack>[0];
 

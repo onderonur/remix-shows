@@ -16,34 +16,35 @@ export default function SearchBar() {
   const location = useLocation();
 
   return (
-    <Form
-      role="search"
-      autoComplete="off"
-      onChange={(e) => {
-        const isSearchRoute = location.pathname === '/search';
-        const formData = new FormData(e.currentTarget);
-        const trimmedKeyword = formData.get('keyword')?.toString().trim();
-        if (trimmedKeyword) {
-          formData.set('keyword', trimmedKeyword);
-          submit(formData, { action: '/search', replace: isSearchRoute });
-        } else if (isSearchRoute) {
-          navigate('/');
-        }
-      }}
-    >
-      <InputGroup>
-        <InputLeftElement
-          pointerEvents="none"
-          fontSize="1.2em"
-          children={<SearchIcon />}
-        />
-        <Input
-          placeholder="Search..."
-          name="keyword"
-          defaultValue={keyword}
-          type="search"
-        />
-      </InputGroup>
-    </Form>
+    <search>
+      <Form
+        autoComplete="off"
+        onChange={(e) => {
+          const isSearchRoute = location.pathname === '/search';
+          const formData = new FormData(e.currentTarget);
+          const trimmedKeyword = formData.get('keyword')?.toString().trim();
+          if (trimmedKeyword) {
+            formData.set('keyword', trimmedKeyword);
+            submit(formData, { action: '/search', replace: isSearchRoute });
+          } else if (isSearchRoute) {
+            navigate('/');
+          }
+        }}
+      >
+        <InputGroup>
+          <InputLeftElement
+            pointerEvents="none"
+            fontSize="1.2em"
+            children={<SearchIcon />}
+          />
+          <Input
+            placeholder="Search..."
+            name="keyword"
+            defaultValue={keyword}
+            type="search"
+          />
+        </InputGroup>
+      </Form>
+    </search>
   );
 }
