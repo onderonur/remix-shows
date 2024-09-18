@@ -11,23 +11,23 @@ import {
   useSearchParams,
   useSubmit,
 } from '@remix-run/react';
-import { createNumberArray } from '~/common/common-utils';
-import { getMetaTags } from '~/seo/seo-utils';
+import { createNumberArray } from '~/core/core.utils';
+import { getMetaTags } from '~/core/seo/seo.utils';
 import { Flex, List } from '@chakra-ui/react';
-import { getImageUrl } from '~/medias/media-utils';
-import TvShowEpisodeListItem from '~/tv-shows/tv-show-episode-list-item';
-import Title from '~/common/title';
-import HeaderCard from '~/common/header-card';
-import { tvShowsService } from '~/tv-shows/tv-show-service';
-import BaseSelect from '~/common/base-select';
-import { useScrollToTopOnRouteChange } from '~/common/common-hooks';
-import PageTitle from '~/common/page-title';
-import HeaderCardContent from '~/common/header-card-content';
-import HeaderCardImage from '~/common/header-card-image';
-import HeaderCardBody from '~/common/header-card-body';
-import TvShowBackground from '~/tv-shows/tv-show-background';
+import { getImageUrl } from '~/features/medias/medias.utils';
+import TvShowEpisodeListItem from '~/features/tv-shows/components/tv-show-episode-list-item';
+import Title from '~/core/ui/components/title';
+import HeaderCard from '~/core/ui/components/header-card';
+import { tvShowsService } from '~/features/tv-shows/tv-shows.service';
+import BaseSelect from '~/core/ui/components/base-select';
+import { useScrollToTopOnRouteChange } from '~/core/ui/ui.hooks';
+import PageTitle from '~/core/ui/components/page-title';
+import HeaderCardContent from '~/core/ui/components/header-card-content';
+import HeaderCardImage from '~/core/ui/components/header-card-image';
+import HeaderCardBody from '~/core/ui/components/header-card-body';
+import TvShowBackground from '~/features/tv-shows/components/tv-show-background';
 import { goTry } from 'go-try';
-import { createErrorResponse } from '~/error-handling/error-handling-utils';
+import { createErrorResponse } from '~/core/errors/errors.utils';
 
 const getSelectedSeason = (searchParams: URLSearchParams) => {
   return Number(searchParams.get('season')) || 1;

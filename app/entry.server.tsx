@@ -4,8 +4,8 @@ import { CacheProvider } from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
 import { RemixServer } from '@remix-run/react';
 import type { EntryContext } from '@remix-run/node'; // Depends on the runtime you choose
-import { ServerStyleContext } from './styling/style-context';
-import createEmotionCache from './styling/styling-utils';
+import { ServerStyleContext } from './core/styling/components/style-context';
+import createEmotionCache from './core/styling/styling.utils';
 
 export default function handleRequest(
   request: Request,

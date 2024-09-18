@@ -11,8 +11,8 @@ import {
 } from '@remix-run/react';
 import type { V2_MetaFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
-import { getMetaTags } from './seo/seo-utils';
-import { genreService } from './genres/genre-service';
+import { getMetaTags } from './core/seo/seo.utils';
+import { genreService } from '~/features/genres/genres.service';
 import {
   Box,
   Button,
@@ -23,20 +23,20 @@ import {
   AlertIcon,
   AlertTitle,
 } from '@chakra-ui/react';
-import GenresProvider from './genres/genres-context';
-import AppLayout from './layout/app-layout';
-import { theme } from './theme/theme';
-import { PLACEHOLDER_IMAGE_SRC } from './medias/media-utils';
-import { APP_TITLE } from './common/common-utils';
-import { APP_HEADER_HEIGHT } from './layout/layout-utils';
+import GenresProvider from '~/features/genres/components/genres-context';
+import AppLayout from './core/layout/components/app-layout';
+import { theme } from './core/theme/theme';
+import { PLACEHOLDER_IMAGE_SRC } from './features/medias/medias.utils';
+import { APP_TITLE } from './core/core.utils';
+import { APP_HEADER_HEIGHT } from './core/layout/layout.utils';
 import { goTry } from 'go-try';
-import { createErrorResponse } from './error-handling/error-handling-utils';
+import { createErrorResponse } from './core/errors/errors.utils';
 import { withEmotionCache } from '@emotion/react';
 import { useContext, useEffect } from 'react';
 import {
   ClientStyleContext,
   ServerStyleContext,
-} from './styling/style-context';
+} from './core/styling/components/style-context';
 
 export const meta: V2_MetaFunction = () => {
   return getMetaTags({ image: PLACEHOLDER_IMAGE_SRC });

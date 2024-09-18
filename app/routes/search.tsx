@@ -2,11 +2,11 @@ import type { LoaderArgs } from '@remix-run/node';
 import { json, redirect } from '@remix-run/node';
 import { useLoaderData, useSearchParams } from '@remix-run/react';
 import { goTry } from 'go-try';
-import { useScrollToTopOnRouteChange } from '~/common/common-hooks';
-import PageTitle from '~/common/page-title';
-import { createErrorResponse } from '~/error-handling/error-handling-utils';
-import { searchService } from '~/search/search-service';
-import TvShowList from '~/tv-shows/tv-show-list';
+import { useScrollToTopOnRouteChange } from '~/core/ui/ui.hooks';
+import PageTitle from '~/core/ui/components/page-title';
+import { createErrorResponse } from '~/core/errors/errors.utils';
+import { searchService } from '~/features/search/search.service';
+import TvShowList from '~/features/tv-shows/components/tv-show-list';
 
 const getKeyword = (searchParams: URLSearchParams) => {
   return searchParams.get('keyword')?.trim();
