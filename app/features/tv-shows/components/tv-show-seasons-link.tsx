@@ -16,7 +16,6 @@ export default function TvShowSeasonsLink({ tvShow }: TvShowSeasonsLinkProps) {
         gap={4}
         paddingY={2}
         paddingX={4}
-        role="group"
         {...paperStyles}
       >
         <div>

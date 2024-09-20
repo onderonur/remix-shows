@@ -3,7 +3,7 @@ import BaseImage from '~/core/ui/components/base-image';
 import {
   APP_DRAWER_WIDTH,
   APP_HEADER_HEIGHT,
-} from '~/core/layout/layout.utils';
+} from '~/core/layouts/layout.utils';
 import { getImageUrl } from '~/features/medias/medias.utils';
 
 type TvShowBackgroundProps = {

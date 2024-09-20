@@ -24,11 +24,11 @@ import {
   AlertTitle,
 } from '@chakra-ui/react';
 import GenresProvider from '~/features/genres/components/genres-context';
-import AppLayout from './core/layout/components/app-layout';
+import AppLayout from './core/layouts/components/app-layout';
 import { theme } from './core/theme/theme';
 import { PLACEHOLDER_IMAGE_SRC } from './features/medias/medias.utils';
 import { APP_TITLE } from './core/core.utils';
-import { APP_HEADER_HEIGHT } from './core/layout/layout.utils';
+import { APP_HEADER_HEIGHT } from './core/layouts/layout.utils';
 import { goTry } from 'go-try';
 import { createErrorResponse } from './core/errors/errors.utils';
 import { withEmotionCache } from '@emotion/react';

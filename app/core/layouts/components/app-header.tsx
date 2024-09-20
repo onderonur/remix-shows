@@ -1,6 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react';
 import SearchBar from '~/features/search/components/search-bar';
-import { APP_HEADER_HEIGHT } from '~/core/layout/layout.utils';
+import { APP_HEADER_HEIGHT } from '~/core/layouts/layout.utils';
 
 type AppHeaderProps = {
   title: React.ReactNode;
