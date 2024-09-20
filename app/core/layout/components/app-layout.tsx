@@ -1,5 +1,5 @@
 import { Box, Container, Grid, GridItem } from '@chakra-ui/react';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import AppTitle from '~/core/layout/components/app-title';
 import AppHeader from './app-header';
 import AppDrawer from './app-drawer';
@@ -14,9 +14,9 @@ type AppLayoutProps = React.PropsWithChildren;
 export default function AppLayout({ children }: AppLayoutProps) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const handleCloseDrawer = useCallback(() => {
+  function handleCloseDrawer() {
     setIsDrawerOpen(false);
-  }, []);
+  }
 
   const appTitle = (
     <AppTitle onClickToggle={() => setIsDrawerOpen((current) => !current)} />
