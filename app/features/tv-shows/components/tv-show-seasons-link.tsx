@@ -1,8 +1,8 @@
 import { Link } from '@remix-run/react';
-import type { TvShow } from '~/features/tv-shows/tv-shows.types';
+import type { TvShow } from '~/features/tv-shows/types';
 import { Box, Flex } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
-import { baseTransitionStyles, paperStyles } from '~/core/ui/ui.styles';
+import { baseTransitionStyles, paperStyles } from '~/core/ui/styles';
 
 type TvShowSeasonsLinkProps = {
   tvShow: TvShow;

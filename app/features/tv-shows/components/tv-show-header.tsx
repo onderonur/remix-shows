@@ -1,13 +1,13 @@
 import { Box, Flex, List, ListItem, Text } from '@chakra-ui/react';
-import { getYear } from '~/core/core.utils';
+import { getYear } from '~/core/shared/utils';
 import HeaderCard from '~/core/ui/components/header-card';
 import HeaderCardContent from '~/core/ui/components/header-card-content';
 import HeaderCardBody from '~/core/ui/components/header-card-body';
 import HeaderCardImage from '~/core/ui/components/header-card-image';
 import VoteRating from '~/core/ui/components/vote-rating';
 import GenreTags from '~/features/genres/components/genre-tags';
-import { getImageUrl } from '~/features/medias/medias.utils';
-import type { TvShow } from '../tv-shows.types';
+import { getImageUrl } from '~/features/medias/utils';
+import type { TvShow } from '../types';
 import BaseImage from '~/core/ui/components/base-image';
 
 type TvShowHeaderProps = {

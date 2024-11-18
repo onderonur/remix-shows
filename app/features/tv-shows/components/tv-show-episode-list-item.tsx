@@ -1,10 +1,10 @@
 import { Box, Flex, ListItem, Text } from '@chakra-ui/react';
 import BaseImage from '~/core/ui/components/base-image';
-import { paperStyles } from '~/core/ui/ui.styles';
-import { getDateString } from '~/core/core.utils';
+import { paperStyles } from '~/core/ui/styles';
+import { getDateString } from '~/core/shared/utils';
 import VoteRating from '~/core/ui/components/vote-rating';
-import { getImageUrl } from '~/features/medias/medias.utils';
-import type { BaseTvShowEpisode } from '../tv-shows.types';
+import { getImageUrl } from '~/features/medias/utils';
+import type { BaseTvShowEpisode } from '../types';
 
 type TvShowEpisodeListItemProps = {
   episode: BaseTvShowEpisode;

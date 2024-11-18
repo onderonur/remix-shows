@@ -1,10 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import BaseImage from '~/core/ui/components/base-image';
-import {
-  APP_DRAWER_WIDTH,
-  APP_HEADER_HEIGHT,
-} from '~/core/layouts/layout.utils';
-import { getImageUrl } from '~/features/medias/medias.utils';
+import { APP_DRAWER_WIDTH, APP_HEADER_HEIGHT } from '~/core/layouts/utils';
+import { getImageUrl } from '~/features/medias/utils';
 
 type TvShowBackgroundProps = {
   src: string;

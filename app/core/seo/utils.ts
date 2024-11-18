@@ -1,6 +1,6 @@
 import type { V2_MetaDescriptor } from '@remix-run/node';
-import { APP_TITLE } from '~/core/core.utils';
-import { PLACEHOLDER_IMAGE_SRC } from '~/features/medias/medias.utils';
+import { APP_TITLE } from '~/core/shared/utils';
+import { PLACEHOLDER_IMAGE_SRC } from '~/features/medias/utils';
 
 export const getMetaTags = (args?: {
   title?: string;

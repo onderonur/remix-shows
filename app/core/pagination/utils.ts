@@ -1,5 +1,5 @@
-import type { Id } from '~/core/core.types';
-import type { PaginationResponse } from './pagination.types';
+import type { Id } from '~/core/shared/types';
+import type { PaginationResponse } from './types';
 import _ from 'lodash';
 
 export const checkHasNextPage = (paginated: PaginationResponse) => {

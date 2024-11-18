@@ -1,17 +1,17 @@
 import { httpClient } from '~/core/http-client/http-client';
-import type { Id, Maybe } from '~/core/core.types';
-import type { PaginationResponse } from '~/core/pagination/pagination.types';
+import type { Id, Maybe } from '~/core/shared/types';
+import type { PaginationResponse } from '~/core/pagination/types';
 import type {
   TvShow,
   TvShowEpisode,
   TvShowListItem,
   TvShowSeason,
-} from './tv-shows.types';
+} from './types';
 import {
   filterViewableTvShows,
   shouldViewTvShow,
   VIEW_FILTER_LIMIT,
-} from './tv-shows.utils';
+} from './utils';
 import createHttpError from 'http-errors';
 
 const discover = async (params: {

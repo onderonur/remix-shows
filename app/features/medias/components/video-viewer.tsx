@@ -1,7 +1,7 @@
 import YouTubePlayer from './youtube-player';
 import MediaViewer from './media-viewer';
-import type { Maybe } from '~/core/core.types';
-import type { VideoMedia } from '../medias.types';
+import type { Maybe } from '~/core/shared/types';
+import type { VideoMedia } from '../types';
 
 type VideoViewerProps = {
   title: string;

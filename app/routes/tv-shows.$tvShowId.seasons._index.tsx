@@ -11,23 +11,23 @@ import {
   useSearchParams,
   useSubmit,
 } from '@remix-run/react';
-import { createNumberArray } from '~/core/core.utils';
-import { getMetaTags } from '~/core/seo/seo.utils';
+import { createNumberArray } from '~/core/shared/utils';
+import { getMetaTags } from '~/core/seo/utils';
 import { Flex, List } from '@chakra-ui/react';
-import { getImageUrl } from '~/features/medias/medias.utils';
+import { getImageUrl } from '~/features/medias/utils';
 import TvShowEpisodeListItem from '~/features/tv-shows/components/tv-show-episode-list-item';
 import Title from '~/core/ui/components/title';
 import HeaderCard from '~/core/ui/components/header-card';
-import { tvShowsService } from '~/features/tv-shows/tv-shows.service';
+import { tvShowsService } from '~/features/tv-shows/data';
 import BaseSelect from '~/core/ui/components/base-select';
-import { useScrollToTopOnRouteChange } from '~/core/ui/ui.hooks';
+import { useScrollToTopOnRouteChange } from '~/core/ui/hooks';
 import PageTitle from '~/core/ui/components/page-title';
 import HeaderCardContent from '~/core/ui/components/header-card-content';
 import HeaderCardImage from '~/core/ui/components/header-card-image';
 import HeaderCardBody from '~/core/ui/components/header-card-body';
 import TvShowBackground from '~/features/tv-shows/components/tv-show-background';
 import { goTry } from 'go-try';
-import { createErrorResponse } from '~/core/errors/errors.utils';
+import { createErrorResponse } from '~/core/errors/utils';
 
 const getSelectedSeason = (searchParams: URLSearchParams) => {
   return Number(searchParams.get('season')) || 1;

@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import type { Genre } from '../genres.types';
+import type { Genre } from '../types';
 
 type GenresContextValue = Genre[];
 

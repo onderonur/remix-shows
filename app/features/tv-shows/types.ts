@@ -1,7 +1,7 @@
-import type { Id } from '~/core/core.types';
-import type { Genre } from '~/features/genres/genres.types';
-import type { ImageMedia, VideoMedia } from '~/features/medias/medias.types';
-import type { PaginationResponse } from '~/core/pagination/pagination.types';
+import type { Id } from '~/core/shared/types';
+import type { Genre } from '~/features/genres/types';
+import type { ImageMedia, VideoMedia } from '~/features/medias/types';
+import type { PaginationResponse } from '~/core/pagination/types';
 
 export type BaseTvShow = {
   id: Id;

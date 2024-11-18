@@ -1,5 +1,5 @@
 import { httpClient } from '~/core/http-client/http-client';
-import type { Genre } from './genres.types';
+import type { Genre } from './types';
 
 const getAll = async () => {
   const { genres } = await httpClient.get<{ genres: Genre[] }>(

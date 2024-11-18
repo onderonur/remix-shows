@@ -1,5 +1,5 @@
-import type { PaginationResponse } from '~/core/pagination/pagination.types';
-import type { BaseTvShow, TvShowListItem } from './tv-shows.types';
+import type { PaginationResponse } from '~/core/pagination/types';
+import type { BaseTvShow, TvShowListItem } from './types';
 
 export const VIEW_FILTER_LIMIT = {
   minVoteCount: 500,

@@ -1,4 +1,4 @@
-import type { Id } from '~/core/core.types';
+import type { Id } from '~/core/shared/types';
 
 export type Genre = {
   id: Id;

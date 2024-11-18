@@ -1,6 +1,6 @@
 import { List, ListItem, Tag } from '@chakra-ui/react';
 import { Link } from '@remix-run/react';
-import type { Genre } from '~/features/genres/genres.types';
+import type { Genre } from '~/features/genres/types';
 
 type GenreTagsProps = {
   genres: Genre[];

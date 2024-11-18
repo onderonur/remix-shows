@@ -4,10 +4,7 @@ import AppTitle from '~/core/layouts/components/app-title';
 import AppHeader from './app-header';
 import AppDrawer from './app-drawer';
 import AppNavigation from './app-navigation';
-import {
-  APP_DRAWER_WIDTH,
-  APP_HEADER_HEIGHT,
-} from '~/core/layouts/layout.utils';
+import { APP_DRAWER_WIDTH, APP_HEADER_HEIGHT } from '~/core/layouts/utils';
 
 type AppLayoutProps = React.PropsWithChildren;
 

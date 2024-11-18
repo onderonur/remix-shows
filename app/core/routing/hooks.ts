@@ -1,6 +1,6 @@
 import type { To } from '@remix-run/router';
 import { useLocation, useNavigate } from '@remix-run/react';
-import { isOfType } from '~/core/core.utils';
+import { isOfType } from '~/core/shared/utils';
 
 export function useGoBack({ getFallback }: { getFallback: () => To }) {
   const location = useLocation();

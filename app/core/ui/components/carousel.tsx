@@ -3,8 +3,8 @@ import { useBreakpointValue, IconButton, Box } from '@chakra-ui/react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { Children, useRef, useState } from 'react';
 import InfoAlert from './info-alert';
-import { useIsTouchDevice } from '~/core/ui/ui.hooks';
-import type { Maybe } from '~/core/core.types';
+import { useIsTouchDevice } from '~/core/ui/hooks';
+import type { Maybe } from '~/core/shared/types';
 
 type CarouselProps = React.PropsWithChildren<{
   visibleItemCount: {

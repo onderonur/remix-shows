@@ -1,5 +1,5 @@
 import { isNil } from 'lodash';
-import type { AnyObject } from './core.types';
+import type { AnyObject } from './types';
 
 export const APP_TITLE = 'Remix-Shows';
 

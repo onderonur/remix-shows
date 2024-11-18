@@ -5,24 +5,24 @@ import type {
 } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import { getImageUrl } from '~/features/medias/medias.utils';
-import { getMetaTags } from '~/core/seo/seo.utils';
+import { getImageUrl } from '~/features/medias/utils';
+import { getMetaTags } from '~/core/seo/utils';
 import { Box, Flex } from '@chakra-ui/react';
 import VoteRating from '~/core/ui/components/vote-rating';
 import Title from '~/core/ui/components/title';
-import { tvShowsService } from '~/features/tv-shows/tv-shows.service';
+import { tvShowsService } from '~/features/tv-shows/data';
 import HeaderCard from '~/core/ui/components/header-card';
 import ImageViewer from '~/features/medias/components/image-viewer';
 import VideoCarousel from '~/features/medias/components/video-carousel';
 import VideoViewer from '~/features/medias/components/video-viewer';
-import { getDateString } from '~/core/core.utils';
+import { getDateString } from '~/core/shared/utils';
 import PageTitle from '~/core/ui/components/page-title';
 import HeaderCardContent from '~/core/ui/components/header-card-content';
 import HeaderCardImage from '~/core/ui/components/header-card-image';
 import HeaderCardBody from '~/core/ui/components/header-card-body';
 import ImageCarousel from '~/features/medias/components/image-carousel';
 import TvShowBackground from '~/features/tv-shows/components/tv-show-background';
-import { createErrorResponse } from '~/core/errors/errors.utils';
+import { createErrorResponse } from '~/core/errors/utils';
 import { goTry } from 'go-try';
 
 export const loader = async ({ params }: LoaderArgs) => {

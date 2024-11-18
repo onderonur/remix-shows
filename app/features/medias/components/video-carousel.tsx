@@ -2,9 +2,9 @@ import { Box } from '@chakra-ui/react';
 import { Link } from '@remix-run/react';
 import Carousel from '~/core/ui/components/carousel';
 import CarouselItem from '~/core/ui/components/carousel-item';
-import { paperStyles } from '~/core/ui/ui.styles';
-import type { Maybe } from '~/core/core.types';
-import type { VideoMedia } from '../medias.types';
+import { paperStyles } from '~/core/ui/styles';
+import type { Maybe } from '~/core/shared/types';
+import type { VideoMedia } from '../types';
 import { BaseTooltip } from '~/core/ui/components/base-tooltip';
 
 type VideoCarouselProps = {

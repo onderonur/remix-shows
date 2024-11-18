@@ -1,11 +1,11 @@
 import { Flex, Text, VStack } from '@chakra-ui/react';
 import BaseImage from '~/core/ui/components/base-image';
-import { baseTransitionStyles } from '~/core/ui/ui.styles';
-import { getYear } from '~/core/core.utils';
+import { baseTransitionStyles } from '~/core/ui/styles';
+import { getYear } from '~/core/shared/utils';
 import VoteRating from '~/core/ui/components/vote-rating';
 import { useGenres } from '~/features/genres/components/genres-context';
-import { getImageUrl } from '~/features/medias/medias.utils';
-import type { TvShowListItem } from '../tv-shows.types';
+import { getImageUrl } from '~/features/medias/utils';
+import type { TvShowListItem } from '../types';
 import { BaseTooltip } from '~/core/ui/components/base-tooltip';
 
 type TvShowCardProps = {

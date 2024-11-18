@@ -1,7 +1,7 @@
-import { getImageUrl } from '~/features/medias/medias.utils';
+import { getImageUrl } from '~/features/medias/utils';
 import BaseImage from '~/core/ui/components/base-image';
-import type { Maybe } from '~/core/core.types';
-import type { ImageMedia } from '~/features/medias/medias.types';
+import type { Maybe } from '~/core/shared/types';
+import type { ImageMedia } from '~/features/medias/types';
 import MediaViewer from '~/features/medias/components/media-viewer';
 
 type ImageViewerProps = {

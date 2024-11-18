@@ -1,6 +1,6 @@
 import { Box, HStack, IconButton } from '@chakra-ui/react';
 import { Link } from '@remix-run/react';
-import { APP_TITLE } from '~/core/core.utils';
+import { APP_TITLE } from '~/core/shared/utils';
 import { HamburgerIcon } from '@chakra-ui/icons';
 
 type AppTitleProps = {

@@ -12,8 +12,8 @@ import {
 } from '@chakra-ui/react';
 import { useNavigate, useSearchParams } from '@remix-run/react';
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
-import type { Maybe } from '~/core/core.types';
-import { useGoBack } from '~/core/routing/routing.hooks';
+import type { Maybe } from '~/core/shared/types';
+import { useGoBack } from '~/core/routing/hooks';
 
 const stepperButtonDistanceFromEdge = 2;
 

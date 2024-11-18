@@ -14,17 +14,17 @@ import {
   checkHasNextPage,
   getAllPageResults,
   getNextPage,
-} from '~/core/pagination/pagination.utils';
+} from '~/core/pagination/utils';
 import type { loader as rootLoader } from '~/root';
-import { getMetaTags } from '~/core/seo/seo.utils';
+import { getMetaTags } from '~/core/seo/utils';
 import TvShowList from '~/features/tv-shows/components/tv-show-list';
-import { tvShowsService } from '~/features/tv-shows/tv-shows.service';
-import { TV_SHOWS_SORT_BY } from '~/features/tv-shows/tv-shows.utils';
+import { tvShowsService } from '~/features/tv-shows/data';
+import { TV_SHOWS_SORT_BY } from '~/features/tv-shows/utils';
 import BaseSelect from '~/core/ui/components/base-select';
-import { useHasChanged } from '~/core/ui/ui.hooks';
+import { useHasChanged } from '~/core/ui/hooks';
 import { useMemo, useState } from 'react';
 import PageTitle from '~/core/ui/components/page-title';
-import { createErrorResponse } from '~/core/errors/errors.utils';
+import { createErrorResponse } from '~/core/errors/utils';
 import { goTry } from 'go-try';
 
 const getGenreId = (searchParams: URLSearchParams) => {

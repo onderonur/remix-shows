@@ -2,10 +2,10 @@ import type { LoaderArgs } from '@remix-run/node';
 import { json, redirect } from '@remix-run/node';
 import { useLoaderData, useSearchParams } from '@remix-run/react';
 import { goTry } from 'go-try';
-import { useScrollToTopOnRouteChange } from '~/core/ui/ui.hooks';
+import { useScrollToTopOnRouteChange } from '~/core/ui/hooks';
 import PageTitle from '~/core/ui/components/page-title';
-import { createErrorResponse } from '~/core/errors/errors.utils';
-import { searchService } from '~/features/search/search.service';
+import { createErrorResponse } from '~/core/errors/utils';
+import { searchService } from '~/features/search/data';
 import TvShowList from '~/features/tv-shows/components/tv-show-list';
 
 const getKeyword = (searchParams: URLSearchParams) => {

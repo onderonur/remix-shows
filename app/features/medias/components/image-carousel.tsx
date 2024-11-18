@@ -2,8 +2,8 @@ import { Link } from '@remix-run/react';
 import BaseImage from '~/core/ui/components/base-image';
 import Carousel from '~/core/ui/components/carousel';
 import CarouselItem from '~/core/ui/components/carousel-item';
-import type { Maybe } from '~/core/core.types';
-import { getImageUrl } from '../medias.utils';
+import type { Maybe } from '~/core/shared/types';
+import { getImageUrl } from '../utils';
 
 type ImageCarouselProps = {
   images: Maybe<

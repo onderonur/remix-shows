@@ -11,8 +11,8 @@ import {
 } from '@remix-run/react';
 import type { V2_MetaFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
-import { getMetaTags } from './core/seo/seo.utils';
-import { genreService } from '~/features/genres/genres.service';
+import { getMetaTags } from './core/seo/utils';
+import { genreService } from '~/features/genres/data';
 import {
   Box,
   Button,
@@ -26,11 +26,11 @@ import {
 import GenresProvider from '~/features/genres/components/genres-context';
 import AppLayout from './core/layouts/components/app-layout';
 import { theme } from './core/theme/theme';
-import { PLACEHOLDER_IMAGE_SRC } from './features/medias/medias.utils';
-import { APP_TITLE } from './core/core.utils';
-import { APP_HEADER_HEIGHT } from './core/layouts/layout.utils';
+import { PLACEHOLDER_IMAGE_SRC } from './features/medias/utils';
+import { APP_TITLE } from '~/core/shared/utils';
+import { APP_HEADER_HEIGHT } from './core/layouts/utils';
 import { goTry } from 'go-try';
-import { createErrorResponse } from './core/errors/errors.utils';
+import { createErrorResponse } from './core/errors/utils';
 import { withEmotionCache } from '@emotion/react';
 import { useContext, useEffect } from 'react';
 import {

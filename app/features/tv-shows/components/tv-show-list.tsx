@@ -1,9 +1,9 @@
 import { Grid } from '@chakra-ui/react';
 import { Link } from '@remix-run/react';
-import type { PaginationResponse } from '~/core/pagination/pagination.types';
-import type { TvShowListItem } from '~/features/tv-shows/tv-shows.types';
+import type { PaginationResponse } from '~/core/pagination/types';
+import type { TvShowListItem } from '~/features/tv-shows/types';
 import TvShowCard from './tv-show-card';
-import type { Maybe } from '~/core/core.types';
+import type { Maybe } from '~/core/shared/types';
 import InfoAlert from '~/core/ui/components/info-alert';
 
 type TvShowListProps = {
